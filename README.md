@@ -1,1 +1,3 @@
 # BinFunGame
+
+WE ARE THE BIN FUN GAME
