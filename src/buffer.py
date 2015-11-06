@@ -61,9 +61,17 @@ class Buffer:
     
 #   def flushTable():
 
+<<<<<<< HEAD
 #   def initQueue():
 #   def roundRobinCheck():
 
+=======
+
+#   def pullTable():
+
+
+"""
+>>>>>>> 666938c... Testing importing on main
 if __name__ == '__main__':
     buf1 = Buffer("Nest 3rd Floor",1,2,3,4)
     print buf1.location
@@ -72,6 +80,7 @@ if __name__ == '__main__':
     for i in range(0,10):
          buf1.incrementCount("blue")
     print buf1.getCount("blue")
+"""
 
 
 
