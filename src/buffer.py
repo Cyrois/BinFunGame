@@ -1,16 +1,24 @@
 #!/usr/bin/python
+from collections import deque
 
 class Buffer:
     'This our buffer'
+    """
+        Gets deque from queue class, increments count values by checking length of deque, signals Main with updated bin values and bin
+        When recieved new deque, append all deques together. Once main calls flushTable, dump queue to main
+        Init queues and round robin them.
+    """
     __blackCount = 0
     __greenCount = 0
     __blueCount = 0
     __greyCount = 0
+
     #Unique IDs for the 4 bins
     __blackID = -1
     __greenID = -1
     __blueID = -1
     __greyID = -1
+    
 
 # Manual input for location and IDs
     def __init__(self,location,blackID,greenID,blueID,greyID):
@@ -19,14 +27,13 @@ class Buffer:
         self.greenID = greenID
         self.blueID = blueID
         self.greyID = greyID
+
 # Break down struct of signal for count
 #   def parseSignal(Signal):
     #Increment Count
     #Signal Main
     #Send desired count value
-
 #   def signalMain():
-
     def getCount(self,color):
         if color == "black":
             return self.__blackCount
@@ -54,11 +61,9 @@ class Buffer:
     
 #   def flushTable():
 
+#   def initQueue():
+#   def roundRobinCheck():
 
-#   def pullTable():
-
-
-"""
 if __name__ == '__main__':
     buf1 = Buffer("Nest 3rd Floor",1,2,3,4)
     print buf1.location
@@ -67,6 +72,6 @@ if __name__ == '__main__':
     for i in range(0,10):
          buf1.incrementCount("blue")
     print buf1.getCount("blue")
-"""
+
 
 
