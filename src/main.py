@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import Queue
-
-class Main:
-    test = Queue(10)
-    test.push();
-=======
 #!/usr/bin/python
 from buffer import Buffer
 
@@ -18,4 +11,3 @@ if __name__ == '__main__':
     for i in range(0,10):
         buf1.incrementCount("blue")
     print buf1.getCount("blue")
->>>>>>> 666938c... Testing importing on main
