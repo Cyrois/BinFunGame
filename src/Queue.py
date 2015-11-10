@@ -14,13 +14,15 @@ class Queue:
                  
     def flushQueue(self):
         print "flush queue"
-        queue = self.__queue.copy()
+        newDeque = deque()
+        for signal in self.__queue:
+            newDeque.append(signal)
         self.__queue.clear()
         self.setEmptyFlag(True)
-        return queue
+        return newDeque
         
-    def printQueue(queue):
-        for signal in queue:
+    def printQueue(self):
+        for signal in self.__queue:
             print signal
 
     def setEmptyFlag(self, empty):
@@ -28,18 +30,4 @@ class Queue:
         
     def getEmptyFlag(self):
         return self.__isEmpty
-        
-if __name__ == '__main__':
-    print "testing"
-    test = Queue()
-    test.push("1")
-    test.push("2")
-    test.push("3")
-    Queue.printQueue(test)
-    
-    newTest = test.flushQueue()
-    Queue.printQueue(newTest)
-    
-    print("something")
-    wait = input("PRESS ENTER TO CONTINUE.")
-    print("something")
+
