@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import datetime
 import Queue
+import Signal
 
 class Sensor:
     __isEmpty = None
@@ -30,13 +31,12 @@ class Sensor:
     def sendSignal(self):           
         #send date, time and id
         #need to send to queue instead 
-        print datetime.datetime.utcnow()
-        self.__signal = self.initializeSignal()
+        dateTime = datetime.datetime.utcnow()
+        print dateTime
+        initSignal = getattr(Signal(), 'initializeSignal')
+        self.__signal = initSignal(self.__ID, self.__Location, dateTime)
         self.setEmptyFlag(False)
 
-    def initializeSignal(self):
-        return self.__ID + "," + self.__Location + "," + datetime.datetime.utcnow()
-        
     def setEmptyFlag(self, empty):
         self.__isEmpty = empty
         
