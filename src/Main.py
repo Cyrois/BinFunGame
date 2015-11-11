@@ -1,19 +1,29 @@
 #!/usr/bin/python
 from Buffer import Buffer
 from collections import deque
+from SDfile import SDfile
 
 if __name__ == '__main__':
+    
+    mainDeque = deque()
     
     #Init buffer
     location = raw_input('Please enter currect location of bin:')
     binBuffer = Buffer(location,1,2,3,4)
-    mainDeque = deque()
+    
+    
+    #Clean buffer
     binBuffer.flushBuffer()
-    binBuffer.initQueue()
+    
     binEmptyFlag = True
     
+    #Init sdFile
+    headers = "ID,Location,Date,Time"
+    sdFile = SDfile("./TempFiles/test.csv")
+    sdFile.quickInit(headers)
+    
     while True:
-        if binEmptyFlag == False:
+        if binBuffer.getEmptyFlag() == False:
             mainDeque = binBuffer.flushBuffer()
             #Buffer queue should be empty
             print "Sending signal to Display "
@@ -22,7 +32,8 @@ if __name__ == '__main__':
             print binBuffer.getCount("blue")
             print binBuffer.getCount("grey")
             print "Sending signal to SD to save "
-            print mainDeque
+            sdFile.quickAppendBuffer(mainDeque)
+            print "quickRead: " + str(sdFile.quickRead())
     
     #Test buffer
         test = raw_input ("Enter stuff in deque: ")
@@ -30,4 +41,3 @@ if __name__ == '__main__':
         binBuffer.simulateQueue(test,color)
         
         binBuffer.listenQueues()
-        binEmptyFlag = binBuffer.getEmptyFlag()

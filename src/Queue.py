@@ -1,10 +1,12 @@
 from collections import deque
+from Signal import Signal
 
 class Queue:
     __queue = deque()
     __isEmpty = True
     __location =  None
     __ID = None
+    __signal = None
     
     def __init__(self,location,ID):
         print "initializing queue"
@@ -34,4 +36,9 @@ class Queue:
         
     def getEmptyFlag(self):
         return self.__isEmpty
+    
+    def initSensor(self):
+        __signal = Signal()
+
+
 

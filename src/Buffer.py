@@ -4,13 +4,7 @@ from Queue import Queue
 
 class Buffer:
     'This our buffer'
-    """
-        Gets deque from queue class, increments count values by checking length of deque, signals Main with updated bin values and bin
-        When recieved new deque, append all deques together. Once main calls flushQueue, dump queue to main
-        Init queues and round robin them.
-        
-        Main execs roundrobin(since no threads), roundRobin should return with a new deque and dumps every round
-    """
+    
     #Count Values for each bin
     __blackCount = 0
     __greenCount = 0
@@ -19,6 +13,7 @@ class Buffer:
     
     #Location of Bin
     __location = None
+    
     #Unique IDs for the 4 bins
     __blackID = None
     __greenID = None
@@ -27,6 +22,7 @@ class Buffer:
     
     #Empty flag
     __isEmpty = True
+    
     #Main deque
     __bufferDeque = deque()
     
@@ -36,14 +32,15 @@ class Buffer:
     __blueQueue = None
     __greyQueue = None
     
-# Manual input for location and IDs
+    # Manual input for location and IDs
     def __init__(self,location,blackID,greenID,blueID,greyID):
         self.__location = location
         self.__blackID = blackID
         self.__greenID = greenID
         self.__blueID = blueID
         self.__greyID = greyID
-    
+        self.initQueue()
+
     def initQueue(self):
         self.__blackQueue = Queue(self.__location,self.__blackID)
         self.__greenQueue = Queue(self.__location,self.__greenID)
@@ -74,29 +71,29 @@ class Buffer:
             print "Error: Flush buffer queue first!"
         #Check black queue
         if (self.__blackQueue.getEmptyFlag() == False) :
-            self.appendSignal("black",self.__blackQueue.flushQueue())
+            self.appendQueue("black",self.__blackQueue.flushQueue())
         #Check green queue
         if (self.__greenQueue.getEmptyFlag() == False) :
-            self.appendSignal("green",self.__greenQueue.flushQueue())
+            self.appendQueue("green",self.__greenQueue.flushQueue())
         #Check blue queue
         if (self.__blueQueue.getEmptyFlag() == False) :
-            self.appendSignal("blue",self.__blueQueue.flushQueue())
+            self.appendQueue("blue",self.__blueQueue.flushQueue())
         #Check grey queue
         if (self.__greyQueue.getEmptyFlag() == False) :
-            self.appendSignal("grey",self.__greyQueue.flushQueue())
+            self.appendQueue("grey",self.__greyQueue.flushQueue())
         if len(self.__bufferDeque) > 0:
-            print "Buffer has something!"
+            #print "Buffer has something!"
             self.setEmptyFlag(False)
         else:
+            #print  "Buffer has nothing!"
             self.setEmptyFlag(True)
-            print  "Buffer has nothing!"
 
     #updates mainDeque and bin count values
-    def appendSignal(self,color,signalDeque):
+    def appendQueue(self,color,queueDeque):
         #Increment Count
-        self.incrementCount(color,signalDeque)
+        self.incrementCount(color,queueDeque)
         #Append Deques
-        self.appendToBufDeq(signalDeque)
+        self.appendToBufDeq(queueDeque)
     
     #update bin count value based on length of deque, or length of queue
     def incrementCount(self, color, deque):
@@ -112,9 +109,9 @@ class Buffer:
             print "Error: Not a color"
 
     #appends the queueDeque to main Deque
-    def appendToBufDeq(self,signalDeque):
-        for elem in range(0,len(signalDeque)):
-            self.__bufferDeque.append(signalDeque.popleft())
+    def appendToBufDeq(self,queueDeque):
+        for elem in range(0,len(queueDeque)):
+            self.__bufferDeque.append(queueDeque.popleft())
 
     def flushBuffer(self):
         newDeque = deque(self.__bufferDeque)
@@ -123,7 +120,7 @@ class Buffer:
         return newDeque
 
 
-#Testing Buffer
+    #Testing Buffer
     def simulateQueue(self, simulateDeque,color):
         if color == "black":
             self.__blackQueue.push(simulateDeque)
