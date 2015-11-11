@@ -1,5 +1,5 @@
 from collections import deque
-from Signal import Signal
+from Sensor import Sensor
 
 class Queue:
     __queue = deque()
@@ -38,7 +38,7 @@ class Queue:
         return self.__isEmpty
     
     def initSensor(self):
-        __signal = Signal()
+        __sensor = Sensor()
 
 
 
