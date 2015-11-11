@@ -69,7 +69,7 @@ class Buffer:
             print "Error: Not a color"
     
     #Sets flag if there is something in bufferDeque or not
-    def roundRobinCheck(self):
+    def listenQueues(self):
         if len(self.__bufferDeque) > 0:
             print "Error: Flush buffer queue first!"
         #Check black queue
@@ -85,16 +85,20 @@ class Buffer:
         if (self.__greyQueue.getEmptyFlag() == False) :
             self.appendSignal("grey",self.__greyQueue.flushQueue())
         if len(self.__bufferDeque) > 0:
+            print "Buffer has something!"
             self.setEmptyFlag(False)
-        self.setEmptyFlag(True)
+        else:
+            self.setEmptyFlag(True)
+            print  "Buffer has nothing!"
 
-# Break down struct of signal for count
+    #updates mainDeque and bin count values
     def appendSignal(self,color,signalDeque):
         #Increment Count
         self.incrementCount(color,signalDeque)
         #Append Deques
         self.appendToBufDeq(signalDeque)
-
+    
+    #update bin count value based on length of deque, or length of queue
     def incrementCount(self, color, deque):
         if color == "black":
             self.__blackCount += len(deque)
@@ -107,23 +111,31 @@ class Buffer:
         else :
             print "Error: Not a color"
 
+    #appends the queueDeque to main Deque
     def appendToBufDeq(self,signalDeque):
         for elem in range(0,len(signalDeque)):
             self.__bufferDeque.append(signalDeque.popleft())
 
-    def flushQueue(self):
+    def flushBuffer(self):
         newDeque = deque(self.__bufferDeque)
         self.__bufferDeque.clear()
+        self.setEmptyFlag(True)
         return newDeque
 
+
+#Testing Buffer
     def simulateQueue(self, simulateDeque,color):
         if color == "black":
             self.__blackQueue.push(simulateDeque)
+            self.__blackQueue.setEmptyFlag(False)
         elif color == "green":
             self.__greenQueue.push(simulateDeque)
+            self.__greenQueue.setEmptyFlag(False)
         elif color == "blue":
             self.__blueQueue.push(simulateDeque)
+            self.__blueQueue.setEmptyFlag(False)
         elif color == "grey":
             self.__greyQueue.push(simulateDeque)
+            self.__greyQueue.setEmptyFlag(False)
         else :
             print "Error: Not a color"
