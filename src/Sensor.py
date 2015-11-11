@@ -4,10 +4,10 @@ import Queue
 import Signal
 
 class Sensor:
-    __isEmpty = None
-    __signal = ""
-    __ID = ""
-    __Location = ""
+    __isEmpty = None    #flag used by Queue to see if the Sensor is active
+    __signal = ""   #the current Signal string, see Signal class for format
+    __ID = ""   #the sensor ID
+    __Location = "" #the location of the sensor
         
     #GPIO Input Pin for the Sensor
     __gpiopin = -1
@@ -37,9 +37,11 @@ class Sensor:
         self.__signal = initSignal(self.__ID, self.__Location, dateTime)
         self.setEmptyFlag(False)
 
+    #sets the empty flag to the given empty variable, used by Queue class
     def setEmptyFlag(self, empty):
         self.__isEmpty = empty
         
+    #returns the empty flag, used by Queue class    
     def getEmptyFlag(self):
         return self.__isEmpty
 
