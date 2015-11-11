@@ -2,6 +2,8 @@
 from Buffer import Buffer
 from collections import deque
 from SDfile import SDfile
+import datetime
+
 
 if __name__ == '__main__':
     
@@ -19,7 +21,7 @@ if __name__ == '__main__':
     
     #Init sdFile
     headers = "ID,Location,Date,Time"
-    sdFile = SDfile("./TempFiles/test.csv")
+    sdFile = SDfile("./TempFiles/" + str(datetime.date.today()) + ".csv")
     sdFile.quickInit(headers)
     
     while True:
