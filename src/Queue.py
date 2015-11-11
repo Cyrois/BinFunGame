@@ -2,10 +2,14 @@ from collections import deque
 
 class Queue:
     __queue = deque()
-    __isEmpty = None
+    __isEmpty = True
+    __location =  None
+    __ID = None
     
-    def __init__(self):
+    def __init__(self,location,ID):
         print "initializing queue"
+        self.__location = location
+        self.__ID = ID
                  
     def push(self, Signal):
         print "pushing: " + Signal

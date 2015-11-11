@@ -1,11 +1,12 @@
 #!/usr/bin/python
 from collections import deque
+from Queue import Queue
 
 class Buffer:
     'This our buffer'
     """
         Gets deque from queue class, increments count values by checking length of deque, signals Main with updated bin values and bin
-        When recieved new deque, append all deques together. Once main calls flushTable, dump queue to main
+        When recieved new deque, append all deques together. Once main calls flushQueue, dump queue to main
         Init queues and round robin them.
         
         Main execs roundrobin(since no threads), roundRobin should return with a new deque and dumps every round
@@ -15,39 +16,46 @@ class Buffer:
     __greenCount = 0
     __blueCount = 0
     __greyCount = 0
-
+    
+    #Location of Bin
+    __location = None
     #Unique IDs for the 4 bins
-    __blackID = -1
-    __greenID = -1
-    __blueID = -1
-    __greyID = -1
+    __blackID = None
+    __greenID = None
+    __blueID = None
+    __greyID = None
+    
+    #Empty flag
+    __isEmpty = True
     #Main deque
-    bufferDeque = deque()
-   
-   #Simulate for Queue class
-    blackDeque = deque("a")
-    greenDeque = deque("bc")
-    blueDeque = deque("defg")
-    greyDeque = deque("hi")
+    __bufferDeque = deque()
+    
+    #Queues
+    __blackQueue = None
+    __greenQueue = None
+    __blueQueue = None
+    __greyQueue = None
     
 # Manual input for location and IDs
     def __init__(self,location,blackID,greenID,blueID,greyID):
-        self.location = location
-        self.blackID = blackID
-        self.greenID = greenID
-        self.blueID = blueID
-        self.greyID = greyID
-
-# Break down struct of signal for count
-    def parseSignal(self,color,signalDeque):
-    #Increment Count
-        self.incrementCount(color,signalDeque)
-    #Append Deques
-        self.appendToBufDeq(signalDeque)
-    #Send desired count value
-
+        self.__location = location
+        self.__blackID = blackID
+        self.__greenID = greenID
+        self.__blueID = blueID
+        self.__greyID = greyID
     
-#   def signalMain():
+    def initQueue(self):
+        self.__blackQueue = Queue(self.__location,self.__blackID)
+        self.__greenQueue = Queue(self.__location,self.__greenID)
+        self.__blueQueue = Queue(self.__location,self.__blueID)
+        self.__greyQueue = Queue(self.__location,self.__greyID)
+    
+    def getEmptyFlag(self):
+        return self.__isEmpty
+    
+    def setEmptyFlag(self,empty):
+        self.__isEmpty  = empty
+    
     def getCount(self,color):
         if color == "black":
             return self.__blackCount
@@ -59,6 +67,33 @@ class Buffer:
             return self.__greyCount
         else :
             print "Error: Not a color"
+    
+    #Sets flag if there is something in bufferDeque or not
+    def roundRobinCheck(self):
+        if len(self.__bufferDeque) > 0:
+            print "Error: Flush buffer queue first!"
+        #Check black queue
+        if (self.__blackQueue.getEmptyFlag() == False) :
+            self.appendSignal("black",self.__blackQueue.flushQueue())
+        #Check green queue
+        if (self.__greenQueue.getEmptyFlag() == False) :
+            self.appendSignal("green",self.__greenQueue.flushQueue())
+        #Check blue queue
+        if (self.__blueQueue.getEmptyFlag() == False) :
+            self.appendSignal("blue",self.__blueQueue.flushQueue())
+        #Check grey queue
+        if (self.__greyQueue.getEmptyFlag() == False) :
+            self.appendSignal("grey",self.__greyQueue.flushQueue())
+        if len(self.__bufferDeque) > 0:
+            self.setEmptyFlag(False)
+        self.setEmptyFlag(True)
+
+# Break down struct of signal for count
+    def appendSignal(self,color,signalDeque):
+        #Increment Count
+        self.incrementCount(color,signalDeque)
+        #Append Deques
+        self.appendToBufDeq(signalDeque)
 
     def incrementCount(self, color, deque):
         if color == "black":
@@ -74,42 +109,21 @@ class Buffer:
 
     def appendToBufDeq(self,signalDeque):
         for elem in range(0,len(signalDeque)):
-            self.bufferDeque.append(signalDeque.popleft())
+            self.__bufferDeque.append(signalDeque.popleft())
 
-    def flushTable(self):
-        newDeque = deque(self.bufferDeque)
-        self.bufferDeque.clear()
+    def flushQueue(self):
+        newDeque = deque(self.__bufferDeque)
+        self.__bufferDeque.clear()
         return newDeque
 
-#    def initQueue(self):
-
-    def roundRobinCheck(self):
-    #Check black port
-        #self.blackDeque = black.flushQueue()
-        if len(self.blackDeque) != 0:
-            self.parseSignal("black",self.blackDeque)
-        #self.blackDeque.clear()
-    #Check green port
-        #greenDeque = green.flushQueue()
-        if len(self.greenDeque) != 0:
-            self.parseSignal("green",self.greenDeque)
-        #self.greenDeque.clear()
-    #Check blue port
-        #blueDeque = blue.flushQueue()
-        if len(self.blueDeque) != 0:
-            self.parseSignal("blue",self.blueDeque)
-        #self.blueDeque.clear()
-    #Check grey port
-        #greyDeque = grey.flushQueue()
-        if len(self.greyDeque) != 0:
-            self.parseSignal("grey",self.greyDeque)
-        #self.greyDeque.clear()
-
-
-#   def pullTable():
-
-
-
-
-
-
+    def simulateQueue(self, simulateDeque,color):
+        if color == "black":
+            self.__blackQueue.push(simulateDeque)
+        elif color == "green":
+            self.__greenQueue.push(simulateDeque)
+        elif color == "blue":
+            self.__blueQueue.push(simulateDeque)
+        elif color == "grey":
+            self.__greyQueue.push(simulateDeque)
+        else :
+            print "Error: Not a color"
