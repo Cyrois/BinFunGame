@@ -1,5 +1,5 @@
 from collections import deque
-from Sensor import Sensor
+#from Sensor import Sensor
 
 class Queue:
     __queue = deque()
