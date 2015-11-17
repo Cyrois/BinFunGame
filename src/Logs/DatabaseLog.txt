@@ -1,0 +1,5 @@
+1.Instructions
+
+
+Possible library might be helpful later:
+    pip install --user --allow-external mysql-connector-python mysql-connector-python
