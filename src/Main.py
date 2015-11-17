@@ -3,10 +3,11 @@ from Buffer import Buffer
 from collections import deque
 from SDfile import SDfile
 import datetime
+import time
 
 if __name__ == '__main__':
     #location to store files
-	relativePath = "./TempFiles/"
+    relativePath = "./TempFiles/"
 	
     mainDeque = deque()
     
@@ -36,7 +37,9 @@ if __name__ == '__main__':
             print binBuffer.getCount("grey")
             print "Sending signal to SD to save "
             sdFile.quickAppendBuffer(mainDeque)
-            print "quickRead: " + str(sdFile.quickRead())
+            date = time.strftime("%d_%m_%Y") #get current date
+            filePath = relativePath + date + "_" + location + "_" + color + ".csv"
+            #print "quickRead: " + str(sdFile.quickRead(filePath))
     
     #Test buffer
         test = raw_input ("Enter stuff in deque: ")
