@@ -42,8 +42,12 @@ class Sensor:
         self.__isEmpty = empty
         
     #returns the empty flag, used by Queue class    
-    def getEmptyFlag(self):
+    def isEmpty(self):
         return self.__isEmpty
+
+    def getSignal(self):
+        self.setEmptyFlag(True)
+        return self.__signal
 
 
 
