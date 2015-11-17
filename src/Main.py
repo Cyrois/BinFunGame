@@ -4,9 +4,10 @@ from collections import deque
 from SDfile import SDfile
 import datetime
 
-
 if __name__ == '__main__':
-    
+    #location to store files
+	relativePath = "./TempFiles/"
+	
     mainDeque = deque()
     
     #Init buffer
@@ -18,10 +19,10 @@ if __name__ == '__main__':
     binBuffer.flushBuffer()
     
     binEmptyFlag = True
-    
+	
     #Init sdFile
     headers = "ID,Location,Date,Time"
-    sdFile = SDfile("./TempFiles/" + str(datetime.date.today()) + ".csv")
+    sdFile = SDfile(relativePath, location)
     sdFile.quickInit(headers)
     
     while True:
