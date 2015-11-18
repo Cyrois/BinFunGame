@@ -1,7 +1,7 @@
 MySQL Setup:
 1.Follow guide at https://www.linode.com/docs/databases/mysql/how-to-install-mysql-on-ubuntu-14-04
 	-Root password: bfg123
-	-Haven't setup security yet
+	-I haven't setup security yet
 2.Follow guide at http://stackoverflow.com/questions/372885/how-do-i-connect-to-a-mysql-database-in-python
 
 Possible library might be helpful later:
