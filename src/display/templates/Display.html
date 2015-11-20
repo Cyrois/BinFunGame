@@ -28,10 +28,34 @@ $def with (form, text)
                                 function updateCount(){
                                     jQuery.ajax({
                                         type: "POST",
-                                        data: "Test",
+                                        data: {color : "black"},
                                         success: function(data){
                                             jQuery('#black').html(data).hide().fadeIn(500);
-                                            console.log("Success update")
+                                            console.log("Success update : Black")
+                                        }
+                                    });
+                                    jQuery.ajax({
+                                        type: "POST",
+                                        data: {color : "green"},
+                                        success: function(data){
+                                            jQuery('#green').html(data).hide().fadeIn(500);
+                                            console.log("Success update : green")
+                                        }
+                                    });
+                                    jQuery.ajax({
+                                        type: "POST",
+                                        data: {color : "blue"},
+                                        success: function(data){
+                                            jQuery('#blue').html(data).hide().fadeIn(500);
+                                            console.log("Success update : blue")
+                                        }
+                                    });
+                                    jQuery.ajax({
+                                        type: "POST",
+                                        data: {color : "grey"},
+                                        success: function(data){
+                                            jQuery('#grey').html(data).hide().fadeIn(500);
+                                            console.log("Success update : grey")
                                         }
                                     });
                                 }

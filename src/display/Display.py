@@ -6,6 +6,9 @@ import web
 # from time import strftime
 count = 0
 blackCount = 0
+greenCount = 0
+blueCount = 0
+greyCount = 0
 
 
 class Display:
@@ -45,11 +48,30 @@ class Display:
             #countString = "Count: " + str(count) + " - Message: '" + string + "' - Time: " + strftime("%Y-%m-%d %H:%M:%S")
             #return countString
 
-    def getCount(self):
+    def getCount(self,color):
         global blackCount
-        blackCount += 1
-        print blackCount
-        return blackCount
+        global greenCount
+        global blueCount
+        global greyCount
+        if color == "black":
+            print "Black Count: " + str(blackCount)
+            blackCount += 1
+            return blackCount
+        elif color == "green":
+            print "Green Count: " + str(greenCount)
+            greenCount += 1
+            return greenCount
+        elif color == "blue":
+            print "blue Count: " + str(blueCount)
+            blueCount += 1
+            return blueCount
+        elif color == "grey":
+            print "grey Count: " + str(greyCount)
+            greyCount += 1
+            return greyCount
+        else:
+            print "Error: No color passed"
+            return
     
 
     def GET(self):
@@ -71,4 +93,7 @@ class Display:
     def POST(self):
         # access the value of our text field box
         # send to our echo function
-        return self.getCount()
+        print web.input()
+        color =  web.input().color
+        print color
+        return self.getCount(color)
