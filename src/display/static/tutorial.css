@@ -1,8 +1,6 @@
 body {
         color: #3E3E3E;
-        background-image: url("http://i.imgur.com/VrvJUR1.png");
-        background-size: 100% 100%;
-    	background-repeat: no-repeat;
+        background-color: #FBFFFF;
 		margin: 30px;
 		font-family: Verdana;
 }
