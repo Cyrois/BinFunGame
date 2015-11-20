@@ -35,11 +35,11 @@ if __name__ == '__main__':
             print binBuffer.getCount("grey")
             print "Sending signal to SD to save "
             sdFile.quickAppendBuffer(mainDeque)
-            print "quickRead: " + str(sdFile.quickRead())
+            #print "quickRead: " + str(sdFile.quickRead())
     
     #Test buffer
-        test = raw_input ("Enter stuff in deque: ")
-        color = raw_input ("Enter color: ")
-        binBuffer.simulateQueue(test,color)
+        #test = raw_input ("Enter stuff in deque: ")
+        #color = raw_input ("Enter color: ")
+        #binBuffer.simulateQueue(test,color)
         
         binBuffer.listenQueues()
