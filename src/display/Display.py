@@ -5,17 +5,18 @@
 import web
 # from time import strftime
 count = 0
+blackCount = 0
+
 
 class Display:
 
-    __blackCount = 0 # Buffer.blackCount
-    __greenCount = 0 # Buffer.greenCount
-    __blueCount = 0 # Buffer.blueCount
-    __greyCount = 0 # Buffer.greyCount
+
     app = None
     my_form = None
     render = None
+    
 
+    
     def __init__(self):
         # says map the root URL address to what happens in the
         # tutorial class
@@ -24,11 +25,10 @@ class Display:
         # HTML templates with render
         self.render = web.template.render('templates/')
         self.app = web.application(urls, globals())
-
         # creates an HTML text entry box that we render
         self.my_form = web.form.Form(
                                 web.form.Textbox('', class_='textfield', id='textfield'),
-                                )
+                                     )
             
     # echo function
     def make_text(self, string):
@@ -45,13 +45,20 @@ class Display:
             #countString = "Count: " + str(count) + " - Message: '" + string + "' - Time: " + strftime("%Y-%m-%d %H:%M:%S")
             #return countString
 
+    def getCount(self):
+        global blackCount
+        blackCount += 1
+        print blackCount
+        return blackCount
+    
+
     def GET(self):
         # give copy of the form instance
         form = self.my_form()
         # using same name tutorial in class def, call,
         # and HTML template are important
         return self.render.Display(form, "0")
-        
+    """
     def POST(self):
         form = self.my_form()
         form.validates()
@@ -59,3 +66,9 @@ class Display:
         s = form.value['textfield']
         # send to our echo function
         return self.make_text(s)
+    """
+    
+    def POST(self):
+        # access the value of our text field box
+        # send to our echo function
+        return self.getCount()

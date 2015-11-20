@@ -9,7 +9,6 @@ $def with (form, text)
         <link rel="stylesheet" type="text/css" href="/static/Display.css" />
         
         <script type="text/javascript" src="/static/jquery.js"></script>
-        
         <script type="text/javascript">
                                 jQuery(document).ready(function() {
                                 jQuery(".button").click(function() {
@@ -26,6 +25,18 @@ $def with (form, text)
                                                 });
                                         return false;
                                         });
+                                function updateCount(){
+                                    jQuery.ajax({
+                                        type: "POST",
+                                        data: "Test",
+                                        success: function(data){
+                                            jQuery('#black').html(data).hide().fadeIn(500);
+                                            console.log("Success update")
+                                        }
+                                    });
+                                }
+                                var counter = setInterval(updateCount, 1000);
+                                   
                                 });
         
                         </script>
@@ -37,14 +48,14 @@ $def with (form, text)
         $:form.render()
         <input class="button" type="submit" value="send"/>    
         </form>
-
+        
         <br><br>
         <p>BlackCount: <span id="black">$text</span></p>
         <p>GreenCount: <span id="green">$text</span></p>
         <p>BlueCount: <span id="blue">$text</span></p>
         <p>GreyCount: <span id="grey">$text</span></p>
         
-  
+
     </body>
     
 </html>

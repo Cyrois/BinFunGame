@@ -6,5 +6,4 @@ import web
 if __name__ == '__main__':
 
     Dis = Display();
-    Dis.make_text("update");
     Dis.app.run()
