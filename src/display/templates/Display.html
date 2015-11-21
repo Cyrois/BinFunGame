@@ -32,6 +32,7 @@ $def with (form, text)
                                         success: function(data){
                                             jQuery('#black').html(data).hide().fadeIn(500);
                                             console.log("Success update : Black")
+                                            changePicture("black")
                                         }
                                     });
                                     jQuery.ajax({
@@ -40,6 +41,7 @@ $def with (form, text)
                                         success: function(data){
                                             jQuery('#green').html(data).hide().fadeIn(500);
                                             console.log("Success update : green")
+                                            changePicture("green")
                                         }
                                     });
                                     jQuery.ajax({
@@ -48,6 +50,7 @@ $def with (form, text)
                                         success: function(data){
                                             jQuery('#blue').html(data).hide().fadeIn(500);
                                             console.log("Success update : blue")
+                                            changePicture("blue")
                                         }
                                     });
                                     jQuery.ajax({
@@ -56,9 +59,28 @@ $def with (form, text)
                                         success: function(data){
                                             jQuery('#grey').html(data).hide().fadeIn(500);
                                             console.log("Success update : grey")
+                                            changePicture("grey")
                                         }
                                     });
                                 }
+                                function changePicture(color)
+                                {
+                                    img.style.display = '';    
+                                    if (color === "black") {
+                                        img.src = "http://iliketowastemytime.com/sites/default/files/mind-bending-gif-images2.gif";
+                                    }
+                                    else if (color === "green") {
+                                        img.src = "";       
+                                    }
+                                    else if (color === "blue") {
+                                        img.src = "";    
+                                    }
+                                    else if (color === "grey") {
+                                        img.src = ""; 
+                                    }
+                                }
+                                var img = document.getElementById("Image");
+                                img.style.display = 'none'; 
                                 var counter = setInterval(updateCount, 1000);
                                    
                                 });
@@ -67,17 +89,17 @@ $def with (form, text)
     </head>
     
     <body>
-        <br>
-        <form class="form" method="post"> 
-        $:form.render()
-        <input class="button" type="submit" value="send"/>    
-        </form>
         
         <br><br>
         <p><font color="white">BlackCount: <span id="black">$text</span></font></p>
         <p><font color="white">GreenCount: <span id="green">$text</span></font></p>
         <p><font color="white">BlueCount: <span id="blue">$text</span></font></p>
         <p><font color="white">GreyCount: <span id="grey">$text</span></font></p>
+
+        <br><br>
+        <td align="center">
+        <img src="" id="Image"/>
+        </td>
         
 
     </body>
