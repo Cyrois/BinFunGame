@@ -1,37 +1,75 @@
+html {
+    overflow: auto;
+    height: 100%;
+}
 body {
-        color: #3E3E3E;
-        background-image: url("http://i.imgur.com/VrvJUR1.png");
-        background-size: 100% 100%;
-    	background-repeat: no-repeat;
-		margin: 30px;
-		font-family: Verdana;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+div {
+    padding: 0;
+    margin: 0;
 }
 
-		
-.form	{
-		display: block; 
-		position: relative; 
-		margin-left: auto; 
-		margin-right: auto; 
-		width: 700px;
-	}
-	
-.textfield {
-		width: 600px;
-	}
-	
-	
-.button {
-		position: absolute;
-		top: 10%;
-		right: 10px;
-		font-family: Verdana;
-		font-weight: bold;
-		background-color:#FBFFF; 
-		border:1px solid; 
-		border-color: #696 #363 #363 #696; 
-	}	
+#container {
+    background-color: Aqua;
+    width: 100%;
+    height: 100%;
+}
 
-	
+#header {
+    height: 20%;
+    overflow: hidden;
+    width: 100%;
+    color: #000;
+    font-size: 18vh;
+    font-style: oblique;
+    text-align: center;
+    background-color: #FFF;
+}
 
-        
+#Black {
+    overflow: auto;
+    width: 25%;
+    height: 80%;
+    float: left;
+    color: #FFF;
+    font-size: 13vh;
+    text-align: center;
+    background-color: black;
+}
+
+#Green {
+    overflow: auto;
+    width: 25%;
+    height: 80%;
+    float: left;
+    color: #FFF;
+    font-size: 13vh;
+    text-align: center;
+    background-color: green;
+}
+
+#Blue {
+    overflow: auto;
+    width: 25%;
+    height: 80%;
+    float: left;
+    color: #FFF;
+    font-size: 13vh;
+    text-align: center;
+    background-color: blue;
+}
+
+#Grey {
+    overflow: auto;
+    width: 25%;
+    height: 80%;
+    float: left;
+    color: #FFF;
+    font-size: 13vh;
+    text-align: center;
+    background-color: grey;
+}
