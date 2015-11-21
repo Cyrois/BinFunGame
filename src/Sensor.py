@@ -10,30 +10,30 @@ class Sensor:
     __Location = "" #the location of the sensor
         
     #GPIO Input Pin for the Sensor
-    __gpiopin = 11
+    __gpiopin = 7
 
     #set up GPIO
     def __init__(self, ID, Location):
         GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(False)
         self.__gpiopin = self.getGPIOPin(ID)
-        GPIO.setup(self.__gpiopin, GPIO.IN)
+        GPIO.setup(self.__gpiopin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         self.__ID = ID
         self.__Location = Location
-      #  GPIO.add_event_detect(self.__gpiopin, GPIO.RISING, callback=testSendSignal)
+        GPIO.add_event_detect(self.__gpiopin, GPIO.RISING, callback=self.testSendSignal)
 
-    #def testSendSignal():
-     #   print 'testing the print signal callback'
+    def testSendSignal(self, pinNumber):
+        print "signal callback from signal: " + str(pinNumber)
 
     def getGPIOPin(self, ID):
         if ID == 1:
-            return 11
+            return 7
         elif ID == 2:
             return 12
         elif ID == 3:
-            return 18;
+            return 16
         elif ID == 4:
-            return 7
+            return 15
         else:
             return 0
 
@@ -66,19 +66,25 @@ class Sensor:
         self.setEmptyFlag(True)
         return self.__signal
 	
-	  
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # INTERRUPTS!
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         
     # now we'll define two threaded callback functions  
     # these will run in another thread when our events are detected  
     def my_callback(channel):
-        print "falling edge detected on __gpiopin" 
+        print "falling edge detected on 15"
+    def my_callback2(channel):
+        print "falling edge detected on 12"
+    def my_callback3(channel):
+        print "falling edge detected on 18"
+    def my_callback4(channel):
+        print "falling edge detected on 7" 
     	
     # when a falling edge is detected on port __gpiopin, regardless of whatever   
-    # else is happening in the program, the function my_callback will be run  
-    GPIO.add_event_detect(__gpiopin, GPIO.FALLING, callback=my_callback, bouncetime=300) 
+    # else is happening in the program, the function my_callback will be run
+    #__init__(self, 1, "Nest")
+    #GPIO.add_event_detect(19, GPIO.FALLING, callback=my_callback, bouncetime=300)
+    #GPIO.add_event_detect(12, GPIO.FALLING, callback=my_callback, bouncetime=300)
+    #GPIO.add_event_detect(18, GPIO.FALLING, callback=my_callback, bouncetime=300)
+    #GPIO.add_event_detect(7, GPIO.FALLING, callback=my_callback, bouncetime=300)
 	
     #Another example of interrupts:
     #try:  
