@@ -5,6 +5,14 @@ from SDfile import SDfile
 import datetime
 
 
+from display import Display
+from display import web
+from display import globalVars
+import logging
+import threading
+import time
+
+
 if __name__ == '__main__':
     
     mainDeque = deque()
@@ -24,15 +32,27 @@ if __name__ == '__main__':
     sdFile = SDfile("./TempFiles/" + str(datetime.date.today()) + ".csv")
     sdFile.quickInit(headers)
     
+    #Init global variables
+    globalVars.init()
+
+    #Start display thread
+    displayThread = threading.Thread(target=Display.startDisplay)
+    displayThread.start()
+    
     while True:
         if binBuffer.getEmptyFlag() == False:
             mainDeque = binBuffer.flushBuffer()
             #Buffer queue should be empty
             print "Sending signal to Display "
+            #Update global count values
             print binBuffer.getCount("black")
+            globalVars.blackCount = binBuffer.getCount("black")
             print binBuffer.getCount("green")
+            globalVars.greenCount = binBuffer.getCount("green")
             print binBuffer.getCount("blue")
+            globalVars.blueCount = binBuffer.getCount("blue")
             print binBuffer.getCount("grey")
+            globalVars.greyCount = binBuffer.getCount("grey")
             print "Sending signal to SD to save "
             sdFile.quickAppendBuffer(mainDeque)
             #print "quickRead: " + str(sdFile.quickRead())
