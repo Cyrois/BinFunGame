@@ -4,21 +4,27 @@
 # import Buffer
 import web
 import globalVars
+import logging
 # from time import strftime
 
 
 class Display:
 
-
     app = None
     my_form = None
     render = None
-    
+    localBlackCount = 0
+    localGreenCount = 0
+    localBlueCount = 0
+    localGreyCount = 0
 
-    
     def __init__(self):
         # says map the root URL address to what happens in the
         # tutorial class
+        localBlackCount = globalVars.blackCount
+        localGreenCount = globalVars.greenCount
+        localBlueCount = globalVars.blueCount
+        localGreyCount = globalVars.greyCount
         urls = ('/', 'Display')
         # if using templates, tell web.py where to find our
         # HTML templates with render
@@ -28,38 +34,29 @@ class Display:
         self.my_form = web.form.Form(
                                 web.form.Textbox('', class_='textfield', id='textfield'),
                                      )
-            
-    # echo function
-    def make_text(self, string):
-        global count
-        if string == "reset": #change to reset when time is 00:00 (midnight)
-            count = 0
-            return str(count)
-            #zeroString = "Count: " + str(count) + " - Message: '" + string + "' - Time: " + strftime("%Y-%m-%d %H:%M:%S")
-            #return zeroString
-        elif string != "reset":
-            count += 1
-            print count
-            return str(count)
-            #countString = "Count: " + str(count) + " - Message: '" + string + "' - Time: " + strftime("%Y-%m-%d %H:%M:%S")
-            #return countString
-
+    
+    @staticmethod
+    def startDisplay():
+        Dis = Display()
+        Dis.app.run()
+    
+    
     def getCount(self,color):
         if color == "black":
-            print "Black Count: " + str(globalVars.blackCount)
-            globalVars.blackCount += 1
+            #print "Black Count: " + str(globalVars.blackCount)
+            #globalVars.blackCount += 1
             return globalVars.blackCount
         elif color == "green":
-            print "Green Count: " + str(globalVars.greenCount)
-            globalVars.greenCount += 2
+            #print "Green Count: " + str(globalVars.greenCount)
+            #globalVars.greenCount += 2
             return globalVars.greenCount
         elif color == "blue":
-            print "blue Count: " + str(globalVars.blueCount)
-            globalVars.blueCount += 3
+            #print "blue Count: " + str(globalVars.blueCount)
+            #globalVars.blueCount += 3
             return globalVars.blueCount
         elif color == "grey":
-            print "grey Count: " + str(globalVars.greyCount)
-            globalVars.greyCount += 4
+            #print "grey Count: " + str(globalVars.greyCount)
+            #globalVars.greyCount += 4
             return globalVars.greyCount
         else:
             print "Error: No color passed"
@@ -85,7 +82,9 @@ class Display:
     def POST(self):
         # access the value of our text field box
         # send to our echo function
-        print web.input()
+        #print web.input()
+        logging.debug(web.input())
         color =  web.input().color
-        print color
+        #print color
+        logging.debug(color)
         return self.getCount(color)
