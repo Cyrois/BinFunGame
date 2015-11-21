@@ -5,9 +5,9 @@ from SDfile import SDfile
 import datetime
 
 
-from display import Display
-from display import web
-from display import globalVars
+from Display import Display
+import web
+import globalVars
 import logging
 import threading
 import time
