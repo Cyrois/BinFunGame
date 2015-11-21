@@ -3,12 +3,8 @@
 
 # import Buffer
 import web
+import globalVars
 # from time import strftime
-count = 0
-blackCount = 0
-greenCount = 0
-blueCount = 0
-greyCount = 0
 
 
 class Display:
@@ -49,26 +45,22 @@ class Display:
             #return countString
 
     def getCount(self,color):
-        global blackCount
-        global greenCount
-        global blueCount
-        global greyCount
         if color == "black":
-            print "Black Count: " + str(blackCount)
-            blackCount += 1
-            return blackCount
+            print "Black Count: " + str(globalVars.blackCount)
+            globalVars.blackCount += 1
+            return globalVars.blackCount
         elif color == "green":
-            print "Green Count: " + str(greenCount)
-            greenCount += 1
-            return greenCount
+            print "Green Count: " + str(globalVars.greenCount)
+            globalVars.greenCount += 2
+            return globalVars.greenCount
         elif color == "blue":
-            print "blue Count: " + str(blueCount)
-            blueCount += 1
-            return blueCount
+            print "blue Count: " + str(globalVars.blueCount)
+            globalVars.blueCount += 3
+            return globalVars.blueCount
         elif color == "grey":
-            print "grey Count: " + str(greyCount)
-            greyCount += 1
-            return greyCount
+            print "grey Count: " + str(globalVars.greyCount)
+            globalVars.greyCount += 4
+            return globalVars.greyCount
         else:
             print "Error: No color passed"
             return
