@@ -65,3 +65,24 @@ class Sensor:
     def getSignal(self):
         self.setEmptyFlag(True)
         return self.__signal
+	
+	  
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # INTERRUPTS!
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+        
+    # now we'll define two threaded callback functions  
+    # these will run in another thread when our events are detected  
+    def my_callback(channel):
+        print "falling edge detected on __gpiopin" 
+    	
+    # when a falling edge is detected on port __gpiopin, regardless of whatever   
+    # else is happening in the program, the function my_callback will be run  
+    GPIO.add_event_detect(__gpiopin, GPIO.FALLING, callback=my_callback, bouncetime=300) 
+	
+    #Another example of interrupts:
+    #try:  
+    #   GPIO.wait_for_edge(23, GPIO.FALLING)  
+    #except KeyboardInterrupt:  
+    #   GPIO.cleanup()       # clean up GPIO on CTRL+C exit  
+    #GPIO.cleanup()           # clean up GPIO on normal exit 
