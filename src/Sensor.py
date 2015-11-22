@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import datetime
+import Queue
 from Signal import Signal
 
 class Sensor:
@@ -23,6 +24,7 @@ class Sensor:
 
     def testSendSignal(self, pinNumber):
         print "signal callback from signal: " + str(pinNumber)
+        self.sendSignal()
 
     def getGPIOPin(self, ID):
         if ID == 1:
@@ -38,12 +40,14 @@ class Sensor:
 
     #wait for sensor to turn on
     def listenSignal(self):
-        if(GPIO.input(self.__gpiopin)):
-            self.sendSignal()
+        #if(GPIO.input(self.__gpiopin)):
+        #    self.sendSignal()
+        #print "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
         #while True:
-         #   GPIO.wait_for_edge(self.gpiopin, GPIO.RISING)
-          #  self.sendSignal()
-
+        #GPIO.wait_for_edge(self.__gpiopin, GPIO.RISING)
+        #self.sendSignal()
+        return
+        
     #refactor into signal class to parse and initialize signal
     def sendSignal(self):           
         #send date, time and id
