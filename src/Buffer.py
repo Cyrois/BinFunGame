@@ -1,6 +1,6 @@
 #!/usr/bin/python
 from collections import deque
-from BFG_Queue import BFQ_Queue
+from BFG_Queue import BFG_Queue
 
 class Buffer:
     'This our buffer'
