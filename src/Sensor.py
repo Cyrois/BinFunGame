@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 import datetime
-import Queue
 from Signal import Signal
 
 class Sensor:

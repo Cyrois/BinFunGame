@@ -1,7 +1,7 @@
 from collections import deque
 from Sensor import Sensor
 
-class Queue:
+class BFG_Queue:
     __queue = deque()
     __isEmpty = True
     __location =  None
