@@ -13,6 +13,16 @@ div {
     margin: 0;
 }
 
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
 #container {
     background-color: Aqua;
     width: 100%;
@@ -20,11 +30,11 @@ div {
 }
 
 #header {
-    height: 20%;
+    height: 15%;
     overflow: hidden;
     width: 100%;
     color: #000;
-    font-size: 18vh;
+    font-size: 12vh;
     font-style: oblique;
     text-align: center;
     background-color: #FFF;
@@ -33,10 +43,10 @@ div {
 #Black {
     overflow: auto;
     width: 25%;
-    height: 80%;
+    height: 85%;
     float: left;
     color: #FFF;
-    font-size: 13vh;
+    font-size: 8vh;
     text-align: center;
     background-color: black;
 }
@@ -44,10 +54,10 @@ div {
 #Green {
     overflow: auto;
     width: 25%;
-    height: 80%;
+    height: 85%;
     float: left;
     color: #FFF;
-    font-size: 13vh;
+    font-size: 8vh;
     text-align: center;
     background-color: green;
 }
@@ -55,10 +65,10 @@ div {
 #Blue {
     overflow: auto;
     width: 25%;
-    height: 80%;
+    height: 85%;
     float: left;
     color: #FFF;
-    font-size: 13vh;
+    font-size: 8vh;
     text-align: center;
     background-color: blue;
 }
@@ -66,10 +76,10 @@ div {
 #Grey {
     overflow: auto;
     width: 25%;
-    height: 80%;
+    height: 85%;
     float: left;
     color: #FFF;
-    font-size: 13vh;
+    font-size: 8vh;
     text-align: center;
     background-color: grey;
 }
