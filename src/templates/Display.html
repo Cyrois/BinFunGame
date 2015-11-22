@@ -18,7 +18,7 @@ $def with (form, text)
                                         success: function(data){
                                             jQuery('#black').html(data).fadeIn(500);
                                             console.log("Success update : Black")
-                                            changePicture("black")
+                                            changeBlackPic()
                                         }
                                     });
                                     jQuery.ajax({
@@ -27,7 +27,7 @@ $def with (form, text)
                                         success: function(data){
                                             jQuery('#green').html(data).fadeIn(500);
                                             console.log("Success update : green")
-                                            changePicture("green")
+                                            changeGreenPic()
                                         }
                                     });
                                     jQuery.ajax({
@@ -36,7 +36,7 @@ $def with (form, text)
                                         success: function(data){
                                             jQuery('#blue').html(data).fadeIn(500);
                                             console.log("Success update : blue")
-                                            changePicture("blue")
+                                            changeBluePic()
                                         }
                                     });
                                     jQuery.ajax({
@@ -45,29 +45,76 @@ $def with (form, text)
                                         success: function(data){
                                             jQuery('#grey').html(data).fadeIn(500);
                                             console.log("Success update : grey")
-                                            changePicture("grey")
+                                            changeGreyPic()
                                         }
                                     });
+                                    num = (num * 11 + 17) % 25;
                                 }
-                                function changePicture(color)
-                                {  
-                                    if (color === "black") {
-                                        blk_img.style.display = '';  
-                                        blk_img.src = "http://i.imgur.com/OM9gqz9.gif";
+                                function changeBlackPic()
+                                {
+                                    blk_img.style.display = ''; 
+                                    if (num % 4 === 0) { 
+                                        blk_img.src = "http://25.media.tumblr.com/c99a579db3ae0fc164bf4cca148885d3/tumblr_mjgv8kEuMg1s87n79o1_400.gif";
                                     }
-                                    else if (color === "green") {
-                                        green_img.style.display = '';  
+                                    else if (num % 4 === 1) { 
+                                        blk_img.src = "https://media.giphy.com/media/11SQ5XkgUB7fMc/giphy.gif";       
+                                    }
+                                    else if (num % 4 === 2) { 
+                                        blk_img.src = "http://i.imgur.com/OM9gqz9.gif";    
+                                    }
+                                    else if (num % 4 === 3) { 
+                                        blk_img.src = "http://i.imgur.com/KRJahFj.gif"; 
+                                    }
+                                }
+                                function changeGreenPic()
+                                {  
+                                    green_img.style.display = ''; 
+                                    if (num % 4 === 0) { 
+                                        green_img.src = "http://i.imgur.com/OM9gqz9.gif";
+                                    }
+                                    else if (num % 4 === 1) {
                                         green_img.src = "http://i.imgur.com/KRJahFj.gif";       
                                     }
-                                    else if (color === "blue") {
-                                        blue_img.style.display = '';  
+                                    else if (num % 4 === 2) {
+                                        green_img.src = "http://i.imgur.com/OM9gqz9.gif";    
+                                    }
+                                    else if (num % 4 === 3) {
+                                        green_img.src = "http://i.imgur.com/KRJahFj.gif"; 
+                                    }
+                                }
+                                function changeBluePic()
+                                {  
+                                    blue_img.style.display = ''; 
+                                    if (num % 4 === 0) { 
+                                        blue_img.src = "http://i.imgur.com/OM9gqz9.gif";
+                                    }
+                                    else if (num % 4 === 1) { 
+                                        blue_img.src = "http://i.imgur.com/KRJahFj.gif";       
+                                    }
+                                    else if (num % 4 === 2) { 
                                         blue_img.src = "http://i.imgur.com/OM9gqz9.gif";    
                                     }
-                                    else if (color === "grey") {
-                                        grey_img.style.display = '';  
+                                    else if (num % 4 === 3) { 
+                                        blue_img.src = "http://i.imgur.com/KRJahFj.gif"; 
+                                    }
+                                }
+                                function changeGreyPic()
+                                {  
+                                    grey_img.style.display = ''; 
+                                    if (num % 4 === 0) {
+                                        grey_img.src = "http://i.imgur.com/OM9gqz9.gif";
+                                    }
+                                    else if (num % 4 === 1) {
+                                        grey_img.src = "http://i.imgur.com/KRJahFj.gif";       
+                                    }
+                                    else if (num % 4 === 2) {
+                                        grey_img.src = "http://i.imgur.com/OM9gqz9.gif";    
+                                    }
+                                    else if (num % 4 === 3) {
                                         grey_img.src = "http://i.imgur.com/KRJahFj.gif"; 
                                     }
                                 }
+                                var num = 0;
                                 var blk_img = document.getElementById("BlackImage");
                                 var green_img = document.getElementById("GreenImage");
                                 var blue_img = document.getElementById("BlueImage");
@@ -75,7 +122,7 @@ $def with (form, text)
                                 blk_img.style.display = 'none';
                                 green_img.style.display = 'none';   
                                 blue_img.style.display = 'none';   
-                                grey_img.style.display = 'none';  
+                                grey_img.style.display = 'none';
                                 var counter = setInterval(updateCount, 1000);
                                    
                                 });
