@@ -42,10 +42,10 @@ class Buffer:
         self.initQueue()
 
     def initQueue(self):
-        self.__blackQueue = Queue(self.__location,self.__blackID)
-        self.__greenQueue = Queue(self.__location,self.__greenID)
-        self.__blueQueue = Queue(self.__location,self.__blueID)
-        self.__greyQueue = Queue(self.__location,self.__greyID)
+        self.__blackQueue = BFG_Queue(self.__location,self.__blackID)
+        self.__greenQueue = BFG_Queue(self.__location,self.__greenID)
+        self.__blueQueue = BFG_Queue(self.__location,self.__blueID)
+        self.__greyQueue = BFG_Queue(self.__location,self.__greyID)
     
     def getEmptyFlag(self):
         return self.__isEmpty
