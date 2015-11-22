@@ -49,6 +49,7 @@ $def with (form, text)
                                         }
                                     });
                                 }
+                                
                                 function changePicture(color)
                                 {
                                     img.style.display = '';    
@@ -75,18 +76,39 @@ $def with (form, text)
     </head>
     
     <body>
-        
-        <br><br>
-        <p><font color="white">BlackCount: <span id="black">$text</span></font></p>
-        <p><font color="white">GreenCount: <span id="green">$text</span></font></p>
-        <p><font color="white">BlueCount: <span id="blue">$text</span></font></p>
-        <p><font color="white">GreyCount: <span id="grey">$text</span></font></p>
-
-        <br><br>
-        <td align="center">
-        <img src="" id="Image"/>
-        </td>
-        
+	    <div id="container">
+		    <div id="header">
+		        Current Bin Count!
+		    </div>
+		
+		    <div id="Black">
+		        <h2><span id="black">$text</span></h2>
+		        <td align="center">
+        			<img src="" id="Image" style="height: 25%; width: 100%; object-fit: contain" />
+        		</td>
+		    </div>
+		    
+		    <div id="Green">
+		        <h2><span id="green">$text</span></h2>
+		        <td align="center">
+        			<img src="" id="Image" style="height: 25%; width: 100%; object-fit: contain" />
+        		</td>
+		    </div>
+		    
+		    <div id="Blue">
+		        <h2><span id="blue">$text</span></h2>
+		        <td align="center">
+        			<img src="" id="Image" style="height: 25%; width: 100%; object-fit: contain" />
+        		</td>
+		    </div>
+		    
+		    <div id="Grey">
+		        <h2><span id="grey">$text</span></h2>
+		        <td align="center">
+        			<img src="" id="Image" style="height: 25%; width: 100%; object-fit: contain" />
+        		</td>
+		    </div>
+		</div>
 
     </body>
     
