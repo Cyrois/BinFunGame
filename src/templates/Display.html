@@ -49,25 +49,33 @@ $def with (form, text)
                                         }
                                     });
                                 }
-                                
                                 function changePicture(color)
-                                {
-                                    img.style.display = '';    
+                                {  
                                     if (color === "black") {
-                                        img.src = "http://iliketowastemytime.com/sites/default/files/mind-bending-gif-images2.gif";
+                                        blk_img.style.display = '';  
+                                        blk_img.src = "http://i.imgur.com/OM9gqz9.gif";
                                     }
                                     else if (color === "green") {
-                                        img.src = "";       
+                                        green_img.style.display = '';  
+                                        green_img.src = "http://i.imgur.com/KRJahFj.gif";       
                                     }
                                     else if (color === "blue") {
-                                        img.src = "";    
+                                        blue_img.style.display = '';  
+                                        blue_img.src = "http://i.imgur.com/OM9gqz9.gif";    
                                     }
                                     else if (color === "grey") {
-                                        img.src = ""; 
+                                        grey_img.style.display = '';  
+                                        grey_img.src = "http://i.imgur.com/KRJahFj.gif"; 
                                     }
                                 }
-                                var img = document.getElementById("Image");
-                                img.style.display = 'none'; 
+                                var blk_img = document.getElementById("BlackImage");
+                                var green_img = document.getElementById("GreenImage");
+                                var blue_img = document.getElementById("BlueImage");
+                                var grey_img = document.getElementById("GreyImage");
+                                blk_img.style.display = 'none';
+                                green_img.style.display = 'none';   
+                                blue_img.style.display = 'none';   
+                                grey_img.style.display = 'none';  
                                 var counter = setInterval(updateCount, 1000);
                                    
                                 });
@@ -81,31 +89,31 @@ $def with (form, text)
 		        Current Bin Count!
 		    </div>
 		
-		    <div id="Black">
-		        <h2><span id="black">$text</span></h2>
-		        <td align="center">
-        			<img src="" id="Image" style="height: 25%; width: 100%; object-fit: contain" />
-        		</td>
-		    </div>
-		    
-		    <div id="Green">
-		        <h2><span id="green">$text</span></h2>
-		        <td align="center">
-        			<img src="" id="Image" style="height: 25%; width: 100%; object-fit: contain" />
-        		</td>
-		    </div>
-		    
-		    <div id="Blue">
-		        <h2><span id="blue">$text</span></h2>
-		        <td align="center">
-        			<img src="" id="Image" style="height: 25%; width: 100%; object-fit: contain" />
-        		</td>
-		    </div>
-		    
-		    <div id="Grey">
-		        <h2><span id="grey">$text</span></h2>
-		        <td align="center">
-        			<img src="" id="Image" style="height: 25%; width: 100%; object-fit: contain" />
+            <div id="Black">
+                <h2><span id="black">$text</span></h2>
+                <td align="center">
+                    <img src="" id="BlackImage" style="height: 25%; width: 100%; object-fit: contain" />
+                </td>
+            </div>
+            
+            <div id="Green">
+                <h2><span id="green">$text</span></h2>
+                <td align="center">
+                    <img src="" id="GreenImage" style="height: 25%; width: 100%; object-fit: contain" />
+                </td>
+            </div>
+            
+            <div id="Blue">
+                <h2><span id="blue">$text</span></h2>
+                <td align="center">
+                    <img src="" id="BlueImage" style="height: 25%; width: 100%; object-fit: contain" />
+                </td>
+            </div>
+            
+            <div id="Grey">
+                <h2><span id="grey">$text</span></h2>
+                <td align="center">
+                    <img src="" id="GreyImage" style="height: 25%; width: 100%; object-fit: contain" />
         		</td>
 		    </div>
 		</div>
