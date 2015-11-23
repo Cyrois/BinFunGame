@@ -33,7 +33,7 @@ class Sensor:
             return 12
         elif ID is "blue":
             return 16
-        elif ID is "gray":
+        elif ID is "grey":
             return 15
         else:
             return 0

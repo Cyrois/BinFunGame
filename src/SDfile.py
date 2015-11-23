@@ -44,19 +44,42 @@ class SDfile(file):
 		date = time.strftime("%d_%m_%Y") #get current date
 		if not self.isCurrentDate(date): #check if the date has changed
 			self.setCurrentDate(date)
+			
+		#create file according to date, location and bin color
+		filePathBlue = self.relfilePath + self.getCurrentDate() + "_" + self.__locationID + "_" + "blue" + self.__fileExtension
+		filePathGreen = self.relfilePath + self.getCurrentDate() + "_" + self.__locationID + "_" + "green" + self.__fileExtension
+		filePathGrey = self.relfilePath + self.getCurrentDate() + "_" + self.__locationID + "_" + "grey" + self.__fileExtension
+		filePathBlack = self.relfilePath + self.getCurrentDate() + "_" + self.__locationID + "_" + "black" + self.__fileExtension
+		if not os.path.isfile(filePathBlue): #create a new file if new date
+			self.quickInit(filePathBlue)
+		if not os.path.isfile(filePathGreen): #create a new file if new date
+			self.quickInit(filePathGreen)
+		if not os.path.isfile(filePathGrey): #create a new file if new date
+			self.quickInit(filePathGrey)
+		if not os.path.isfile(filePathBlack): #create a new file if new date
+			self.quickInit(filePathBlack)
+		currentBlueFile = open(filePathBlue, 'a')
+		currentGreenFile = open(filePathGreen, 'a')
+		currentGreyFile = open(filePathGrey, 'a')
+		currentBlackFile = open(filePathBlack, 'a')
+		
 		for line in target:
 			color = Signal.parseSignal(line)[0]
 			if not color:
 				return
-			print "printing color:" + color
-			#create file according to date, location and bin color
-			filePath = self.relfilePath + self.getCurrentDate() + "_" + self.__locationID + "_" + color + self.__fileExtension
-			print filePath
-			if not os.path.isfile(filePath): #create a new file if new date
-				self.quickInit(filePath)
-			currentFile = open(filePath, 'a')
-			currentFile.write(line + '\n')
-			currentFile.close()
+			if color == "blue"
+				currentFileBlue.write(line + '\n')
+			elif color is "green":
+				currentFileGreen.write(line + '\n')
+			elif color is "black":
+				currentFileBlack.write(line + '\n')
+			elif color is "grey":
+				currentFileGrey.write(line + '\n')
+			
+		currentBlueFile.close()
+		currentGreenFile.close()
+		currentGreyFile.close()
+		currentBlackFile.close()
 
 	#open file, read everything, close file, return result
     #TODO need to edit the filePath to include the bin color, not the signal
