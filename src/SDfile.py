@@ -12,10 +12,10 @@ class SDfile(file):
 	__locationID = ""
 	
 	def openAppend(self):
-		self.f = open(filePath, 'a')
+		self.f = open(self.relfilePath + self.getCurrentDate + self.__fileExtension, 'a')
 		
 	def openReadWrite(self):
-		self.f = open(filePath, 'w+')
+		self.f = open(self.relfilePath + self.getCurrentDate + self.__fileExtension, 'w+')
 	
 	def close(self):
 		self.f.close()
