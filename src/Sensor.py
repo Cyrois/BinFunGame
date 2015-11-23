@@ -27,13 +27,13 @@ class Sensor:
         self.sendSignal()
 
     def getGPIOPin(self, ID):
-        if ID == 1:
+        if ID is "black":
             return 7
-        elif ID == 2:
+        elif ID is "green":
             return 12
-        elif ID == 3:
+        elif ID is "blue":
             return 16
-        elif ID == 4:
+        elif ID is "gray":
             return 15
         else:
             return 0

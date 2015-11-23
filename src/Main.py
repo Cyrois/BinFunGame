@@ -21,7 +21,7 @@ if __name__ == '__main__':
     
     #Init buffer
     location = raw_input('Please enter currect location of bin:')
-    binBuffer = Buffer(location,1,2,3,4)
+    binBuffer = Buffer(location, "black", "green", "blue", "gray")
     
     
     #Clean buffer
@@ -30,9 +30,9 @@ if __name__ == '__main__':
     binEmptyFlag = True
 	
     #Init sdFile
-    headers = "ID,Location,Date,Time"
-    sdFile = SDfile(relativePath, location)
-    sdFile.quickInit(headers)
+    #headers = "ID,Location,Date,Time"
+    #sdFile = SDfile(relativePath, location)
+    #sdFile.quickInit(headers)
     
     #Init global variables
     globalVars.init()

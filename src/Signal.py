@@ -6,7 +6,7 @@ class Signal:
     @classmethod
     def initializeSignal(self, ID, location, dateTime):
         signal = ''
-        signal += str(ID) + self.delim + location + self.delim + str(dateTime)
+        signal += ID + self.delim + location + self.delim + str(dateTime)
         return signal
 
     #splits the given signal by the comma delimiter, returns a list

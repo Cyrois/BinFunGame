@@ -46,7 +46,9 @@ class SDfile(file):
 			self.setCurrentDate(date)
 		for line in target:
 			color = Signal.parseSignal(line)[0]
-			date = date.replace("11", "testing")
+			if not color:
+				return
+			print "printing color:" + color
 			#create file according to date, location and bin color
 			filePath = self.relfilePath + self.getCurrentDate() + "_" + self.__locationID + "_" + color + self.__fileExtension
 			print filePath
