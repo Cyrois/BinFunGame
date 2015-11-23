@@ -16,36 +16,44 @@ $def with (form, text)
                                         type: "POST",
                                         data: {color : "green"},
                                         success: function(data){
-                                            jQuery('#green').html(data);
-                                            changeGreenPic()
-                                            prev_green = data
+                                            if (prev_green != data) {
+                                                jQuery('#green').html(data);
+                                                changeGreenPic()
+                                                prev_green = data
+                                            }
                                         }
                                     });
                                     jQuery.ajax({
                                         type: "POST",
                                         data: {color : "grey"},
                                         success: function(data){
+                                            if (prev_grey != data) {
                                             jQuery('#grey').html(data);
                                             changeGreyPic()
                                             prev_grey = data
+                                            }
                                         }
                                     });
                                     jQuery.ajax({
                                         type: "POST",
                                         data: {color : "blue"},
                                         success: function(data){
+                                            if (prev_blue != data) {
                                             jQuery('#blue').html(data);
                                             changeBluePic()
                                             prev_blue = data
+                                            }
                                         }
                                     });
                                     jQuery.ajax({
                                         type: "POST",
                                         data: {color : "black"},
                                         success: function(data){
+                                            if (prev_blk != data) {
                                             jQuery('#black').html(data);
                                             changeBlackPic()
                                             prev_black = data
+                                            }
                                         }
                                     });
                                     num = (num * 11 + 17) % 25;
@@ -96,7 +104,7 @@ $def with (form, text)
                                 grey_img.style.display = 'none';
                                 blue_img.style.display = 'none';   
                                 blk_img.style.display = 'none';
-                                var counter = setInterval(updateCount, 1000);    
+                                var counter = setInterval(updateCount, 500);    
                                 });
         </script>
     </head>
