@@ -14,66 +14,41 @@ $def with (form, text)
                                 function updateCount() {
                                     jQuery.ajax({
                                         type: "POST",
-                                        data: {color : "black"},
-                                        success: function(data){
-                                            if (prev_blk != data) {
-                                                jQuery('#black').html(data);
-                                                changeBlackPic()
-                                                prev_blk = data
-                                            }
-                                        }
-                                    });
-                                    jQuery.ajax({
-                                        type: "POST",
                                         data: {color : "green"},
                                         success: function(data){
-                                            if (prev_green != data) {
-                                                jQuery('#green').html(data);
-                                                changeGreenPic()
-                                                prev_green = data
-                                            }
-                                        }
-                                    });
-                                    jQuery.ajax({
-                                        type: "POST",
-                                        data: {color : "blue"},
-                                        success: function(data){
-                                            if (prev_blue != data) {   
-                                                jQuery('#blue').html(data);
-                                                changeBluePic()
-                                                prev_blue = data
-                                            }
+                                            jQuery('#green').html(data);
+                                            changeGreenPic()
+                                            prev_green = data
                                         }
                                     });
                                     jQuery.ajax({
                                         type: "POST",
                                         data: {color : "grey"},
                                         success: function(data){
-                                            if (prev_grey != data) {
-                                                jQuery('#grey').html(data);
-                                                changeGreyPic()
-                                                prev_grey = data
-                                            }
+                                            jQuery('#grey').html(data);
+                                            changeGreyPic()
+                                            prev_grey = data
+                                        }
+                                    });
+                                    jQuery.ajax({
+                                        type: "POST",
+                                        data: {color : "blue"},
+                                        success: function(data){
+                                            jQuery('#blue').html(data);
+                                            changeBluePic()
+                                            prev_blue = data
+                                        }
+                                    });
+                                    jQuery.ajax({
+                                        type: "POST",
+                                        data: {color : "black"},
+                                        success: function(data){
+                                            jQuery('#black').html(data);
+                                            changeBlackPic()
+                                            prev_black = data
                                         }
                                     });
                                     num = (num * 11 + 17) % 25;
-                                }
-                                function changeBlackPic() {
-                                    blk_img.style.display = ''; 
-                                    if (num % 2 === 0) { 
-                                        blk_img.src = "http://i.imgur.com/ESOQpWH.gif";
-                                    }
-                                    else if (num % 2 === 1) { 
-                                        blk_img.src = "http://i.imgur.com/adqOlwM.gif";
-                                    }
-                                }
-                                function changeBluePic() {  
-                                    blue_img.style.display = ''; 
-                                    if (num % 2 === 0) { 
-                                        blue_img.src = "http://i.imgur.com/BfHQ0dm.gif";
-                                    } else if (num % 2 === 1) { 
-                                        blue_img.src = "http://i.imgur.com/unI7uvZ.gif";    
-                                    }
                                 }
                                 function changeGreenPic() {  
                                     green_img.style.display = '';
@@ -91,19 +66,36 @@ $def with (form, text)
                                         grey_img.src = "http://i.imgur.com/BiEK0cx.gif";
                                     }
                                 }
+                                function changeBluePic() {  
+                                    blue_img.style.display = ''; 
+                                    if (num % 2 === 0) { 
+                                        blue_img.src = "http://i.imgur.com/BfHQ0dm.gif";
+                                    } else if (num % 2 === 1) { 
+                                        blue_img.src = "http://i.imgur.com/unI7uvZ.gif";    
+                                    }
+                                }
+                                function changeBlackPic() {
+                                    blk_img.style.display = ''; 
+                                    if (num % 2 === 0) { 
+                                        blk_img.src = "http://i.imgur.com/ESOQpWH.gif";
+                                    }
+                                    else if (num % 2 === 1) { 
+                                        blk_img.src = "http://i.imgur.com/adqOlwM.gif";
+                                    }
+                                }
                                 var num = 0;
-                                var prev_blk = 0;
-                                var prev_blue = 0;
                                 var prev_green = 0;
                                 var prev_grey = 0;
-                                var blk_img = document.getElementById("BlackImage");
-                                var blue_img = document.getElementById("BlueImage");
-                                var green_img = document.getElementById("GreenImage");
-                                var grey_img = document.getElementById("GreyImage");
-                                blk_img.style.display = 'none';   
-                                blue_img.style.display = 'none';
+                                var prev_blue = 0;
+                                var prev_blk = 0;
+                                var green_img = document.getElementById("BlackImage");
+                                var grey_img = document.getElementById("BlueImage");
+                                var blue_img = document.getElementById("GreenImage");
+                                var blk_img = document.getElementById("GreyImage");
                                 green_img.style.display = 'none';   
                                 grey_img.style.display = 'none';
+                                blue_img.style.display = 'none';   
+                                blk_img.style.display = 'none';
                                 var counter = setInterval(updateCount, 1000);    
                                 });
         </script>
@@ -115,33 +107,45 @@ $def with (form, text)
 		        Current Bin Count!
 		    </div>
             
-            <div id="Green">
+            <div id="GreenCount">
                 <h2><span id="green">$text</span></h2>
-                <td align="center">
-                    <img src="" id="GreenImage" style="height: 80%; width: 95%; object-fit: cover" />
-                </td>
             </div>
 
-            <div id="Grey">
+            <div id="GreyCount">
                 <h2><span id="grey">$text</span></h2>
-                <td align="center">
-                    <img src="" id="GreyImage" style="height: 80%; width: 95%; object-fit: cover" />
-                </td>
             </div>
             
-            <div id="Blue">
+            <div id="BlueCount">
                 <h2><span id="blue">$text</span></h2>
-                <td align="center">
-                    <img src="" id="BlueImage" style="height: 80%; width: 95%; object-fit: cover" />
-                </td>
             </div>
 
-            <div id="Black">
+            <div id="BlackCount">
                 <h2><span id="black">$text</span></h2>
-                <td align="center">
-                    <img src="" id="BlackImage" style="height: 80%; width: 95%; object-fit: cover" />
-                </td>
             </div> 
+            
+            <div id="GreenAnimation">
+		        <td align="center">
+                    <img src="" id="GreenImage" style="height: 95%; width: 95%; object-fit: cover" />
+                </td>
+		    </div>
+		    
+		    <div id="GreyAnimation">
+		        <td align="center">
+                    <img src="" id="GreyImage" style="height: 95%; width: 95%; object-fit: cover" />
+                </td>
+		    </div>
+		    
+		    <div id="BlueAnimation">
+		        <td align="center">
+                    <img src="" id="BlueImage" style="height: 95%; width: 95%; object-fit: cover" />
+                </td>
+		    </div>
+		    
+		    <div id="BlackAnimation">
+		        <td align="center">
+                    <img src="" id="BlackImage" style="height: 95%; width: 95%; object-fit: cover" />
+                </td>
+		    </div>
 		</div>
 
     </body>

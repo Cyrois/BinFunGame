@@ -34,52 +34,88 @@ h2 {
     overflow: hidden;
     width: 100%;
     color: #000;
-    font-size: 12vh;
+    font-size: 12vmin;
     font-style: oblique;
     text-align: center;
     background-color: #FFF;
 }
 
-#Black {
+#GreenCount {
     overflow: auto;
     width: 25%;
-    height: 85%;
+    height: 20%;
     float: left;
     color: #FFF;
-    font-size: 8vh;
-    text-align: center;
-    background-color: black;
-}
-
-#Green {
-    overflow: auto;
-    width: 25%;
-    height: 85%;
-    float: left;
-    color: #FFF;
-    font-size: 8vh;
+    font-size: 10vmin;
     text-align: center;
     background-color: green;
 }
 
-#Blue {
+#GreyCount {
     overflow: auto;
     width: 25%;
-    height: 85%;
+    height: 20%;
     float: left;
     color: #FFF;
-    font-size: 8vh;
+    font-size: 10vmin;
+    text-align: center;
+    background-color: grey;
+}
+
+#BlueCount {
+    overflow: auto;
+    width: 25%;
+    height: 20%;
+    float: left;
+    color: #FFF;
+    font-size: 10vmin;
     text-align: center;
     background-color: blue;
 }
 
-#Grey {
+#BlackCount {
     overflow: auto;
     width: 25%;
-    height: 85%;
+    height: 20%;
     float: left;
     color: #FFF;
-    font-size: 8vh;
+    font-size: 10vmin;
+    text-align: center;
+    background-color: black;
+}
+
+#GreenAnimation {
+    overflow: auto;
+    width: 25%;
+    height: 65%;
+    float: left;
+    text-align: center;
+    background-color: green;
+}
+
+#GreyAnimation {
+    overflow: auto;
+    width: 25%;
+    height: 65%;
+    float: left;
     text-align: center;
     background-color: grey;
+}
+
+#BlueAnimation {
+    overflow: auto;
+    width: 25%;
+    height: 65%;
+    float: left;
+    text-align: center;
+    background-color: blue;
+}
+
+#BlackAnimation {
+    overflow: auto;
+    width: 25%;
+    height: 65%;
+    float: left;
+    text-align: center;
+    background-color: black;
 }
