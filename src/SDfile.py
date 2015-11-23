@@ -1,36 +1,66 @@
+import time
+import os.path
+from Signal import Signal
+
 #Class that represents a csv file on the SDcard
 #Each line represents a row in the table
 class SDfile(file):
 	f = ""
-	filePath = "EMPTY"
+	relfilePath = "EMPTY"
+	__fileExtension = ".csv"
+	__currentDate = ""
+	__locationID = ""
 
-	def __init__(self, path):
-		self.filePath = path
+	def __init__(self, relativePath, location):
+		self.relfilePath = relativePath
+		self.setCurrentDate(time.strftime("%d_%m_%Y"))
+		self.__locationID = location
+		
+	def getCurrentDate(self):
+		return self.__currentDate
 
-	#init the file with headers
-	def quickInit(self, headers):
-		self.f = open(self.filePath, 'w')
-		self.f.write(headers + '\n')
-		self.f.close()
+	def isCurrentDate(self, date):
+		return self.__currentDate == date
+	
+	def setCurrentDate(self, date):
+		self.__currentDate = date
+		
+	#init the file with headersls
+	def quickInit(self, filePath):
+		headers = "ID,Location,Date,Time"
+		file = open(filePath, 'w+')
+		file.write(headers + '\n')
+		file.close()
 
 	#opens the file, write the string to end of file, closes file
 	def quickAppend(self, target):
-		self.f = open(self.filePath, 'a')
+		self.f = open(self.relfilePath + self.getCurrentDate + self.__fileExtension, 'a')
 		self.f.write(target)
 		self.f.close()
 
 	#opens the file, writes each string in the buffer to the file, closes file
+    #TODO need to edit the filePath to include the bin color, not the signal
 	def quickAppendBuffer(self, target):
-		self.f = open(self.filePath, 'a')
+		date = time.strftime("%d_%m_%Y") #get current date
+		if not self.isCurrentDate(date): #check if the date has changed
+			self.setCurrentDate(date)
 		for line in target:
-			self.f.write(line + '\n')
-		self.f.close()
+			color = Signal.parseSignal(line)[0]
+			date = date.replace("11", "testing")
+			#create file according to date, location and bin color
+			filePath = self.relfilePath + self.getCurrentDate() + "_" + self.__locationID + "_" + color + self.__fileExtension
+			print filePath
+			if not os.path.isfile(filePath): #create a new file if new date
+				self.quickInit(filePath)
+			currentFile = open(filePath, 'a')
+			currentFile.write(line + '\n')
+			currentFile.close()
 
 	#open file, read everything, close file, return result
-	def quickRead(self):
+    #TODO need to edit the filePath to include the bin color, not the signal
+	def quickRead(self, filePath):
 		result = []
-		self.f = open(self.filePath, 'r')
-		#result = self.f.readlines( )
+		self.f = open(filePath, 'r')
 		for line in self.f:
 			editedLine = line.split('\n')
 			result.append(editedLine[0])
@@ -40,7 +70,7 @@ class SDfile(file):
 
 	#Reads the specified line and returns an array of strings where each entry represents a column
 	def readLine(self,number):
-		self.f = open(self.filePath, 'r')
+		self.f = open(self.relfilePath + self.getCurrentDate + self.__fileExtension, 'r')
 		count = 0
 		result = []
 		for line in self.f:
