@@ -16,7 +16,7 @@ $def with (form, text)
                                         type: "POST",
                                         data: {color : "black"},
                                         success: function(data){
-                                            jQuery('#black').html(data).fadeIn(500);
+                                            jQuery('#black').html(data).hide().fadeIn(500);
                                             changeBlackPic()
                                         }
                                     });
@@ -24,7 +24,7 @@ $def with (form, text)
                                         type: "POST",
                                         data: {color : "green"},
                                         success: function(data){
-                                            jQuery('#green').html(data).fadeIn(500);
+                                            jQuery('#green').html(data).hide().fadeIn(500);
                                             changeGreenPic()
                                         }
                                     });
@@ -32,7 +32,7 @@ $def with (form, text)
                                         type: "POST",
                                         data: {color : "blue"},
                                         success: function(data){
-                                            jQuery('#blue').html(data).fadeIn(500);
+                                            jQuery('#blue').html(data).hide().fadeIn(500);
                                             changeBluePic()
                                         }
                                     });
@@ -40,7 +40,7 @@ $def with (form, text)
                                         type: "POST",
                                         data: {color : "grey"},
                                         success: function(data){
-                                            jQuery('#grey').html(data).fadeIn(500);
+                                            jQuery('#grey').html(data).hide().fadeIn(500);
                                             changeGreyPic()
                                         }
                                     });
