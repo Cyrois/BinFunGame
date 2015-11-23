@@ -32,6 +32,7 @@ if __name__ == '__main__':
     #Init sdFile
     #headers = "ID,Location,Date,Time"
     sdFile = SDfile(relativePath, location)
+    sdFile.openAppend()
     #sdFile.quickInit(headers)
     
     #Init global variables

@@ -10,6 +10,15 @@ class SDfile(file):
 	__fileExtension = ".csv"
 	__currentDate = ""
 	__locationID = ""
+	
+	def openAppend(self):
+		self.f = open(filePath, 'a')
+		
+	def openReadWrite(self):
+		self.f = open(filePath, 'w+')
+	
+	def close(self):
+		self.f.close()
 
 	def __init__(self, relativePath, location):
 		self.relfilePath = relativePath
@@ -28,15 +37,15 @@ class SDfile(file):
 	#init the file with headersls
 	def quickInit(self, filePath):
 		headers = "ID,Location,Date,Time"
-		file = open(filePath, 'w+')
+		#file = open(filePath, 'w+')
 		file.write(headers + '\n')
-		file.close()
+		#file.close()
 
 	#opens the file, write the string to end of file, closes file
 	def quickAppend(self, target):
-		self.f = open(self.relfilePath + self.getCurrentDate + self.__fileExtension, 'a')
+		#self.f = open(self.relfilePath + self.getCurrentDate + self.__fileExtension, 'a')
 		self.f.write(target)
-		self.f.close()
+		#self.f.close()
 
 	#opens the file, writes each string in the buffer to the file, closes file
     #TODO need to edit the filePath to include the bin color, not the signal
@@ -54,25 +63,25 @@ class SDfile(file):
 			print filePath
 			if not os.path.isfile(filePath): #create a new file if new date
 				self.quickInit(filePath)
-			currentFile = open(filePath, 'a')
+			#currentFile = open(filePath, 'a')
 			currentFile.write(line + '\n')
-			currentFile.close()
+			#currentFile.close()
 
 	#open file, read everything, close file, return result
     #TODO need to edit the filePath to include the bin color, not the signal
 	def quickRead(self, filePath):
 		result = []
-		self.f = open(filePath, 'r')
+		#self.f = open(filePath, 'r')
 		for line in self.f:
 			editedLine = line.split('\n')
 			result.append(editedLine[0])
-		self.f.close()
+		#self.f.close()
 		return result
 		
 
 	#Reads the specified line and returns an array of strings where each entry represents a column
 	def readLine(self,number):
-		self.f = open(self.relfilePath + self.getCurrentDate + self.__fileExtension, 'r')
+		#self.f = open(self.relfilePath + self.getCurrentDate + self.__fileExtension, 'r')
 		count = 0
 		result = []
 		for line in self.f:
@@ -81,7 +90,7 @@ class SDfile(file):
 				line = line.strip() #remove whitespace
 				result = line.split(",")
 				break
-		self.f.close()
+		#self.f.close()
 		return result
 	
 	#Probably don't need to implement this
