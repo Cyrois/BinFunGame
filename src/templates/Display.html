@@ -11,13 +11,12 @@ $def with (form, text)
         <script type="text/javascript" src="/static/jquery.js"></script>
         <script type="text/javascript">
                                 jQuery(document).ready(function() {
-                                function updateCount(){
+                                function updateCount() {
                                     jQuery.ajax({
                                         type: "POST",
                                         data: {color : "black"},
                                         success: function(data){
                                             jQuery('#black').html(data).fadeIn(500);
-                                            console.log("Success update : Black")
                                             changeBlackPic()
                                         }
                                     });
@@ -26,7 +25,6 @@ $def with (form, text)
                                         data: {color : "green"},
                                         success: function(data){
                                             jQuery('#green').html(data).fadeIn(500);
-                                            console.log("Success update : green")
                                             changeGreenPic()
                                         }
                                     });
@@ -35,7 +33,6 @@ $def with (form, text)
                                         data: {color : "blue"},
                                         success: function(data){
                                             jQuery('#blue').html(data).fadeIn(500);
-                                            console.log("Success update : blue")
                                             changeBluePic()
                                         }
                                     });
@@ -44,90 +41,56 @@ $def with (form, text)
                                         data: {color : "grey"},
                                         success: function(data){
                                             jQuery('#grey').html(data).fadeIn(500);
-                                            console.log("Success update : grey")
                                             changeGreyPic()
                                         }
                                     });
                                     num = (num * 11 + 17) % 25;
                                 }
-                                function changeBlackPic()
-                                {
+                                function changeBlackPic() {
                                     blk_img.style.display = ''; 
-                                    if (num % 4 === 0) { 
-                                        blk_img.src = "http://25.media.tumblr.com/c99a579db3ae0fc164bf4cca148885d3/tumblr_mjgv8kEuMg1s87n79o1_400.gif";
+                                    if (num % 2 === 0) { 
+                                        blk_img.src = "http://i.imgur.com/ESOQpWH.gif";
                                     }
-                                    else if (num % 4 === 1) { 
-                                        blk_img.src = "https://media.giphy.com/media/11SQ5XkgUB7fMc/giphy.gif";       
-                                    }
-                                    else if (num % 4 === 2) { 
-                                        blk_img.src = "http://i.imgur.com/OM9gqz9.gif";    
-                                    }
-                                    else if (num % 4 === 3) { 
-                                        blk_img.src = "http://i.imgur.com/KRJahFj.gif"; 
+                                    else if (num % 2 === 1) { 
+                                        blk_img.src = "http://i.imgur.com/adqOlwM.gif";
                                     }
                                 }
-                                function changeGreenPic()
-                                {  
-                                    green_img.style.display = ''; 
-                                    if (num % 4 === 0) { 
-                                        green_img.src = "http://i.imgur.com/OM9gqz9.gif";
-                                    }
-                                    else if (num % 4 === 1) {
-                                        green_img.src = "http://i.imgur.com/KRJahFj.gif";       
-                                    }
-                                    else if (num % 4 === 2) {
-                                        green_img.src = "http://i.imgur.com/OM9gqz9.gif";    
-                                    }
-                                    else if (num % 4 === 3) {
-                                        green_img.src = "http://i.imgur.com/KRJahFj.gif"; 
-                                    }
-                                }
-                                function changeBluePic()
-                                {  
+                                function changeBluePic() {  
                                     blue_img.style.display = ''; 
-                                    if (num % 4 === 0) { 
-                                        blue_img.src = "http://i.imgur.com/OM9gqz9.gif";
-                                    }
-                                    else if (num % 4 === 1) { 
-                                        blue_img.src = "http://i.imgur.com/KRJahFj.gif";       
-                                    }
-                                    else if (num % 4 === 2) { 
-                                        blue_img.src = "http://i.imgur.com/OM9gqz9.gif";    
-                                    }
-                                    else if (num % 4 === 3) { 
-                                        blue_img.src = "http://i.imgur.com/KRJahFj.gif"; 
+                                    if (num % 2 === 0) { 
+                                        blue_img.src = "http://i.imgur.com/BfHQ0dm.gif";
+                                    } else if (num % 2 === 1) { 
+                                        blue_img.src = "http://i.imgur.com/unI7uvZ.gif";    
                                     }
                                 }
-                                function changeGreyPic()
-                                {  
+                                function changeGreenPic() {  
+                                    green_img.style.display = '';
+                                    if (num % 2 === 0) { 
+                                        green_img.src = "http://i.imgur.com/xN7x1hQ.gif"; 
+                                    } else if (num % 2 === 1) {
+                                        green_img.src = "http://i.imgur.com/aaZ01WV.gif";
+                                    }
+                                }
+                                function changeGreyPic() {  
                                     grey_img.style.display = ''; 
-                                    if (num % 4 === 0) {
-                                        grey_img.src = "http://i.imgur.com/OM9gqz9.gif";
-                                    }
-                                    else if (num % 4 === 1) {
-                                        grey_img.src = "http://i.imgur.com/KRJahFj.gif";       
-                                    }
-                                    else if (num % 4 === 2) {
-                                        grey_img.src = "http://i.imgur.com/OM9gqz9.gif";    
-                                    }
-                                    else if (num % 4 === 3) {
-                                        grey_img.src = "http://i.imgur.com/KRJahFj.gif"; 
+                                    if (num % 2 === 0) {
+                                        grey_img.src = "http://i.imgur.com/28nsk74.gif";
+                                    } else if (num % 2 === 1) {
+                                        grey_img.src = "http://i.imgur.com/BiEK0cx.gif";
                                     }
                                 }
                                 var num = 0;
                                 var blk_img = document.getElementById("BlackImage");
-                                var green_img = document.getElementById("GreenImage");
                                 var blue_img = document.getElementById("BlueImage");
+                                var green_img = document.getElementById("GreenImage");
                                 var grey_img = document.getElementById("GreyImage");
-                                blk_img.style.display = 'none';
+                                blk_img.style.display = 'none';   
+                                blue_img.style.display = 'none';
                                 green_img.style.display = 'none';   
-                                blue_img.style.display = 'none';   
                                 grey_img.style.display = 'none';
-                                var counter = setInterval(updateCount, 1000);
-                                   
+                                var counter = setInterval(updateCount, 1000);    
                                 });
-        
-                        </script>
+        </script>
     </head>
     
     <body>
@@ -135,18 +98,18 @@ $def with (form, text)
 		    <div id="header">
 		        Current Bin Count!
 		    </div>
-		
-            <div id="Black">
-                <h2><span id="black">$text</span></h2>
-                <td align="center">
-                    <img src="" id="BlackImage" style="height: 80%; width: 95%; object-fit: cover" />
-                </td>
-            </div>
             
             <div id="Green">
                 <h2><span id="green">$text</span></h2>
                 <td align="center">
                     <img src="" id="GreenImage" style="height: 80%; width: 95%; object-fit: cover" />
+                </td>
+            </div>
+
+            <div id="Grey">
+                <h2><span id="grey">$text</span></h2>
+                <td align="center">
+                    <img src="" id="GreyImage" style="height: 80%; width: 95%; object-fit: cover" />
                 </td>
             </div>
             
@@ -156,14 +119,13 @@ $def with (form, text)
                     <img src="" id="BlueImage" style="height: 80%; width: 95%; object-fit: cover" />
                 </td>
             </div>
-            
-            <div id="Grey">
-                <h2><span id="grey">$text</span></h2>
-                <td align="center">
-                    <img src="" id="GreyImage" style="height: 80%; width: 95%; object-fit: cover" />
-        		</td>
-		    </div>
 
+            <div id="Black">
+                <h2><span id="black">$text</span></h2>
+                <td align="center">
+                    <img src="" id="BlackImage" style="height: 80%; width: 95%; object-fit: cover" />
+                </td>
+            </div> 
 		</div>
 
     </body>
