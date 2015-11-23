@@ -1,18 +1,20 @@
 from collections import deque
-#from Sensor import Sensor
+from Sensor import Sensor
 
-class Queue:
+class BFG_Queue:
     __queue = deque()
     __isEmpty = True
     __location =  None
     __ID = None
     __signal = None
+    __sensor = -1
     
     def __init__(self,location,ID):
         print "initializing queue"
         self.__location = location
         self.__ID = ID
-                 
+        self.__sensor = Sensor(ID, location)
+
     def push(self, Signal):
         print "pushing: " + Signal
         self.__queue.append(Signal)
@@ -33,8 +35,15 @@ class Queue:
 
     def setEmptyFlag(self, empty):
         self.__isEmpty = empty
-        
+
+    #doing queue things    
     def getEmptyFlag(self):
+        self.__sensor.listenSignal()
+        
+        if not self.__sensor.isEmpty():
+            self.push(self.__sensor.getSignal())
+            self.setEmptyFlag(False)
+            
         return self.__isEmpty
     
     def initSensor(self):
