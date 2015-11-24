@@ -67,8 +67,8 @@ class SDfile(file):
 			color = Signal.parseSignal(line)[0]
 			if not color:
 				return
-			if color == "blue"
-				currentBlueFile.write(line + '\n')
+			if color == "blue":
+				currentFileBlue.write(line + '\n')
 			elif color is "green":
 				currentGreenFile.write(line + '\n')
 			elif color is "black":

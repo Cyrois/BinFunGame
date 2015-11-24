@@ -21,7 +21,7 @@ if __name__ == '__main__':
     
     #Init buffer
     location = raw_input('Please enter currect location of bin:')
-    binBuffer = Buffer(location, "black", "green", "blue", "gray")
+    binBuffer = Buffer(location, "black", "green", "blue", "grey")
     
     
     #Clean buffer
