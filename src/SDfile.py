@@ -55,7 +55,7 @@ class SDfile(file):
 		if not os.path.isfile(filePathGreen): #create a new file if new date
 			self.quickInit(filePathGreen)
 		if not os.path.isfile(filePathGrey): #create a new file if new date
-			self.quickInit(filePathGrey)
+			self.quickInit(filePathGrey)	
 		if not os.path.isfile(filePathBlack): #create a new file if new date
 			self.quickInit(filePathBlack)
 		currentBlueFile = open(filePathBlue, 'a')
@@ -68,13 +68,13 @@ class SDfile(file):
 			if not color:
 				return
 			if color == "blue"
-				currentFileBlue.write(line + '\n')
+				currentBlueFile.write(line + '\n')
 			elif color is "green":
-				currentFileGreen.write(line + '\n')
+				currentGreenFile.write(line + '\n')
 			elif color is "black":
-				currentFileBlack.write(line + '\n')
+				currentBlackFile.write(line + '\n')
 			elif color is "grey":
-				currentFileGrey.write(line + '\n')
+				currentGreyFile.write(line + '\n')
 			
 		currentBlueFile.close()
 		currentGreenFile.close()
