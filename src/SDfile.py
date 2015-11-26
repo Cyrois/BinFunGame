@@ -44,6 +44,7 @@ class SDfile(file):
 		date = time.strftime("%d_%m_%Y") #get current date
 		if not self.isCurrentDate(date): #check if the date has changed
 			self.setCurrentDate(date)
+		currentFile = open(filePath, 'a')
 		for line in target:
 			color = Signal.parseSignal(line)[0]
 			if not color:
@@ -54,9 +55,8 @@ class SDfile(file):
 			print filePath
 			if not os.path.isfile(filePath): #create a new file if new date
 				self.quickInit(filePath)
-			currentFile = open(filePath, 'a')
 			currentFile.write(line + '\n')
-			currentFile.close()
+		currentFile.close()
 
 	#open file, read everything, close file, return result
     #TODO need to edit the filePath to include the bin color, not the signal
