@@ -25,7 +25,7 @@ class SDfile(file):
 	def setCurrentDate(self, date):
 		self.__currentDate = date
 		
-	#init the file with headersls
+	#CREATE and init the file with headers
 	def quickInit(self, filePath):
 		headers = "ID,Location,Date,Time"
 		file = open(filePath, 'w+')
@@ -43,20 +43,46 @@ class SDfile(file):
 	def quickAppendBuffer(self, target):
 		date = time.strftime("%d_%m_%Y") #get current date
 		if not self.isCurrentDate(date): #check if the date has changed
-			self.setCurrentDate(date)
-		currentFile = open(filePath, 'a')
+			self.setCurrentDate(date);
+		#create file according to date, location and bin color
+		filePathBlack = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "black" + self.__fileExtension;
+		filePathGreen = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "green" + self.__fileExtension;
+		filePathBlue = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "blue" + self.__fileExtension;
+		filePathGrey = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "grey" + self.__fileExtension;
+		if not os.path.isfile(filePathBlack): #create a new file if new date
+			self.quickInit(filePathBlack);
+		if not os.path.isfile(filePathGreen): #create a new file if new date
+			self.quickInit(filePathGreen);
+		if not os.path.isfile(filePathBlue): #create a new file if new date
+			self.quickInit(filePathBlue);
+		if not os.path.isfile(filePathGrey): #create a new file if new date
+			self.quickInit(filePathGrey);
+		currentFileBlack = open(filePathBlack, 'a');
+		currentFileGreen = open(filePathGreen, 'a');
+		currentFileBlue = open(filePathBlue, 'a');
+		currentFileGrey = open(filePathGrey, 'a');
 		for line in target:
-			color = Signal.parseSignal(line)[0]
+			color = Signal.parseSignal(line)[0];
 			if not color:
-				return
-			print "printing color:" + color
-			#create file according to date, location and bin color
-			filePath = self.relfilePath + self.getCurrentDate() + "_" + self.__locationID + "_" + color + self.__fileExtension
-			print filePath
-			if not os.path.isfile(filePath): #create a new file if new date
-				self.quickInit(filePath)
-			currentFile.write(line + '\n')
-		currentFile.close()
+				return;
+			print("TEST... Printing color: " + color + " to the filepath");
+			if color == "black":
+				print("TEST... Black Success");
+				currentFileBlack.write(line + '\n');
+			if color == "green":
+				print("TEST... Green Success");
+				currentFileGreen.write(line + '\n');
+			if color == "blue":
+				print("TEST... Blue Success");
+				currentFileGreen.write(line + '\n');
+			if color == "grey":
+				print("TEST... Grey Success");
+				currentFileGreen.write(line + '\n');
+				
+		currentFileBlack.close();
+		currentFileGreen.close();
+		currentFileBlue.close();
+		currentFileGrey.close();
 
 	#open file, read everything, close file, return result
     #TODO need to edit the filePath to include the bin color, not the signal
