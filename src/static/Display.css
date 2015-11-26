@@ -13,6 +13,16 @@ div {
     margin: 0;
 }
 
+h1 {
+    display: inline;
+    font-size: 0.8em;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
 h2 {
     display: block;
     font-size: 1.5em;
@@ -35,7 +45,6 @@ h2 {
     width: 100%;
     color: #000;
     font-size: 12vmin;
-    font-style: oblique;
     text-align: center;
     background-color: #FFF;
 }
@@ -43,7 +52,7 @@ h2 {
 #GreenCount {
     overflow: auto;
     width: 25%;
-    height: 20%;
+    height: 30%;
     float: left;
     color: #FFF;
     font-size: 10vmin;
@@ -54,7 +63,7 @@ h2 {
 #GreyCount {
     overflow: auto;
     width: 25%;
-    height: 20%;
+    height: 30%;
     float: left;
     color: #FFF;
     font-size: 10vmin;
@@ -65,7 +74,7 @@ h2 {
 #BlueCount {
     overflow: auto;
     width: 25%;
-    height: 20%;
+    height: 30%;
     float: left;
     color: #FFF;
     font-size: 10vmin;
@@ -76,7 +85,7 @@ h2 {
 #BlackCount {
     overflow: auto;
     width: 25%;
-    height: 20%;
+    height: 30%;
     float: left;
     color: #FFF;
     font-size: 10vmin;
@@ -84,10 +93,46 @@ h2 {
     background-color: black;
 }
 
+#GreenText {
+    overflow: auto;
+    width: 25%;
+    height: 30%;
+    float: left;
+    text-align: center;
+    background-color: green;
+}
+
+#GreyText {
+    overflow: auto;
+    width: 25%;
+    height: 30%;
+    float: left;
+    text-align: center;
+    background-color: grey;
+}
+
+#BlueText {
+    overflow: auto;
+    width: 25%;
+    height: 30%;
+    float: left;
+    text-align: center;
+    background-color: blue;
+}
+
+#BlackText {
+    overflow: auto;
+    width: 25%;
+    height: 30%;
+    float: left;
+    text-align: center;
+    background-color: black;
+}
+
 #GreenAnimation {
     overflow: auto;
     width: 25%;
-    height: 65%;
+    height: 25%;
     float: left;
     text-align: center;
     background-color: green;
@@ -96,7 +141,7 @@ h2 {
 #GreyAnimation {
     overflow: auto;
     width: 25%;
-    height: 65%;
+    height: 25%;
     float: left;
     text-align: center;
     background-color: grey;
@@ -105,7 +150,7 @@ h2 {
 #BlueAnimation {
     overflow: auto;
     width: 25%;
-    height: 65%;
+    height: 25%;
     float: left;
     text-align: center;
     background-color: blue;
@@ -114,7 +159,7 @@ h2 {
 #BlackAnimation {
     overflow: auto;
     width: 25%;
-    height: 65%;
+    height: 25%;
     float: left;
     text-align: center;
     background-color: black;
