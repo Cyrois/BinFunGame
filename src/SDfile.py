@@ -65,18 +65,17 @@ class SDfile(file):
 			color = Signal.parseSignal(line)[0];
 			if not color:
 				return;
-			print("TEST... Printing color: " + color + " to the filepath");
 			if color == "black":
-				print("TEST... Black Success");
+				print("TEST... Printing color: " + color + " to the filepath: " + filePathBlack);
 				currentFileBlack.write(line + '\n');
 			if color == "green":
-				print("TEST... Green Success");
+				print("TEST... Printing color: " + color + " to the filepath: " + filePathGreen);
 				currentFileGreen.write(line + '\n');
 			if color == "blue":
-				print("TEST... Blue Success");
+				print("TEST... Printing color: " + color + " to the filepath: " + filePathBlue);
 				currentFileGreen.write(line + '\n');
 			if color == "grey":
-				print("TEST... Grey Success");
+				print("TEST... Printing color: " + color + " to the filepath: " + filePathGrey);
 				currentFileGreen.write(line + '\n');
 				
 		currentFileBlack.close();
