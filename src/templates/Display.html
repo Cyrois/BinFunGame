@@ -14,50 +14,40 @@ $def with (form, text)
                                 function updateCount() {
                                     jQuery.ajax({
                                         type: "POST",
-                                        data: {color : "green"},
                                         success: function(data){
-                                            if (prev_green != data) {
-                                                jQuery('#green').html(data);
-                                                changeGreenPic()
-                                                prev_green = data
+                                            var array = parseData(data);
+                                            if (prev_green != array[0]) {
+                                                jQuery('#green').html(array[0]);
+                                                changeGreenPic();
+                                                prev_green = array[0];
+                                            }
+                                            if (prev_grey != array[1]) {
+                                                jQuery('#grey').html(array[1]);
+                                                changeGreyPic();
+                                                prev_grey = array[1];
+                                            }
+                                            if (prev_blue != array[2]) {
+                                                jQuery('#blue').html(array[2]);
+                                                changeBluePic();
+                                                prev_blue = array[2];
+                                            }
+                                            if (prev_black != array[3]) {
+                                                jQuery('#black').html(array[3]);
+                                                changeBlackPic();
+                                                prev_black = array[3];
                                             }
                                         }
                                     });
-                                    jQuery.ajax({
-                                        type: "POST",
-                                        data: {color : "grey"},
-                                        success: function(data){
-                                            if (prev_grey != data) {
-                                            jQuery('#grey').html(data);
-                                            changeGreyPic()
-                                            prev_grey = data
-                                            }
-                                        }
-                                    });
-                                    jQuery.ajax({
-                                        type: "POST",
-                                        data: {color : "blue"},
-                                        success: function(data){
-                                            if (prev_blue != data) {
-                                            jQuery('#blue').html(data);
-                                            changeBluePic()
-                                            prev_blue = data
-                                            }
-                                        }
-                                    });
-                                    jQuery.ajax({
-                                        type: "POST",
-                                        data: {color : "black"},
-                                        success: function(data){
-                                            if (prev_blk != data) {
-                                            jQuery('#black').html(data);
-                                            changeBlackPic()
-                                            prev_blk = data
-                                            }
-                                        }
-                                    });
+                                    
                                     num = (num * 11 + 17) % 25;
                                 }
+
+                                function parseData(data){
+                                    var str = data.substring(1,(data.length)-1);
+                                    var array = str.split(", ");
+                                    return array;
+                                }
+
                                 function changeGreenPic() {  
                                     green_img.style.display = '';
                                     if (num % 2 === 0) { 
@@ -83,27 +73,27 @@ $def with (form, text)
                                     }
                                 }
                                 function changeBlackPic() {
-                                    blk_img.style.display = ''; 
+                                    black_img.style.display = ''; 
                                     if (num % 2 === 0) { 
-                                        blk_img.src = "http://i.imgur.com/ESOQpWH.gif";
+                                        black_img.src = "http://i.imgur.com/ESOQpWH.gif";
                                     }
                                     else if (num % 2 === 1) { 
-                                        blk_img.src = "http://i.imgur.com/adqOlwM.gif";
+                                        black_img.src = "http://i.imgur.com/adqOlwM.gif";
                                     }
                                 }
                                 var num = 0;
                                 var prev_green = 0;
                                 var prev_grey = 0;
                                 var prev_blue = 0;
-                                var prev_blk = 0;
+                                var prev_black = 0;
                                 var green_img = document.getElementById("GreenImage");
                                 var grey_img = document.getElementById("GreyImage");
                                 var blue_img = document.getElementById("BlueImage");
-                                var blk_img = document.getElementById("BlackImage");
+                                var black_img = document.getElementById("BlackImage");
                                 green_img.style.display = 'none';   
                                 grey_img.style.display = 'none';
                                 blue_img.style.display = 'none';   
-                                blk_img.style.display = 'none';
+                                black_img.style.display = 'none';
                                 var counter = setInterval(updateCount, 500);    
                                 });
         </script>

@@ -7,7 +7,6 @@ import globalVars
 import logging
 # from time import strftime
 
-
 class Display:
 
     app = None
@@ -43,7 +42,11 @@ class Display:
         else:
             print "Error: No color passed"
             return
-    
+
+    def getAllCount(self):
+        colorCount = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
+        return colorCount
+
 
     def GET(self):
         # give copy of the form instance
@@ -54,8 +57,18 @@ class Display:
     
     def POST(self):
         #print web.input()
+        #logging.debug(web.input())
+        #print color
+        #logging.debug(self.getAllCount())
+        return self.getAllCount()
+    
+    """
+    def POST(self):
+        #print web.input()
         logging.debug(web.input())
         color =  web.input().color
         #print color
         logging.debug(color)
+        logging.debug(self.getAllCount())
         return self.getCount(color)
+    """
