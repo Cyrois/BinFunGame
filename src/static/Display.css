@@ -53,10 +53,10 @@ h2 {
     background-color: #FFF;
 }
 
-#GreenCount {
+#FoodScraps {
     overflow: auto;
     width: 25%;
-    height: 30%;
+    height: 15%;
     float: left;
     color: #FFF;
     font-size: 10vmin;
@@ -64,10 +64,10 @@ h2 {
     background-color: green;
 }
 
-#GreyCount {
+#Plastics {
     overflow: auto;
     width: 25%;
-    height: 30%;
+    height: 15%;
     float: left;
     color: #FFF;
     font-size: 10vmin;
@@ -75,10 +75,10 @@ h2 {
     background-color: grey;
 }
 
-#BlueCount {
+#Paper {
     overflow: auto;
     width: 25%;
-    height: 30%;
+    height: 15%;
     float: left;
     color: #FFF;
     font-size: 10vmin;
@@ -86,15 +86,115 @@ h2 {
     background-color: blue;
 }
 
-#BlackCount {
+#Garbage {
     overflow: auto;
     width: 25%;
-    height: 30%;
+    height: 15%;
     float: left;
     color: #FFF;
     font-size: 10vmin;
     text-align: center;
     background-color: black;
+}
+
+#GreenCount {
+    overflow: auto;
+    width: 25%;
+    height: 15%;
+    float: left;
+    color: #FFF;
+    font-size: 10vmin;
+    text-align: center;
+    background-color: green;
+}
+
+#GreenSlot {
+    width: 25%;
+    height: 15%;  
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    transform-origin: right center;
+    background-color: green;
+}
+
+#GreenSlot.flipped {
+    transform: rotateX( -360deg );
+}
+
+#GreyCount {
+    overflow: auto;
+    width: 25%;
+    height: 15%;
+    float: left;
+    color: #FFF;
+    font-size: 10vmin;
+    text-align: center;
+    background-color: grey;
+}
+
+#GreySlot {
+    width: 25%;
+    height: 15%;  
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    transform-origin: right center;
+    background-color: grey;
+}
+
+#GreySlot.flipped {
+    transform: rotateX( -360deg );
+}
+
+#BlueCount {
+    overflow: auto;
+    width: 25%;
+    height: 15%;
+    float: left;
+    color: #FFF;
+    font-size: 10vmin;
+    text-align: center;
+    background-color: blue;
+}
+
+#BlueSlot {
+    width: 25%;
+    height: 15%;  
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    transform-origin: right center;
+    background-color: blue;
+}
+
+#BlueSlot.flipped {
+    transform: rotateX( -360deg );
+}
+
+#BlackCount {
+    overflow: auto;
+    width: 25%;
+    height: 15%;
+    float: left;
+    color: #FFF;
+    font-size: 10vmin;
+    text-align: center;
+    background-color: black;
+}
+
+#BlackSlot {
+    width: 25%;
+    height: 15%;  
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    transform-origin: right center;
+    background-color: black;
+}
+
+#BlackSlot.flipped {
+    transform: rotateX( -360deg );
 }
 
 #GreenText {

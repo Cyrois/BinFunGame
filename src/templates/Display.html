@@ -20,21 +20,25 @@ $def with (form, text)
                                                 jQuery('#green').html(array[0]);
                                                // changeGreenPic();
                                                 prev_green = array[0];
+                                                green_slot.classList.toggle('flipped');
                                             }
                                             if (prev_grey != array[1]) {
                                                 jQuery('#grey').html(array[1]);
                                                // changeGreyPic();
                                                 prev_grey = array[1];
+                                                grey_slot.classList.toggle('flipped');
                                             }
                                             if (prev_blue != array[2]) {
                                                 jQuery('#blue').html(array[2]);
                                                // changeBluePic();
                                                 prev_blue = array[2];
+                                                blue_slot.classList.toggle('flipped');
                                             }
                                             if (prev_black != array[3]) {
                                                 jQuery('#black').html(array[3]);
                                                // changeBlackPic();
                                                 prev_black = array[3];
+                                                black_slot.classList.toggle('flipped');
                                             }
                                         }
                                     });
@@ -94,8 +98,11 @@ $def with (form, text)
                                 grey_img.style.display = 'none';
                                 blue_img.style.display = 'none';   
                                 black_img.style.display = 'none';
-                                var counter = setInterval(updateCount, 500);    
-                                changeGreenPic();
+                                var counter = setInterval(updateCount, 500);
+                                var green_slot = document.getElementById("GreenSlot");
+                                var grey_slot = document.getElementById("GreySlot");
+                                var blue_slot = document.getElementById("BlueSlot");
+                                var black_slot = document.getElementById("BlackSlot");
                                 });
         </script>
     </head>
@@ -104,26 +111,46 @@ $def with (form, text)
 	    <div id="container">
 		    <div id="header">
 		        Your Sort it Out Score!
-		    </div>
-            
-            <div id="GreenCount">
+		    </div>            
+
+            <div id="FoodScraps">
                 <h1><span id="foodscraps">Food Scraps</span></h1>
-                <h2><span id="green">$text</span></h2>
             </div>
 
-            <div id="GreyCount">
+            <div id="Plastics">
                 <h1><span id="plastics">Plastics</span></h1>
+            </div>
+            
+            <div id="Paper">
+                <h1><span id="paper">Paper</span></h1>
+            </div>
+
+            <div id="Garbage">
+                <h1><span id="garbage">Garbage</span></h1>
+            </div> 
+            
+            <div id="GreenCount">
+                <div id="GreenSlot">
+                <h2><span id="green">$text</span></h2>
+                </div>
+            </div>
+
+            <div id="GreyCount">                
+                <div id="GreySlot">
                 <h2><span id="grey">$text</span></h2>
+                </div>
             </div>
             
             <div id="BlueCount">
-                <h1><span id="paper">Paper</span></h1>
+                <div id="BlueSlot">
                 <h2><span id="blue">$text</span></h2>
+                </div>
             </div>
 
             <div id="BlackCount">
-                <h1><span id="garbage">Garbage</span></h1>
+                <div id="BlackSlot">
                 <h2><span id="black">$text</span></h2>
+                </div>
             </div> 
 
             <div id="GreenText">
