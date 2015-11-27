@@ -19,8 +19,15 @@ $def with (form, text)
                                             if (prev_green != array[0]) {
                                                 jQuery('#green').html(array[0]);
                                                // changeGreenPic();
-                                                prev_green = array[0];
+                                                if (prev_green % 2 == 1) {               
+                                                    jQuery('#front_green').html(array[0]);
+                                                    jQuery('#back_green').html(prev_green);
+                                                } else { 
+                                                    jQuery('#front_green').html(prev_green);
+                                                    jQuery('#back_green').html(array[0]);
+                                                }
                                                 green_slot.classList.toggle('flipped');
+                                                prev_green = array[0];
                                             }
                                             if (prev_grey != array[1]) {
                                                 jQuery('#grey').html(array[1]);
@@ -131,7 +138,8 @@ $def with (form, text)
             
             <div id="GreenCount">
                 <div id="GreenSlot">
-                <h2><span id="green">$text</span></h2>
+                    <figure class="front"><h2><span id="front_green">$text</span></h2></figure>
+                    <figure class="back"><h2><span id="back_green">$text</span></h2></figure>
                 </div>
             </div>
 
