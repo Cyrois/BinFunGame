@@ -15,6 +15,14 @@ class SDfile(file):
 		self.relfilePath = relativePath
 		self.setCurrentDate(time.strftime("%d_%m_%Y"))
 		self.__locationID = location
+		filePathBlack = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "black" + self.__fileExtension;
+		filePathGreen = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "green" + self.__fileExtension;
+		filePathBlue = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "blue" + self.__fileExtension;
+		filePathGrey = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "grey" + self.__fileExtension;
+		self.quickInit(filePathBlack);
+		self.quickInit(filePathGreen);
+		self.quickInit(filePathBlue);
+		self.quickInit(filePathGrey);
 		
 	def getCurrentDate(self):
 		return self.__currentDate
