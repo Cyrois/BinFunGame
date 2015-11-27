@@ -95,6 +95,7 @@ $def with (form, text)
                                 blue_img.style.display = 'none';   
                                 black_img.style.display = 'none';
                                 var counter = setInterval(updateCount, 500);    
+                                changeGreenPic();
                                 });
         </script>
     </head>
@@ -102,25 +103,52 @@ $def with (form, text)
     <body>
 	    <div id="container">
 		    <div id="header">
-		        Current Bin Count!
+		        Your Sort it Out Score!
 		    </div>
             
             <div id="GreenCount">
+                <h1><span id="foodscraps">Food Scraps</span></h1>
                 <h2><span id="green">$text</span></h2>
             </div>
 
             <div id="GreyCount">
+                <h1><span id="plastics">Plastics</span></h1>
                 <h2><span id="grey">$text</span></h2>
             </div>
             
             <div id="BlueCount">
+                <h1><span id="paper">Paper</span></h1>
                 <h2><span id="blue">$text</span></h2>
             </div>
 
             <div id="BlackCount">
+                <h1><span id="garbage">Garbage</span></h1>
                 <h2><span id="black">$text</span></h2>
             </div> 
+
+            <div id="GreenText">
+                <td align="center">
+                    GREEN SHIT
+                </td>
+            </div>
             
+            <div id="GreyText">
+                <td align="center">
+                    GREY
+                </td>
+            </div>
+            
+            <div id="BlueText">
+                <td align="center">
+                    blue
+                </td>
+            </div>
+            
+            <div id="BlackText">
+                <td align="center">
+                
+                </td>
+            </div>
             <div id="GreenAnimation">
 		        <td align="center">
                     <img src="" id="GreenImage" style="height: 95%; width: 95%; object-fit: cover" />
