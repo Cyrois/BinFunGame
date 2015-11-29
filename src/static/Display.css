@@ -157,11 +157,28 @@ h2 {
     transform-style: preserve-3d;
     transition: transform 1s;
     transform-origin: right center;
-    background-color: grey;
+}
+
+#GreySlot figure {
+    margin: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+#GreySlot .front {
+    background: grey;
+}
+
+#GreySlot .back {
+    background: grey;
+    transform: rotateX( 180deg );
 }
 
 #GreySlot.flipped {
-    transform: rotateX( -360deg );
+    transform: rotateX( -180deg );
 }
 
 #BlueCount {
@@ -182,11 +199,28 @@ h2 {
     transform-style: preserve-3d;
     transition: transform 1s;
     transform-origin: right center;
-    background-color: blue;
+}
+
+#BlueSlot figure {
+    margin: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+#BlueSlot .front {
+    background: blue;
+}
+
+#BlueSlot .back {
+    background: blue;
+    transform: rotateX( 180deg );
 }
 
 #BlueSlot.flipped {
-    transform: rotateX( -360deg );
+    transform: rotateX( -180deg );
 }
 
 #BlackCount {
@@ -207,11 +241,28 @@ h2 {
     transform-style: preserve-3d;
     transition: transform 1s;
     transform-origin: right center;
-    background-color: black;
+}
+
+#BlackSlot figure {
+    margin: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+#BlackSlot .front {
+    background: black;
+}
+
+#BlackSlot .back {
+    background: black;
+    transform: rotateX( 180deg );
 }
 
 #BlackSlot.flipped {
-    transform: rotateX( -360deg );
+    transform: rotateX( -180deg );
 }
 
 #GreenText {
