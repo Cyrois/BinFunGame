@@ -21,9 +21,9 @@ $def with (form, text)
                             changeGreenPic();
                             if (prev_green % 2 == 1) {               
                                 jQuery('#front_green').html(array[0]);
-                                jQuery('#back_green').html(prev_green);
+                          //      jQuery('#back_green').html(prev_green);
                             } else { 
-                                jQuery('#front_green').html(prev_green);
+                            //    jQuery('#front_green').html(prev_green);
                                 jQuery('#back_green').html(array[0]);
                             }
                             green_slot.classList.toggle('flipped');
@@ -34,9 +34,9 @@ $def with (form, text)
                             changeGreyPic();
                             if (prev_grey % 2 == 1) {               
                                 jQuery('#front_grey').html(array[1]);
-                                jQuery('#back_grey').html(prev_grey);
+//                                jQuery('#back_grey').html(prev_grey);
                             } else { 
-                                jQuery('#front_grey').html(prev_grey);
+  //                              jQuery('#front_grey').html(prev_grey);
                                 jQuery('#back_grey').html(array[1]);
                             }
                             prev_grey = array[1];
@@ -47,9 +47,9 @@ $def with (form, text)
                             changeBluePic(); 
                             if (prev_blue % 2 == 1) {               
                                 jQuery('#front_blue').html(array[2]);
-                                jQuery('#back_blue').html(prev_blue);
+    //                            jQuery('#back_blue').html(prev_blue);
                             } else { 
-                                jQuery('#front_blue').html(prev_blue);
+      //                          jQuery('#front_blue').html(prev_blue);
                                 jQuery('#back_blue').html(array[2]);
                             }
                             prev_blue = array[2];
@@ -60,9 +60,9 @@ $def with (form, text)
                             changeBlackPic();
                             if (prev_black % 2 == 1) {               
                                 jQuery('#front_black').html(array[3]);
-                                jQuery('#back_black').html(prev_black);
+        //                        jQuery('#back_black').html(prev_black);
                             } else { 
-                                jQuery('#front_black').html(prev_black);
+          //                      jQuery('#front_black').html(prev_black);
                                 jQuery('#back_black').html(array[3]);
                             }
                             prev_black = array[3];

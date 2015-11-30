@@ -13,6 +13,10 @@ class Database:
         self.db = MySQLdb.connect(theHost, theUser, thePsswd, theDB)
         self.cursor = self.db.cursor()
 
+    #def __init__(self, theHost, thePort, theUser, thePsswd, theDB):
+    #    self.db = MySQLdb.connect(host=theHost, port=thePort, user=theUser, passwd=thePsswd, db=theDB)
+    #    self.cursor = self.db.cursor()
+
     def isCurrentDate(self, date):
         return self.currentDate == date
 	
@@ -34,6 +38,7 @@ class Database:
 	#one table per day??
 	#table names by date?
     def insertBuffer(self, target):
+        print "INSERTING INTO DATABASE"
         date = time.strftime("%d_%m_%Y") #get current date
         if not self.isCurrentDate(date): #check if the date has changed
             self.createBFGTable(date)
@@ -41,14 +46,14 @@ class Database:
 
         for line in target:
             color = Signal.parseSignal(line)[0]
+            if not color:
+                return;
             location = Signal.parseSignal(line)[1]
             theTime = str(Signal.parseSignal(line)[2])
 
             #SQL Date format: YYYY-MM-DD
             splitResult = date.split("_")
             theDate = splitResult[2] + "-" + splitResult[1] + "-" + splitResult[0]
-            if not color:
-                return;
             query = "INSERT INTO " + date + " VALUES ( " + "'" + color + "'" + " ," + "'" + location + "'" + " ," + "'" + theDate + "'" + " ," + "'" + theTime + "'" + ");"
             print("Inserting a row: " + query)
             self.cursor.execute(query)

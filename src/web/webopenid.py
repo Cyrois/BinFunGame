@@ -83,6 +83,7 @@ class host:
     def POST(self):
         # unlike the usual scheme of things, the POST is actually called
         # first here
+        print "fuck me in the asshole"
         i = web.input(return_to='/')
         if i.get('action') == 'logout':
             logout()

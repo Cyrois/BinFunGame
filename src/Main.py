@@ -3,6 +3,7 @@ from Buffer import Buffer
 from collections import deque
 from SDfile import SDfile
 import datetime
+from Database import Database
 
 
 from Display import Display
@@ -11,21 +12,38 @@ import globalVars
 import logging
 import threading
 import time
+import sys, getopt
+"""
+def main(argv):
+    location = ''
+    try:
+       opts, args = getopt.getopt(argv,"hl:",["location="])
+    except getopt.GetoptError:
+       print 'Main.py -l <location>'
+       sys.exit(2)
+    for opt, arg in opts:
+       if opt == '-h':
+         print 'Main.py -l <location>'
+         sys.exit()
+       elif opt in ("-l", "--location"):
+         location = arg
 
-
+    print 'Bin Location is: ', location
+"""
 if __name__ == '__main__':
     #location to store files
-    relativePath = "./TempFiles/"
+    relativePath = "/home/pi/BinFunGame/src/TempFiles/"
 	
     mainDeque = deque()
     
     #Init buffer
     location = raw_input('Please enter currect location of bin:')
+    #location = str(main(sys.argv[1:]))
     binBuffer = Buffer(location, "black", "green", "blue", "grey")
-    
+    time.sleep(10)
     
     #Clean buffer
-    binBuffer.flushBuffer()
+    binBuffer.clear()
     
     binEmptyFlag = True
 	
@@ -35,7 +53,7 @@ if __name__ == '__main__':
     #sdFile.quickInit(headers)
 
     #Init database
-    #db = Database("localhost", "bfg", "bfg123", "bfg")
+    db = Database("localhost", "bfg", "bfg123", "bfg")
     
     #Init global variables
     globalVars.init()
@@ -60,7 +78,7 @@ if __name__ == '__main__':
             globalVars.greyCount = binBuffer.getCount("grey")
             print "Sending signal to SD to save "
             sdFile.quickAppendBuffer(mainDeque)
-            #db.insertBuffer(mainDeque)
+            db.insertBuffer(mainDeque)
             #date = time.strftime("%d_%m_%Y") #get current date
             #filePath = relativePath + date + "_" + location + "_" + color + ".csv"
             #print "quickRead: " + str(sdFile.quickRead(filePath))

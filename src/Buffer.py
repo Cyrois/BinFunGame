@@ -136,3 +136,7 @@ class Buffer:
             self.__greyQueue.setEmptyFlag(False)
         else :
             print "Error: Not a color"
+
+    def clear(self):
+        self.__bufferDeque.clear()
+        self.setEmptyFlag(True)

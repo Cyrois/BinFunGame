@@ -1,13 +1,14 @@
 import RPi.GPIO as GPIO
 import datetime
 import Queue
+import time
 from Signal import Signal
 
 class Sensor:
-    __isEmpty = None    #flag used by Queue to see if the Sensor is active
-    __signal = ""   #the current Signal string, see Signal class for format
-    __ID = ""   #the sensor ID
-    __Location = "" #the location of the sensor
+    __isEmpty = True    #flag used by Queue to see if the Sensor is active
+    __signal = ''   #the current Signal string, see Signal class for format
+    __ID = ''   #the sensor ID
+    __Location = '' #the location of the sensor
         
     #GPIO Input Pin for the Sensor
     __gpiopin = 7
@@ -20,6 +21,7 @@ class Sensor:
         GPIO.setup(self.__gpiopin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         self.__ID = ID
         self.__Location = Location
+	#time.sleep(10)
         GPIO.add_event_detect(self.__gpiopin, GPIO.RISING, callback=self.testSendSignal)
 
     def testSendSignal(self, pinNumber):
