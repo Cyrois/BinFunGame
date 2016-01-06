@@ -307,7 +307,7 @@ h2 {
     height: 25%;
     float: left;
     text-align: center;
-    background-color: green;
+    background-color: white;
 }
 
 #GreyAnimation {
@@ -316,7 +316,7 @@ h2 {
     height: 25%;
     float: left;
     text-align: center;
-    background-color: grey;
+    background-color: white;
 }
 
 #BlueAnimation {
@@ -325,7 +325,7 @@ h2 {
     height: 25%;
     float: left;
     text-align: center;
-    background-color: blue;
+    background-color: white;
 }
 
 #BlackAnimation {
@@ -334,5 +334,5 @@ h2 {
     height: 25%;
     float: left;
     text-align: center;
-    background-color: black;
+    background-color: white;
 }
