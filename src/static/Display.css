@@ -274,6 +274,19 @@ h2 {
     background-color: green;
 }
 
+#GreenMessage {
+    overflow: auto;
+    width: 95%%;
+    height: 95%;
+    text-align: center;
+    background-image: url("textBox.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center; 
+    color: #FFF;
+    font-size: 6vmin;
+}
+
 #GreyText {
     overflow: auto;
     width: 25%;
@@ -281,6 +294,20 @@ h2 {
     float: left;
     text-align: center;
     background-color: grey;
+}
+
+#GreyMessage {
+    overflow: auto;
+    width: 95%%;
+    height: 95%;
+    text-align: center;
+    background-image: url("textBox.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center; 
+    background-color: grey;
+    color: #FFF;
+    font-size: 6vmin;
 }
 
 #BlueText {
@@ -292,6 +319,20 @@ h2 {
     background-color: blue;
 }
 
+#BlueMessage {
+    overflow: auto;
+    width: 95%%;
+    height: 95%;
+    text-align: center;
+    background-image: url("textBox.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center; 
+    background-color: blue;
+    color: #FFF;
+    font-size: 6vmin;
+}
+
 #BlackText {
     overflow: auto;
     width: 25%;
@@ -299,6 +340,20 @@ h2 {
     float: left;
     text-align: center;
     background-color: black;
+}
+
+#BlackMessage {
+    overflow: auto;
+    width: 95%%;
+    height: 95%;
+    text-align: center;
+    background-image: url("textBox.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center; 
+    background-color: black;
+    color: #FFF;
+    font-size: 6vmin;
 }
 
 #GreenAnimation {
@@ -336,3 +391,4 @@ h2 {
     text-align: center;
     background-color: white;
 }
+

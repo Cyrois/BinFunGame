@@ -46,7 +46,6 @@ $def with (form, text)
                         }
                     }
                 });
-                //num = (num * 11 + 17) % 25;
             }
             function parseData(data){
                 var str = data.substring(1,(data.length)-1);
@@ -57,13 +56,6 @@ $def with (form, text)
                 green_img.style.display = '';
 		        green_msg.style.display = '';
                 green_img.src = "static/gifs/Food.gif";
-                /*
-                if (num % 2 === 0) { 
-                    green_img.src = "static/gifs/greenMonster1.gif"; 
-                } else if (num % 2 === 1) {
-                    green_img.src = "static/gifs/greenMonster2.gif";
-                }
-                */
             	jQuery("#GreenMessage").hide().fadeIn(2000);
             	jQuery("#GreenMessage").fadeOut(2000);
             }
@@ -71,13 +63,6 @@ $def with (form, text)
                 grey_img.style.display = ''; 
                 grey_msg.style.display = '';
                 grey_img.src = "static/gifs/Plastics.gif";
-                /*
-		        if (num % 2 === 0) {
-                    grey_img.src = "static/gifs/blueMonster1.gif";
-                } else if (num % 2 === 1) {
-                    grey_img.src = "static/gifs/blueMonster2.gif";
-                }
-                */
 		        jQuery("#GreyMessage").hide().fadeIn(2000);
             	jQuery("#GreyMessage").fadeOut(2000);
             }
@@ -85,13 +70,6 @@ $def with (form, text)
                 blue_img.style.display = '';
 		        blue_msg.style.display = ''; 
                 blue_img.src = "static/gifs/Paper.gif";
-                /*
-                if (num % 2 === 0) { 
-                    blue_img.src = "static/gifs/purpleMonster1.gif";
-                } else if (num % 2 === 1) { 
-                    blue_img.src = "static/gifs/purpleMonster2.gif";    
-                }
-                */
 		        jQuery("#BlueMessage").hide().fadeIn(2000);
             	jQuery("#BlueMessage").fadeOut(2000);
             }
@@ -99,17 +77,10 @@ $def with (form, text)
                 black_img.style.display = '';
 		        black_msg.style.display = '';
                 black_img.src = "static/gifs/Garbage.gif";
-                /*
-                if (num % 2 === 0) { 
-                    black_img.src = "static/gifs/blackMonster1.gif";
-                } else if (num % 2 === 1) { 
-                    black_img.src = "static/gifs/blackMonster1.gif";
-                }
-                */
+
 		        jQuery("#BlackMessage").hide().fadeIn(2000);
                 jQuery("#BlackMessage").fadeOut(2000);
             }
-            //var num = 0;
             var prev_green = 0;
             var prev_grey = 0;
             var prev_blue = 0;
@@ -191,25 +162,33 @@ $def with (form, text)
 
             <div id="GreenText">
                 <td align="center">
-                    <img src="static/textBox.png" id="GreenMessage" style="height: 95%; width: 96%; object-fit: fill"/>
+                    <div id="GreenMessage">
+                        test
+                    </div>
                 </td>
             </div>
             
             <div id="GreyText">
-                <td align="center">
-                	<img src="static/textBox.png" id="GreyMessage" style="height: 95%; width: 96%; object-fit: fill" />
+                <td align="center">        
+                <div id="GreyMessage">
+                        test
+                    </div>
                 </td>
             </div>
             
             <div id="BlueText">
-                <td align="center">
-			<img src="static/textBox.png" id="BlueMessage" style="height: 95%; width: 96%; object-fit: fill" />
+                <td align="center">                    
+                    <div id="BlueMessage">
+                        test
+                    </div>
                 </td>
             </div>
             
             <div id="BlackText">
                 <td align="center">
-                	<img src="static/textBox.png" id="BlackMessage" style="height: 95%; width: 96%; object-fit: fill" />
+                    <div id="BlackMessage">
+                        test
+                    </div>
                 </td>
             </div>
             <div id="GreenAnimation">
