@@ -6,6 +6,7 @@ BinFunGame.Game.prototype = {
 	create: function(){
 
 		this.totalRecyclables = 40;
+		this.maxScore=5;
 		//set world dimensions
    		this.game.world.setBounds(0, 0, 1280, 720);
 
@@ -25,8 +26,31 @@ BinFunGame.Game.prototype = {
     	this.score = this.game.add.text(this.game.world.centerX+150, this.game.world.centerY, this.score, style);
 		this.score.anchor.set(0.5);
 
+		this.timerCount=0;
+		this.timer = "Total time: "+ 0;
+		style = { font: "20px Arial", fill: "#000", align: "center" };
+		this.timer = this.game.add.text(this.game.world.centerX-150, this.game.world.centerY, this.timer, style);
+		this.timer.anchor.set(0.5);
+
+		this.game.time.events.loop(100, this.updateCounter, this);
+
+
 	},
 	update: function(){
+		
+	},
+
+	endGame: function(score){
+		if(score >= this.maxScore){
+			this.game.time.events.stop();
+		}
+	},
+
+	updateCounter: function(){
+		this.timerCount+=0.1;
+		this.timer.setText("Total time: "+ this.timerCount.toFixed(1));
+		console.log(this.timerCount);
+
 	},
 
 	generateSigns: function(){
@@ -85,6 +109,7 @@ BinFunGame.Game.prototype = {
 		if (recyclable.binType == sign.binType){
 			this.playerScore+=1;
 			this.score.setText("score: "+ this.playerScore);
+			this.endGame(this.playerScore);
 			recyclable.kill();
 			this.generateRecyclable();
 		}
