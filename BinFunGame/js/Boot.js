@@ -4,10 +4,9 @@ BinFunGame.Boot = function(){};
 
 BinFunGame.Boot.prototype = {
   preload: function() {
-    this 
-    //LOAD logo image here
-    //this.load.image('logo', 'assets/images/logo.jpg');
-    this.load.image('preloadbar', 'assets/images/preloader-bar.png');
+
+    this.load.image('logo', 'assets/images/Emily.jpg');
+    this.load.image('preloadbar', 'assets/images/loading_bar.jpg');
   },
   create: function() {
   	//loading screen will have a white background

@@ -18,38 +18,61 @@ BinFunGame.Game.prototype = {
 
 		//Randomly pick one recyclable
 		this.generateRecyclable();
+		this.recyclable.inputEnabled=false;
+
+		//Description
+		var description = "Click start the game!";
+	    style = { font: "25px Arial", fill: "#000", align: "center" };
+		this.d = this.game.add.text(this.game.width/2, this.game.height/2 + 100, description, style);
+		this.d.anchor.set(0.5);
+
+		this.gameRunning = false;
+
+
+	},
+	update: function(){
+		if(this.gameRunning==false){
+			if(this.game.input.activePointer.justPressed()) {
+		    	this.startGame();
+		    }
+		}
+	},
+
+	startGame: function(){
+		this.gameRunning=true;
+		this.recyclable.inputEnabled=true;
+		this.d.destroy();
+		this.game.time.events.start();
 
 		this.playerScore = 0;
-
+		//Create Score text
 		this.score = "score: "+ this.playerScore;
     	style = { font: "20px Arial", fill: "#000", align: "center" };
     	this.score = this.game.add.text(this.game.world.centerX+150, this.game.world.centerY, this.score, style);
 		this.score.anchor.set(0.5);
 
+		//Create time
 		this.timerCount=0;
 		this.timer = "Total time: "+ 0;
 		style = { font: "20px Arial", fill: "#000", align: "center" };
 		this.timer = this.game.add.text(this.game.world.centerX-150, this.game.world.centerY, this.timer, style);
 		this.timer.anchor.set(0.5);
 
-		this.game.time.events.loop(100, this.updateCounter, this);
-
-
-	},
-	update: function(){
-		
+		this.game.time.events.loop(10, this.updateCounter, this);
 	},
 
 	endGame: function(score){
 		if(score >= this.maxScore){
 			this.game.time.events.stop();
+			this.recyclable.inputEnabled = false;
+			this.timerCount = this.timerCount.toFixed(2);
+			this.game.state.start('MainMenu', true, false, this.timerCount);
 		}
 	},
 
 	updateCounter: function(){
-		this.timerCount+=0.1;
-		this.timer.setText("Total time: "+ this.timerCount.toFixed(1));
-		console.log(this.timerCount);
+		this.timerCount+=0.01;
+		this.timer.setText("Total time: "+ this.timerCount.toFixed(2));
 
 	},
 
@@ -109,10 +132,20 @@ BinFunGame.Game.prototype = {
 		if (recyclable.binType == sign.binType){
 			this.playerScore+=1;
 			this.score.setText("score: "+ this.playerScore);
-			this.endGame(this.playerScore);
+			this.scoreEmitter();
 			recyclable.kill();
 			this.generateRecyclable();
+			this.endGame(this.playerScore);
 		}
+	},
+
+	scoreEmitter: function(){
+		var emitter = this.game.add.emitter(this.recyclable.x, this.recyclable.y, 50);
+	    emitter.makeParticles('star');
+	    emitter.minParticleSpeed.setTo(-200, -200);
+	    emitter.maxParticleSpeed.setTo(200, 200);
+	    emitter.gravity = 1000;
+		emitter.start(true, 1000, null, 100);
 	}
 
 };

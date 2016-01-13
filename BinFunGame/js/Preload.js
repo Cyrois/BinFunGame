@@ -5,8 +5,8 @@ BinFunGame.Preload = function (){};
 BinFunGame.Preload.prototype = {
 	preload: function (){
 		//adds a sprite, logo, to center of game. Then sets the anchor point of the sprite in the middle
-		//this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
-	    //this.splash.anchor.setTo(0.5);
+		this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY-64, 'logo');
+	    this.splash.anchor.setTo(0.5);
 
 	    this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
 	    this.preloadBar.anchor.setTo(0.5);
@@ -14,11 +14,15 @@ BinFunGame.Preload.prototype = {
     	//Sets it as so that it will be cropped horizontally or vertically on the % of the loader in real time
     	//This allows for easy loading bars
     	this.load.setPreloadSprite(this.preloadBar);
-    	//Load sign images
+    	//Load images
     	this.load.image('foodSign', 'assets/images/food.jpg');
     	this.load.image('garbageSign', 'assets/images/garbage.jpg');
     	this.load.image('paperSign', 'assets/images/paper.jpg');
     	this.load.image('recyclableContainersSign', 'assets/images/recyclable_containers.jpg');
+    	this.load.image('sky', 'assets/images/sky.png');
+    	this.load.image('ground', 'assets/images/ground.png');
+    	this.load.image('star', 'assets/images/star.png');
+
 
     	//Load recyclables
     	var path = "assets/recyclables/";
