@@ -39,22 +39,31 @@ class Sensor:
     def run(self):
         while True:
             GPIO.output(self.__trig, True)
-            time.sleep(0.00001)
+            time.sleep(0.01)
             GPIO.output(self.__trig, False)
-
+            
+            time1,time2 = time.time(),time.time()
+            
             while GPIO.input(self.__echo) == 0:
                 pulse_start = time.time()
-
+                time2 = time.time()
+                if time2 - time1 > 0.02:
+                    print "breaking"
+                    break
+                
+            
             while GPIO.input(self.__echo) == 1:
                 pulse_end = time.time()
+                if time2 - time1 > 0.02:
+                    break
             
             distance = self.calculateDistance(pulse_start, pulse_end)
 
-            #if distance < self.__base_distance:
+            if distance < self.__base_distance:
              #   print "object detected at ", distance
-            print "object detected at ", distance
-
-            time.sleep(0.1)
+                print "object detected at ", distance, "by sensor ", self.__ID
+            
+            time.sleep(0.05)
         
     def calculateDistance(self, pulse_start, pulse_end):
         pulse_duration = pulse_end - pulse_start
@@ -114,7 +123,7 @@ class Sensor:
 
         #activate the sensor with 10ms high signal
         GPIO.output(self.__trig, True) 
-        time.sleep(0.00001)
+        time.sleep(0.01)
         GPIO.output(self.__trig, False)
         
         #start calculating time of signal
@@ -125,13 +134,17 @@ class Sensor:
             pulse_end = time.time()
 
         self.__base_distance = distance = self.calculateDistance(pulse_start, pulse_end)
-        self.__base_distance = round(self.__base_distance)
+        self.__base_distance = round(self.__base_distance)-1
 
         print "base distance is: ", self.__base_distance, " cm"
+        time.sleep(2)
         print "Calibration Complete..."
         return  
 
-test = Sensor("black", "Nest")  
+#test = Sensor("black", "Nest")
+test = Sensor("blue", "Nest")
+#test = Sensor("green", "Nest")
+#test = Sensor("grey", "Nest") 
 while True:
     x="penis"
 
