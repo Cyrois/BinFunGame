@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from Display import Display
 import web
 import globalVars
