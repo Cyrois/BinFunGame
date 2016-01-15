@@ -15,7 +15,7 @@ from Database import Database
 #                      passwd="bfg123", # your password
 #                      db="bfg") # name of the data base
 
-db = Database("localhost", "bfg", "bfg123", "bfg")
+db = Database("54.218.32.132", "bfg", "bfg123", "bfg")
 
 testInput1 = ["green,nest,05:26:25"]
 testInput2 = ["green, nest, 03:59:25", "black, nest, 03:59:26"]

@@ -155,32 +155,36 @@ jQuery(document).ready(function() {
         green_img.style.display = '';
 		green_msg.style.display = '';
         green_img.src = "static/gifs/Food.gif";
-        jQuery("#GreenMessage").hide().fadeIn(2000);
-        jQuery("#GreenMessage").fadeOut(2000);
+        jQuery("#GreenTextBox").hide().fadeIn(500).delay(4000).fadeOut(500);
+        jQuery("#GreenMessage").hide().fadeIn(500).delay(4000).fadeOut(500);
+        //jQuery("#GreenTextBox").hide().fadeIn(2000);
+        //jQuery("#GreenMessage").hide().fadeIn(2000);
+        //jQuery("#GreenMessage").fadeOut(4000);
+        //jQuery("#GreenTextBox").fadeOut(4000);
 		jQuery("#GreenMessage").html(green_list[num % green_list.length]);
     }
     function changeGreyPic() {  
         grey_img.style.display = ''; 
         grey_msg.style.display = '';
         grey_img.src = "static/gifs/Plastics.gif";
-		jQuery("#GreyMessage").hide().fadeIn(2000);
-        jQuery("#GreyMessage").fadeOut(2000);
+        jQuery("#GreyTextBox").hide().fadeIn(500).delay(4000).fadeOut(500);
+        jQuery("#GreyMessage").hide().fadeIn(500).delay(4000).fadeOut(500);
 		jQuery("#GreyMessage").html(grey_list[num % grey_list.length]);
     }
     function changeBluePic() {  
         blue_img.style.display = '';
 		blue_msg.style.display = ''; 
         blue_img.src = "static/gifs/Paper.gif";
-		jQuery("#BlueMessage").hide().fadeIn(2000);
-        jQuery("#BlueMessage").fadeOut(2000);
+		jQuery("#BlueTextBox").hide().fadeIn(500).delay(4000).fadeOut(500);
+        jQuery("#BlueMessage").hide().fadeIn(500).delay(4000).fadeOut(500);
 		jQuery("#BlueMessage").html(blue_list[num % blue_list.length]);
     }
     function changeBlackPic() {
         black_img.style.display = '';
 		black_msg.style.display = '';
         black_img.src = "static/gifs/Garbage.gif";
-		jQuery("#BlackMessage").hide().fadeIn(2000);
-        jQuery("#BlackMessage").fadeOut(2000);
+		jQuery("#BlackTextBox").hide().fadeIn(500).delay(4000).fadeOut(500);
+        jQuery("#BlackMessage").hide().fadeIn(500).delay(4000).fadeOut(500);
 		jQuery("#BlackMessage").html(black_list[num % black_list.length]);
     }
 });
