@@ -1,0 +1,234 @@
+$def with (form, text)
+
+<!doctype html>
+
+<html>
+
+    <head>
+        <title>Bin Fun Game!</title>
+        <link rel="stylesheet" type="text/css" href="/static/Display.css" />
+        
+        <script type="text/javascript" src="/static/jquery.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+            function updateCount() {
+                jQuery.ajax({
+                    type: "POST",
+                    success: function(data){
+                        var array = parseData(data);
+                        if (prev_green != array[0]) {
+                            jQuery('#green').html(array[0]);
+xz                            changeGreenPic();
+                            if (prev_green % 2 == 1) {               
+                                jQuery('#front_green').html(array[0]);
+                          //      jQuery('#back_green').html(prev_green);
+                            } else { 
+                            //    jQuery('#front_green').html(prev_green);
+                                jQuery('#back_green').html(array[0]);
+                            }
+                            green_slot.classList.toggle('flipped');
+                            prev_green = array[0];
+                        }
+                        if (prev_grey != array[1]) {
+                            jQuery('#grey').html(array[1]);
+                            changeGreyPic();
+                            if (prev_grey % 2 == 1) {               
+                                jQuery('#front_grey').html(array[1]);
+//                                jQuery('#back_grey').html(prev_grey);
+                            } else { 
+  //                              jQuery('#front_grey').html(prev_grey);
+                                jQuery('#back_grey').html(array[1]);
+                            }
+                            prev_grey = array[1];
+                            grey_slot.classList.toggle('flipped');
+                        }
+                        if (prev_blue != array[2]) {
+                            jQuery('#blue').html(array[2]);
+                            changeBluePic(); 
+                            if (prev_blue % 2 == 1) {               
+                                jQuery('#front_blue').html(array[2]);
+    //                            jQuery('#back_blue').html(prev_blue);
+                            } else { 
+      //                          jQuery('#front_blue').html(prev_blue);
+                                jQuery('#back_blue').html(array[2]);
+                            }
+                            prev_blue = array[2];
+                            blue_slot.classList.toggle('flipped');
+                        }
+                        if (prev_black != array[3]) {
+                            jQuery('#black').html(array[3]);
+                            changeBlackPic();
+                            if (prev_black % 2 == 1) {               
+                                jQuery('#front_black').html(array[3]);
+        //                        jQuery('#back_black').html(prev_black);
+                            } else { 
+          //                      jQuery('#front_black').html(prev_black);
+                                jQuery('#back_black').html(array[3]);
+                            }
+                            prev_black = array[3];
+                            black_slot.classList.toggle('flipped');
+                        }
+                    }
+                });
+                num = (num * 11 + 17) % 25;
+            }
+            function parseData(data){
+                var str = data.substring(1,(data.length)-1);
+                var array = str.split(", ");
+                return array;
+            }
+            function changeGreenPic() {  
+                green_img.style.display = '';
+                if (num % 2 === 0) { 
+                    green_img.src = "static/gifs/greenMonster1.gif"; 
+                } else if (num % 2 === 1) {
+                    green_img.src = "static/gifs/greenMonster2.gif";
+                }
+            }
+            function changeGreyPic() {  
+                grey_img.style.display = ''; 
+                if (num % 2 === 0) {
+                    grey_img.src = "static/gifs/blueMonster1.gif";
+                } else if (num % 2 === 1) {
+                    grey_img.src = "static/gifs/blueMonster2.gif";
+                }
+            }
+            function changeBluePic() {  
+                blue_img.style.display = ''; 
+                if (num % 2 === 0) { 
+                    blue_img.src = "static/gifs/purpleMonster1.gif";
+                } else if (num % 2 === 1) { 
+                    blue_img.src = "static/gifs/purpleMonster2.gif";    
+                }
+            }
+            function changeBlackPic() {
+                black_img.style.display = ''; 
+                if (num % 2 === 0) { 
+                    black_img.src = "static/gifs/blackMonster1.gif";
+                } else if (num % 2 === 1) { 
+                    black_img.src = "static/gifs/blackMonster1.gif";
+                }
+            }
+            var num = 0;
+            var prev_green = 0;
+            var prev_grey = 0;
+            var prev_blue = 0;
+            var prev_black = 0;
+            var green_img = document.getElementById("GreenImage");
+            var grey_img = document.getElementById("GreyImage");
+            var blue_img = document.getElementById("BlueImage");
+            var black_img = document.getElementById("BlackImage");
+            green_img.style.display = 'none';   
+            grey_img.style.display = 'none';
+            blue_img.style.display = 'none';   
+            black_img.style.display = 'none';
+            var counter = setInterval(updateCount, 500);
+            var green_slot = document.getElementById("GreenSlot");
+            var grey_slot = document.getElementById("GreySlot");
+            var blue_slot = document.getElementById("BlueSlot");
+            var black_slot = document.getElementById("BlackSlot");
+            });
+        </script>
+    </head>
+    
+    <body>
+	    <div id="container">
+		    <div id="header">
+		        Your Sort it Out Score!
+		    </div>            
+
+            <div id="FoodScraps">
+                <h1><span id="foodscraps">Food Scraps</span></h1>
+            </div>
+
+            <div id="Plastics">
+                <h1><span id="plastics">Plastics</span></h1>
+            </div>
+            
+            <div id="Paper">
+                <h1><span id="paper">Paper</span></h1>
+            </div>
+
+            <div id="Garbage">
+                <h1><span id="garbage">Garbage</span></h1>
+            </div> 
+            
+            <div id="GreenCount">
+                <div id="GreenSlot">
+                    <figure class="front"><h2><span id="front_green">$text</span></h2></figure>
+                    <figure class="back"><h2><span id="back_green">$text</span></h2></figure>
+                </div>
+            </div>
+
+            <div id="GreyCount">                
+                <div id="GreySlot">
+                    <figure class="front"><h2><span id="front_grey">$text</span></h2></figure>
+                    <figure class="back"><h2><span id="back_grey">$text</span></h2></figure>
+                </div>
+            </div>
+            
+            <div id="BlueCount">
+                <div id="BlueSlot">
+                    <figure class="front"><h2><span id="front_blue">$text</span></h2></figure>
+                    <figure class="back"><h2><span id="back_blue">$text</span></h2></figure>
+                </div>
+            </div>
+
+            <div id="BlackCount">
+                <div id="BlackSlot">
+                    <figure class="front"><h2><span id="front_black">$text</span></h2></figure>
+                    <figure class="back"><h2><span id="back_black">$text</span></h2></figure>
+                </div>
+            </div> 
+
+            <div id="GreenText">
+                <td align="center">
+                    GREEN
+                </td>
+            </div>
+            
+            <div id="GreyText">
+                <td align="center">
+                    GREY
+                </td>
+            </div>
+            
+            <div id="BlueText">
+                <td align="center">
+                    BLUE
+                </td>
+            </div>
+            
+            <div id="BlackText">
+                <td align="center">
+                    BLACK
+                </td>
+            </div>
+            <div id="GreenAnimation">
+		        <td align="center">
+                    <img src="" id="GreenImage" style="height: 95%; width: 95%; object-fit: cover" />
+                </td>
+		    </div>
+		    
+		    <div id="GreyAnimation">
+		        <td align="center">
+                    <img src="" id="GreyImage" style="height: 95%; width: 95%; object-fit: cover" />
+                </td>
+		    </div>
+		    
+		    <div id="BlueAnimation">
+		        <td align="center">
+                    <img src="" id="BlueImage" style="height: 95%; width: 95%; object-fit: cover" />
+                </td>
+		    </div>
+		    
+		    <div id="BlackAnimation">
+		        <td align="center">
+                    <img src="" id="BlackImage" style="height: 95%; width: 95%; object-fit: cover" />
+                </td>
+		    </div>
+		</div>
+
+    </body>
+    
+</html>
