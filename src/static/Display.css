@@ -24,7 +24,7 @@ h1 {
 
 h2 {
 	display: block;
-	font-size: 12vmin;
+	font-size: 10.5vmin;
 	font-family: "Open Sans", sans-serif;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -314,6 +314,7 @@ h3 {
 
 #GreenText {
 	overflow: hidden;
+	font-family: "Open Sans", sans-serif;
 	width: 94%;
 	height: 100%;
 	margin-top: 0%;
@@ -353,6 +354,7 @@ h3 {
 
 #GreyText {
 	overflow: hidden;
+	font-family: "Open Sans", sans-serif;
 	width: 94%;
 	height: 100%;
 	margin-top: 0%;
@@ -392,6 +394,7 @@ h3 {
 
 #BlueText {
 	overflow: hidden;
+	font-family: "Open Sans", sans-serif;
 	width: 94%;
 	height: 100%;
 	margin-top: 0%;
@@ -431,6 +434,7 @@ h3 {
 
 #BlackText {
 	overflow: hidden;
+	font-family: "Open Sans", sans-serif;
 	width: 94%;
 	height: 100%;
 	margin-top: 0%;
