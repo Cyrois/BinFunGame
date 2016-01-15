@@ -33,6 +33,17 @@ h2 {
 	font-weight: bold;
 }
 
+h3 {
+	display: block;
+	font-size: 1.3vmax;
+	font-family: "Open Sans", sans-serif;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
 #container {
 	background-color: rgb(76, 77, 79);
 	width: 100%;
@@ -85,7 +96,7 @@ h2 {
 }
 
 #RecyclableContainers {
-	font-size: 2.9vmax;
+	font-size: 3.1vmax;
 	height: 100%;
 	text-align: center;
 	vertical-align: middle;
@@ -122,7 +133,7 @@ h2 {
 #border2 {
 	overflow: hidden;
 	width: 25%;
-	height: 17%;
+	height: 15%;
 	float: left;
 	color: #FFF;
 	background-color: rgb(76, 77, 79);
@@ -295,7 +306,7 @@ h2 {
 #border3 {
 	overflow: hidden;
 	width: 25%;
-	height: 25%;
+	height: 22%;
 	float: left;
 	color: #FFF;
 	background-color: rgb(76, 77, 79);
@@ -503,6 +514,63 @@ h2 {
 }
 
 #BlackAnimation {
+	overflow: hidden;
+	width: 94%;
+	height: 100%;
+	margin-top: 0%;
+	margin-bottom: 0%;
+	margin-left: 3%;
+	margin-right: 3%;
+	text-align: center;
+	background-color: rgb(35, 31, 32);
+}
+
+#border5 {
+	overflow: hidden;
+	width: 25%;
+	height: 9%;
+	float: left;
+	color: #FFF;
+	background-color: rgb(76, 77, 79);
+}
+
+#GreenAccuracy {
+	overflow: hidden;
+	width: 94%;
+	height: 100%;
+	margin-top: 0%;
+	margin-bottom: 0%;
+	margin-left: 3%;
+	margin-right: 3%;
+	text-align: center;
+	background-color: rgb(0, 141, 71);
+}
+
+#GreyAccuracy {
+	overflow: hidden;
+	width: 94%;
+	height: 100%;
+	margin-top: 0%;
+	margin-bottom: 0%;
+	margin-left: 3%;
+	margin-right: 3%;
+	text-align: center;
+	background-color: rgb(128, 130, 133);
+}
+
+#BlueAccuracy {
+	overflow: hidden;
+	width: 94%;
+	height: 100%;
+	margin-top: 0%;
+	margin-bottom: 0%;
+	margin-left: 3%;
+	margin-right: 3%;
+	text-align: center;
+	background-color: rgb(16, 116, 188);
+}
+
+#BlackAccuracy {
 	overflow: hidden;
 	width: 94%;
 	height: 100%;

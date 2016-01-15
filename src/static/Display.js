@@ -55,7 +55,7 @@ jQuery(document).ready(function() {
 	grey_list[ 3] = "Milk cartons go into the recyclable containers bin";
 	grey_list[ 4] = "Tetra paks go into the recyclable containers bin";
 	grey_list[ 5] = "Only recycle clean containers in the recyclable containers bin";
-	grey_list[ 6] = "Clean aluminum containers go into the recyclable containers bin";
+	grey_list[ 6] = "Clean aluminum containers go in the recyclable containers bin";
 	grey_list[ 7] = "No broken glass in the recyclable containers bin";
 	grey_list[ 8] = "No styrofoam in the recyclable containers bin";
 	grey_list[ 9] = "No plastic bags in the recyclable containers bin";
@@ -68,6 +68,7 @@ jQuery(document).ready(function() {
 	grey_list[16] = "It takes 1000 years for plastic bottles to decompose";
 	grey_list[17] = "It takes 1000 years for plastic bags to decompose";
 	grey_list[18] = "It takes 500 years for aluminum cans to decompose";
+
 
 	//tips for paper
 	blue_list[ 0] = "Paper sleeves from coffee cup go into the paper bin";
