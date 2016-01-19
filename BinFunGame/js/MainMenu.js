@@ -25,22 +25,33 @@ BinFunGame.MainMenu.prototype = {
 	    var style = { font: "30px Arial", fill: "#000", align: "center" };
 	    var t = this.game.add.text(this.game.width/2, this.game.height/2, title, style);
 	    t.anchor.set(0.5);
-
+	    
 	   	//HighScore
 	   	var highScore = "High Score Time: " + this.highestScore;
 	   	style = { font: "25px Arial", fill: "#000", align: "center" };
 	    var h = this.game.add.text(this.game.width/2, this.game.height/2 + 50, highScore, style);
 	    h.anchor.set(0.5);
 
-	    //Description
-	    var description = "Click to begin";
-	    style = { font: "15px Arial", fill: "#000", align: "center" };
-		var d = this.game.add.text(this.game.width/2, this.game.height/2 + 100, description, style);
-		d.anchor.set(0.5);
+	    //Start Game button
+		var startButton = this.game.add.button();
+		startButton = this.game.add.button(this.game.width/2, this.game.height/2 + 100, 'startButton', this.startGame, this);
+		startButton.anchor.set(0.5);
+		
+		//Submit Highscore
+		var scoreboardButton = this.game.add.button();
+		scoreboardButton = this.game.add.button(this.game.width/2, this.game.height/2 + 150, 'scoreboardButton', this.submitToScoreboard, this);
+		scoreboardButton.anchor.set(0.5);
+		
 	},
 	update: function(){
 		if(this.game.input.activePointer.justPressed()) {
-		    this.game.state.start('Game');
+		    //this.game.state.start('Game');
 		}
+	},
+	startGame: function(){
+		this.game.state.start('Game');
+	},
+	submitToScoreboard: function(){
+		this.game.state.start('Scoreboard',true,false,this.highestScore);
 	}
 };

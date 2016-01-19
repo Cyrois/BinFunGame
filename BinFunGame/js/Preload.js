@@ -15,13 +15,19 @@ BinFunGame.Preload.prototype = {
     	//This allows for easy loading bars
     	this.load.setPreloadSprite(this.preloadBar);
     	//Load images
-    	this.load.image('foodSign', 'assets/images/food.jpg');
-    	this.load.image('garbageSign', 'assets/images/garbage.jpg');
-    	this.load.image('paperSign', 'assets/images/paper.jpg');
-    	this.load.image('recyclableContainersSign', 'assets/images/recyclable_containers.jpg');
+    	this.load.spritesheet('foodSign', 'assets/images/signs/foodBin.png',128,128);
+    	this.load.spritesheet('garbageSign', 'assets/images/signs/garbageBin.png',128,128);
+    	this.load.spritesheet('paperSign', 'assets/images/signs/paperBin.png',128,128);
+    	this.load.spritesheet('recyclableContainersSign', 'assets/images/signs/recyclableBin.png',128,128);
     	this.load.image('sky', 'assets/images/sky.png');
     	this.load.image('ground', 'assets/images/ground.png');
     	this.load.image('star', 'assets/images/star.png');
+    	this.load.image('startButton', 'assets/images/buttons/start_button.png');
+    	this.load.image('scoreboardButton', 'assets/images/buttons/scoreboard_button.png');
+    	this.load.image('submitButton', 'assets/images/buttons/submit_button.png');
+    	this.load.image('scoreboard','assets/images/scoreboard.png');
+    	this.load.spritesheet('arrow', 'assets/images/arrow.png', 96, 96);
+
 
 
     	//Load recyclables

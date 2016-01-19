@@ -6,9 +6,10 @@ BinFunGame.Game.prototype = {
 	create: function(){
 
 		this.totalRecyclables = 40;
-		this.maxScore=5;
+		this.maxScore=1;
+
 		//set world dimensions
-   		this.game.world.setBounds(0, 0, 1280, 720);
+   		this.game.world.setBounds(0, 0, this.game.width, this.game.height);
 
    		//White background
    		this.game.stage.backgroundColor = '#fff';
@@ -21,27 +22,57 @@ BinFunGame.Game.prototype = {
 		this.recyclable.inputEnabled=false;
 
 		//Description
-		var description = "Click start the game!";
+		var description = "Click start the game! \n Sort the recyclable into the correct bin! ";
 	    style = { font: "25px Arial", fill: "#000", align: "center" };
-		this.d = this.game.add.text(this.game.width/2, this.game.height/2 + 100, description, style);
+		this.d = this.game.add.text(this.game.width/2, this.game.height/2 + 150, description, style);
 		this.d.anchor.set(0.5);
 
+		this.intro();
+		
+
 		this.gameRunning = false;
+		this.endGameScreen = false;
 
 
 	},
 	update: function(){
 		if(this.gameRunning==false){
 			if(this.game.input.activePointer.justPressed()) {
-		    	this.startGame();
+		    	this.endIntro();
 		    }
 		}
+		if(this.endGameScreen==true){
+			if(this.game.input.activePointer.justPressed()){
+				this.game.state.start('MainMenu', true, false, this.timerCount);
+			}
+		}
+	},
+
+	intro: function(){
+		//Add arrow animation
+		this.arrows =  this.game.add.group();
+
+		this.arrow_0 = this.arrows.create(this.game.world.centerX-465, this.game.world.centerY-50, 'arrow');
+		this.arrow_1 = this.arrows.create(this.game.world.centerX-155, this.game.world.centerY-50, 'arrow'); 
+		this.arrow_2 = this.arrows.create(this.game.world.centerX+155, this.game.world.centerY-50, 'arrow');
+		this.arrow_3 = this.arrows.create(this.game.world.centerX+465, this.game.world.centerY-50, 'arrow');
+		this.arrows.callAll('anchor.set','anchor',0.5);
+		this.arrows.callAll('animations.add','animations', 'move',[0, 1, 2, 3, 4, 5], 10, true);
+		this.arrows.callAll('animations.play', 'animations','move');
+	},
+
+	endIntro: function(){
+		this.d.destroy();
+		this.arrows.forEach(function(sprite){
+			sprite.kill();
+		},this,true);
+		this.startGame();
 	},
 
 	startGame: function(){
 		this.gameRunning=true;
 		this.recyclable.inputEnabled=true;
-		this.d.destroy();
+		
 		this.game.time.events.start();
 
 		this.playerScore = 0;
@@ -61,14 +92,27 @@ BinFunGame.Game.prototype = {
 		this.game.time.events.loop(10, this.updateCounter, this);
 	},
 
-	endGame: function(score){
+	checkEndGame: function(score){
 		if(score >= this.maxScore){
-			this.game.time.events.stop();
-			this.recyclable.inputEnabled = false;
-			this.timerCount = this.timerCount.toFixed(2);
-			this.game.state.start('MainMenu', true, false, this.timerCount);
+			this.endGame();
 		}
 	},
+
+	endGame: function(){
+		this.game.time.events.stop();
+		this.recyclable.inputEnabled = false;
+		this.timerCount = this.timerCount.toFixed(2);
+		this.endGameScreen = true;
+
+		//Game Over text
+		var description = "Game Over";
+	    style = { font: "40px Arial", fill: "#000", align: "center" };
+		this.d = this.game.add.text(this.game.width/2, this.game.height/2 + 150, description, style);
+		this.d.anchor.set(0.5);
+
+
+	},
+
 
 	updateCounter: function(){
 		this.timerCount+=0.01;
@@ -83,25 +127,40 @@ BinFunGame.Game.prototype = {
 	    this.signs.enableBody = true;
 	    this.signs.physicsBodyType = Phaser.Physics.ARCADE;
 
+	    var style = { font: "30px Arial", fill: "#000", align: "center" };
+	    var foodText = this.game.add.text(this.game.world.centerX-465, 50, 'Food Scaps', style);
+	    var recyclableContainerText = this.game.add.text(this.game.world.centerX-150, 50, 'Recyclable \n Containers', style);
+		var paperText = this.game.add.text(this.game.world.centerX+155, 50, 'Paper', style);
+		var garbageText = this.game.add.text(this.game.world.centerX+465, 50, 'Garbage', style);
+		foodText.anchor.setTo(0.5);
+		recyclableContainerText.anchor.setTo(0.5);
+		paperText.anchor.setTo(0.5);
+		garbageText.anchor.setTo(0.5);
+
 	    //Generate Signs
 		this.foodSign = this.signs.create(this.game.world.centerX-465, 150, 'foodSign');
 		this.foodSign.anchor.setTo(0.5);
 		this.foodSign.binType = "FoodScraps";
-		this.garbageSign = this.signs.create(this.game.world.centerX-155, 150, 'garbageSign');
-		this.garbageSign.anchor.setTo(0.5);
-		this.garbageSign.binType = "Garbage";
+
+		this.recyclableContainersSign = this.signs.create(this.game.world.centerX-155, 150, 'recyclableContainersSign');
+		this.recyclableContainersSign.anchor.setTo(0.5);
+		this.recyclableContainersSign.binType = "RecyclableContainer";
+
 		this.paperSign = this.signs.create(this.game.world.centerX+155, 150, 'paperSign');
 		this.paperSign.anchor.setTo(0.5);
 		this.paperSign.binType = "Paper";
-		this.recyclableContainersSign = this.signs.create(this.game.world.centerX+465, 150, 'recyclableContainersSign');
-		this.recyclableContainersSign.anchor.setTo(0.5);
-		this.recyclableContainersSign.binType = "RecyclableContainer";
+
+		this.garbageSign = this.signs.create(this.game.world.centerX+465, 150, 'garbageSign');
+		this.garbageSign.anchor.setTo(0.5);
+		this.garbageSign.binType = "Garbage";
+
+		this.signs.callAll('scale.setTo','scale',2);
 	},
 
 	generateRecyclable: function(){
 		//Randomly pick a item and add it in the center of world
 		var rand = this.game.rnd.integerInRange(0, (this.totalRecyclables-1));
-		this.recyclable = this.game.add.sprite(this.game.world.centerX,this.game.world.centerY,recyclableArray[rand].name);
+		this.recyclable = this.game.add.sprite(this.game.world.centerX,this.game.world.centerY+50,recyclableArray[rand].name);
 		this.recyclable.binType = recyclableArray[rand].binType;
 		
 		this.recyclable.anchor.setTo(0.5);
@@ -123,7 +182,7 @@ BinFunGame.Game.prototype = {
 		this.game.physics.arcade.overlap(this.recyclable, this.signs, this.checkRecyclable, null, this);
 		
 		pointer.x =  this.game.world.centerX;
-		pointer.y =  this.game.world.centerY;
+		pointer.y =  this.game.world.centerY+50;
 	},
 
 	checkRecyclable: function(recyclable, sign){
@@ -135,7 +194,7 @@ BinFunGame.Game.prototype = {
 			this.scoreEmitter();
 			recyclable.kill();
 			this.generateRecyclable();
-			this.endGame(this.playerScore);
+			this.checkEndGame(this.playerScore);
 		}
 	},
 
