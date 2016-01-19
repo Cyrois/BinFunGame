@@ -38,8 +38,9 @@ class BFG_Queue:
 
     #doing queue things    
     def getEmptyFlag(self):
-        self.__sensor.listenSignal()
-        
+        #NOTE : listenSignal was empty, what is this supposed to do?
+        #self.__sensor.listenSignal()
+                
         if not self.__sensor.isEmpty():
             self.push(self.__sensor.getSignal())
             self.setEmptyFlag(False)
