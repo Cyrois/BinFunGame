@@ -12,7 +12,7 @@ class Buffer:
     __greyCount = 0
     
     #Location of Bin
-    __location = None
+    __location = None   
     
     #Unique IDs for the 4 bins
     __blackID = None
@@ -32,8 +32,8 @@ class Buffer:
     __blueQueue = None
     __greyQueue = None
     
-    # Manual input for location and IDs
-    def __init__(self,location,blackID,greenID,blueID,greyID):
+    #Manual input for location and IDs
+    def __init__(self, location, blackID, greenID, blueID, greyID):
         self.__location = location
         self.__blackID = blackID
         self.__greenID = greenID
@@ -41,19 +41,22 @@ class Buffer:
         self.__greyID = greyID
         self.initQueue()
 
+    #initialize all Queues
     def initQueue(self):
         self.__blackQueue = BFG_Queue(self.__location,self.__blackID)
         self.__greenQueue = BFG_Queue(self.__location,self.__greenID)
         self.__blueQueue = BFG_Queue(self.__location,self.__blueID)
         self.__greyQueue = BFG_Queue(self.__location,self.__greyID)
     
+    #return True if buffer is empty 
     def getEmptyFlag(self):
         return self.__isEmpty
     
-    def setEmptyFlag(self,empty):
+    def setEmptyFlag(self, empty):
         self.__isEmpty  = empty
     
-    def getCount(self,color):
+    #return count of the specified color
+    def getCount(self, color):
         if color == "black":
             return self.__blackCount
         elif color == "green":
@@ -89,7 +92,7 @@ class Buffer:
             self.setEmptyFlag(True)
 
     #updates mainDeque and bin count values
-    def appendQueue(self,color,queueDeque):
+    def appendQueue(self, color, queueDeque):
         #Increment Count
         self.incrementCount(color,queueDeque)
         #Append Deques
@@ -109,7 +112,7 @@ class Buffer:
             print "Error: Not a color"
 
     #appends the queueDeque to main Deque
-    def appendToBufDeq(self,queueDeque):
+    def appendToBufDeq(self, queueDeque):
         for elem in range(0,len(queueDeque)):
             self.__bufferDeque.append(queueDeque.popleft())
 
@@ -119,9 +122,9 @@ class Buffer:
         self.setEmptyFlag(True)
         return newDeque
 
-
+    #NOTE : do we need this?
     #Testing Buffer
-    def simulateQueue(self, simulateDeque,color):
+    def simulateQueue(self, simulateDeque, color):
         if color == "black":
             self.__blackQueue.push(simulateDeque)
             self.__blackQueue.setEmptyFlag(False)

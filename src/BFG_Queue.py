@@ -3,20 +3,17 @@ from Sensor import Sensor
 
 class BFG_Queue:
     __queue = deque()
-    __isEmpty = True
-    __location =  None
-    __ID = None
-    __signal = None
-    __sensor = -1
+    __isEmpty = True    #Flag to check if Queue is empty 
+    __Location =  None  #Location of the bin               
+    __sensor = -1       #The sensor that the Queue belongs to 
     
-    def __init__(self,location,ID):
-        print "initializing queue"
-        self.__location = location
-        self.__ID = ID
-        self.__sensor = Sensor(ID, location)
+    #initialize the Queue location and sensor 
+    def __init__(self, Location, ID):
+        self.__Location = Location
+        self.__sensor = Sensor(ID, Location)
 
+    #NOTE : do we need this?
     def push(self, Signal):
-        print "pushing: " + Signal
         self.__queue.append(Signal)
         self.setEmptyFlag(False)
                  
@@ -40,7 +37,7 @@ class BFG_Queue:
     def getEmptyFlag(self):
         #NOTE : listenSignal was empty, what is this supposed to do?
         #self.__sensor.listenSignal()
-                
+
         if not self.__sensor.isEmpty():
             self.push(self.__sensor.getSignal())
             self.setEmptyFlag(False)
