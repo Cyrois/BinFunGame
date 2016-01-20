@@ -12,31 +12,9 @@ import threading
 import time
 import sys, getopt
 
-"""
-def main(argv):
-    location = ''
-    try:
-       opts, args = getopt.getopt(argv,"hl:",["location="])
-    except getopt.GetoptError:
-       print 'Main.py -l <location>'
-       sys.exit(2)
-    for opt, arg in opts:
-       if opt == '-h':
-         print 'Main.py -l <location>'
-         sys.exit()
-       elif opt in ("-l", "--location"):
-         location = arg
-
-    print 'Bin Location is: ', location
-"""
-
-if __name__ == '__main__':
-    #location to store files
-    relativePath = "/home/pi/BinFunGame/src/TempFiles/"
-	
-    mainDeque = deque()
-    
-    #Init buffer
+#initialize Buffer
+def initBuffer():
+    #Create the buffer
     location = raw_input('Please enter currect location of bin:')
     binBuffer = Buffer(location, "black", "green", "blue", "grey")
     time.sleep(10)
@@ -44,11 +22,17 @@ if __name__ == '__main__':
     #Clean buffer
     binBuffer.clear()
     binEmptyFlag = True
+    
+#Main
+if __name__ == '__main__':
+    #location to store files
+    relativePath = "/home/pi/BinFunGame/src/TempFiles/"
 	
-    #Init sdFile
+    mainDeque = deque()
+    
+    #initialize Buffer, sdFile, database
+    initBuffer()
     sdFile = SDfile(relativePath, location)
-
-    #Init database
     db = Database("localhost", "bfg", "bfg123", "bfg")
     
     #Init global variables

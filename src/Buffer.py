@@ -55,7 +55,7 @@ class Buffer:
     def setEmptyFlag(self, empty):
         self.__isEmpty  = empty
     
-    #return count of the specified color
+    #return count of the specified color bin
     def getCount(self, color):
         if color == "black":
             return self.__blackCount
@@ -84,11 +84,13 @@ class Buffer:
         #Check grey queue
         if (self.__greyQueue.getEmptyFlag() == False) :
             self.appendQueue("grey",self.__greyQueue.flushQueue())
+
+        #Set buffer flag 
         if len(self.__bufferDeque) > 0:
-            #print "Buffer has something!"
+            #buffer not empty 
             self.setEmptyFlag(False)
         else:
-            #print  "Buffer has nothing!"
+            #buffer empty
             self.setEmptyFlag(True)
 
     #updates mainDeque and bin count values
@@ -116,6 +118,7 @@ class Buffer:
         for elem in range(0,len(queueDeque)):
             self.__bufferDeque.append(queueDeque.popleft())
 
+    #Empty buffer queue            
     def flushBuffer(self):
         newDeque = deque(self.__bufferDeque)
         self.__bufferDeque.clear()
@@ -140,6 +143,7 @@ class Buffer:
         else :
             print "Error: Not a color"
 
+    #Clear buffer and set its flag True
     def clear(self):
         self.__bufferDeque.clear()
         self.setEmptyFlag(True)
