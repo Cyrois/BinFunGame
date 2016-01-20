@@ -13,13 +13,12 @@ class Display:
 
     def __init__(self):
         urls = ('/', 'Display')
-        # if using templates, tell web.py where to find our
-        # HTML templates with render
+        # if using templates, tell web.py where to find our HTML templates with render
         self.render = web.template.render('templates/')
         self.app = web.application(urls, globals())
         # creates an HTML text entry box that we render
         self.my_form = web.form.Form(
-                                web.form.Textbox('', class_='textfield', id='textfield'),
+                            web.form.Textbox('', class_='textfield', id='textfield'),
                                      )
     
     @staticmethod
@@ -27,7 +26,7 @@ class Display:
         Dis = Display()
         Dis.app.run()
     
-    
+    #return count of specified color bin
     def getCount(self,color):
         if color == "black":
             return globalVars.blackCount
@@ -41,6 +40,7 @@ class Display:
             print "Error: No color passed"
             return
 
+    #return counts of all the bins 
     def getAllCount(self):
         colorCount = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
         return colorCount
@@ -49,24 +49,7 @@ class Display:
     def GET(self):
         # give copy of the form instance
         form = self.my_form()
-        # using same name tutorial in class def, call,
-        # and HTML template are important
         return self.render.Display(form, "0")
     
     def POST(self):
-        #print web.input()
-        #logging.debug(web.input())
-        #print color
-        #logging.debug(self.getAllCount())
         return self.getAllCount()
-    
-    """
-    def POST(self):
-        #print web.input()
-        logging.debug(web.input())
-        color =  web.input().color
-        #print color
-        logging.debug(color)
-        logging.debug(self.getAllCount())
-        return self.getCount(color)
-    """
