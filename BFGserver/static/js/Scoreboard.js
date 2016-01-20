@@ -38,11 +38,14 @@ BinFunGame.Scoreboard.prototype = {
 
 		//Temp code for scoreboard
 		this.scoreboardList = [{name:"Bob",score:5.5},{name:"Bill",score:6.4},{name:"Andy",score:8.4}];
-		this.displayScoreboard(this.scoreboardList);
+		this.initScoreboard(this.scoreboardList);
 
 
 	},
 	update: function(){
+		if(this.game.input.activePointer.justPressed()) {
+		   //this.updateScoreboard(this.scoreboardList);
+		}
 	},
 
 	startGame: function(){
@@ -50,30 +53,54 @@ BinFunGame.Scoreboard.prototype = {
 	},
 
 	submitScore: function(){
-		if(this.score!=null){
-			this.scoreboard.push(this.score);
-			this.score=null;
+		var name = prompt("Please enter your name", "Anonymous");
+		if(this.score!=null && name){
+			jQuery.ajax({
+				type: "POST",
+				data: {submit:"True", name : name, score: this.score },
+				success: function(data) {
+					this.score=null;
+					}
+			});
+		}
+		this.getScoreboardList();
+	},
+
+	getScoreboardList: function(){
+		jQuery.ajax({
+				type: "POST",
+				data: {submit:"False"},
+				success: function(data) {
+					this.scoreboardList = data;
+					return ;
+					}
+			});
+	},
+
+	initScoreboard: function(scoreboard){
+		var scoreboardBackground = this.game.add.sprite(this.game.world.width/2, this.game.world.height/10, 'scoreboard');
+		scoreboardBackground.scale.setTo(1.5);
+		this.scoreboardEntries = this.game.add.group();
+		this.scoreboardNumbers =  this.game.add.group();
+		this.style = { font: "20px Arial", fill: "#000", align: "center" };
+
+		for(var i=0;i<scoreboard.length;i++){
+			var entryText = scoreboard[i].name + " Score: " + scoreboard[i].score + " seconds";
+			this.scoreboardEntries.add(this.game.make.text(this.game.world.width/2+55, this.game.world.height/5+(i*35), entryText, this.style));
+		}
+
+		var t = this.game.make.text(this.game.world.width/2+15, this.game.world.height/10+15, "Scoreboard: Top 10 Times", { font: "30px Arial", fill: "#000", align: "center" });
+		//Change to top 10 when graphic changes
+		for(var i=0;i<9;i++){
+			this.scoreboardNumbers.add(this.game.make.text(this.game.world.width/2+25, this.game.world.height/5+(i*35), i+1, this.style));
 		}
 	},
 
-	displayScoreboard: function(scoreboard){
-		var scoreboardBackground = this.game.add.sprite(this.game.world.width/2, this.game.world.height/10, 'scoreboard');
-		scoreboardBackground.scale.setTo(1.5);
-
-
-		this.scoreboardEntries = this.game.add.group();
-		var style = { font: "20px Arial", fill: "#000", align: "center" };
-			
-		for(var i=0;i<scoreboard.length;i++){
-			var entryText = scoreboard[i].name + " Score: " + scoreboard[i].score + " seconds";
-			this.scoreboardEntries.add(this.game.make.text(this.game.world.width/2+55, this.game.world.height/5+(i*35), entryText, style));
-		}
-
-		this.scoreboardEntries.add(this.game.make.text(this.game.world.width/2+15, this.game.world.height/10+15, "Scoreboard: Top 10 Times", { font: "30px Arial", fill: "#000", align: "center" }));
-		//Change to top 10 when graphic changes
+	updateScoreboard: function(scoreboard){
+		//this.timer.setText("Total time: "+ this.timerCount.toFixed(2));
+		//console.log(this.scoreboardEntries.children[0].setText(scoreboard[i].name + " Score: " + scoreboard[i].score ));
 		for(var i=0;i<9;i++){
-			this.scoreboardEntries.add(this.game.make.text(this.game.world.width/2+25, this.game.world.height/5+(i*35), i+1, style));
+			//this.scoreboardEntries.children[i].setText(scoreboard[i].name + " Score: " + scoreboard[i].score );
 		}
 	}
-
 };
