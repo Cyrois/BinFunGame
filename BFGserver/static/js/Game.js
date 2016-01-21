@@ -6,7 +6,7 @@ BinFunGame.Game.prototype = {
 	create: function(){
 
 		this.totalRecyclables = 40;
-		this.maxScore=1;
+		this.maxScore=5;
 
 		//set world dimensions
    		this.game.world.setBounds(0, 0, this.game.width, this.game.height);
