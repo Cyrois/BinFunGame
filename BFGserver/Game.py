@@ -22,14 +22,14 @@ class Game:
     
     
     def getTopScoreboardList(self):
-        print "get top 10"
-        print self.scoreboardList[0:10]
+        #print "get top 10"
+        #print self.scoreboardList[0:10]
         return self.scoreboardList[0:10]
 
     def submitToScoreboard(self,entry):
         self.scoreboardList.append(entry)
-        print "This is scoreboardList"
-        print self.scoreboardList
+        #print "This is scoreboardList"
+        #print self.scoreboardList
         #self.scoreboardList.sort()
         #print self.scoreboardList
 
@@ -37,8 +37,8 @@ class Game:
         return  self.render.Game()
     
     def POST(self):
-        print "This is the web input"
-        print web.input()
+        #print "This is the web input"
+        #print web.input()
         if(web.input().submit == "False"):
             return self.getTopScoreboardList()
         #Submit

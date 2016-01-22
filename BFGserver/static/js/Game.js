@@ -18,11 +18,9 @@ BinFunGame.Game.prototype = {
    		this.generateSigns();
 
 		//Randomly pick one recyclable
-		this.generateRecyclable();
-		this.recyclable.inputEnabled=false;
 
 		//Description
-		var description = "Click start the game! \n Sort the recyclable into the correct bin! ";
+		var description = "Click start the game! \n Sort the item into the correct bin! ";
 	    style = { font: "25px Arial", fill: "#000", align: "center" };
 		this.d = this.game.add.text(this.game.width/2, this.game.height/2 + 150, description, style);
 		this.d.anchor.set(0.5);
@@ -71,8 +69,7 @@ BinFunGame.Game.prototype = {
 
 	startGame: function(){
 		this.gameRunning=true;
-		this.recyclable.inputEnabled=true;
-		
+		this.generateRecyclable();
 		this.game.time.events.start();
 
 		this.playerScore = 0;
@@ -128,7 +125,7 @@ BinFunGame.Game.prototype = {
 	    this.signs.physicsBodyType = Phaser.Physics.ARCADE;
 
 	    var style = { font: "30px Arial", fill: "#000", align: "center" };
-	    var foodText = this.game.add.text(this.game.world.centerX-465, 50, 'Food Scaps', style);
+	    var foodText = this.game.add.text(this.game.world.centerX-465, 50, 'Food Scraps', style);
 	    var recyclableContainerText = this.game.add.text(this.game.world.centerX-150, 50, 'Recyclable \n Containers', style);
 		var paperText = this.game.add.text(this.game.world.centerX+155, 50, 'Paper', style);
 		var garbageText = this.game.add.text(this.game.world.centerX+465, 50, 'Garbage', style);

@@ -4,7 +4,6 @@ BinFunGame.Scoreboard = function (){};
 
 BinFunGame.Scoreboard.prototype = {
 	init: function(score) {
-    console.log(score);
 	if(score == undefined){
 		var score = 9999;
 	}
@@ -43,7 +42,6 @@ BinFunGame.Scoreboard.prototype = {
 		,{name:"Anon",score:99},{name:"Anon",score:99},{name:"Anon",score:99}
 		,{name:"Anon",score:99}];
 		this.initScoreboard(scoreboardList);
-		this.updateScoreboard(scoreboardList);
 
 
 	},
@@ -53,7 +51,7 @@ BinFunGame.Scoreboard.prototype = {
 		   //this.updateScoreboard(scoreboardList);
 		}
 		if(this.load == true){
-			console.log("Loading!")
+			console.log("First load");
 			this.updateScoreboard(scoreboardList);
 			this.load =false;
 		}
@@ -77,13 +75,15 @@ BinFunGame.Scoreboard.prototype = {
 		this.updateScoreboard(scoreboardList);
 	},
 
-	getScoreboardList: function(scoreboard){
+	getScoreboardList: function(){
 		jQuery.ajax({
 				type: "POST",
 				data: {submit:"False"},
 				success: function(data) {
-					scoreboardList = data;
-					return ;
+					 scoreboardList = data;
+					 console.log("Get scoreboardList");
+					 console.log(scoreboardList);
+					 return scoreboardList;
 					}
 			});
 	},
@@ -100,14 +100,17 @@ BinFunGame.Scoreboard.prototype = {
 		}
 
 		var t = this.game.add.text(this.game.world.width/2+15, this.game.world.height/10+15, "Scoreboard: Top 10 Times", { font: "30px Arial", fill: "#000", align: "center" });
+		
 		//Change to top 10 when graphic changes
-		for(var i=0;i<9;i++){
+		for(var i=0;i<10;i++){
 			this.scoreboardNumbers.add(this.game.make.text(this.game.world.width/2+25, this.game.world.height/5+(i*35), i+1, this.style));
 		}
 	},
 
 	updateScoreboard: function(scoreboard){
 		this.getScoreboardList(scoreboard);
+		//ERROR between here and passing the list around
+		// Add lock/flags thing here
 		scoreboard = this.parseData(scoreboard);
 		for(var i=0;i<scoreboard.length;i++){
 			this.scoreboardEntries.children[i].setText(scoreboard[i].name + " Score: " + scoreboard[i].score );
