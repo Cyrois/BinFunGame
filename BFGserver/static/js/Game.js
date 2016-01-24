@@ -18,8 +18,6 @@ BinFunGame.Game.prototype = {
    		//Generate Signs
    		this.generateSigns();
 
-		//Randomly pick one recyclable
-
 		//Description
 		var description = "Click to start the game! \n Sort the item into the correct bin! ";
 	    style = { font: "25px Arial", fill: "#000", align: "center" };
@@ -27,7 +25,6 @@ BinFunGame.Game.prototype = {
 		this.d.anchor.set(0.5);
 
 		this.intro();
-		
 
 		this.gameRunning = false;
 		this.endGameScreen = false;
@@ -56,7 +53,7 @@ BinFunGame.Game.prototype = {
 		this.arrow_2 = this.arrows.create(this.game.world.centerX+140, this.game.world.centerY+50, 'arrow');
 		this.arrow_3 = this.arrows.create(this.game.world.centerX+400, this.game.world.centerY+50, 'arrow');
 		this.arrows.callAll('anchor.set','anchor',0.5);
-		this.arrows.callAll('animations.add','animations', 'move',[0, 1, 2, 3, 4, 5], 10, true);
+		this.arrows.callAll('animations.add','animations', 'move',[0, 1, 2, 3, 4, 5], 8, true);
 		this.arrows.callAll('animations.play', 'animations','move');
 	},
 
@@ -76,15 +73,15 @@ BinFunGame.Game.prototype = {
 		this.playerScore = 0;
 		//Create Score text
 		this.score = "score: "+ this.playerScore;
-    	style = { font: "20px Arial", fill: "#000", align: "center" };
-    	this.score = this.game.add.text(this.game.world.centerX+150, this.game.world.centerY, this.score, style);
+    	style = { font: "30px Arial", fill: "#000", align: "center" };
+    	this.score = this.game.add.text(this.game.world.centerX+150, this.game.world.centerY+125, this.score, style);
 		this.score.anchor.set(0.5);
 
 		//Create time
 		this.timerCount=0;
 		this.timer = "Total time: "+ 0;
-		style = { font: "20px Arial", fill: "#000", align: "center" };
-		this.timer = this.game.add.text(this.game.world.centerX-150, this.game.world.centerY, this.timer, style);
+		style = { font: "30px Arial", fill: "#000", align: "center" };
+		this.timer = this.game.add.text(this.game.world.centerX-200, this.game.world.centerY+125, this.timer, style);
 		this.timer.anchor.set(0.5);
 
 		this.game.time.events.loop(10, this.updateCounter, this);
@@ -103,9 +100,9 @@ BinFunGame.Game.prototype = {
 		this.endGameScreen = true;
 
 		//Game Over text
-		var description = "Game Over";
+		var description = "GAME OVER";
 	    style = { font: "40px Arial", fill: "#000", align: "center" };
-		this.d = this.game.add.text(this.game.width/2, this.game.height/2 + 150, description, style);
+		this.d = this.game.add.text(this.game.width/2, this.game.height/2 + 200, description, style);
 		this.d.anchor.set(0.5);
 
 
@@ -140,6 +137,7 @@ BinFunGame.Game.prototype = {
 		this.foodSign.anchor.setTo(0.5);
 		this.foodSign.binType = "FoodScraps";
 
+
 		this.recyclableContainersSign = this.signs.create(this.game.world.centerX-140, this.game.world.centerY-100, 'recyclableContainersSign');
 		this.recyclableContainersSign.anchor.setTo(0.5);
 		this.recyclableContainersSign.binType = "RecyclableContainer";
@@ -152,13 +150,14 @@ BinFunGame.Game.prototype = {
 		this.garbageSign.anchor.setTo(0.5);
 		this.garbageSign.binType = "Garbage";
 
+		this.signs.callAll('animations.add','animations','correct', [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0], 10, false);
 		this.signs.callAll('scale.setTo','scale',2);
 	},
 
 	generateRecyclable: function(){
 		//Randomly pick a item and add it in the center of world
 		var rand = this.game.rnd.integerInRange(0, (this.totalRecyclables-1));
-		this.recyclable = this.game.add.sprite(this.game.world.centerX,this.game.world.centerY+50,recyclableArray[rand].name);
+		this.recyclable = this.game.add.sprite(this.game.world.centerX,this.game.world.centerY+125,recyclableArray[rand].name);
 		this.recyclable.binType = recyclableArray[rand].binType;
 		
 		this.recyclable.anchor.setTo(0.5);
@@ -180,7 +179,7 @@ BinFunGame.Game.prototype = {
 		this.game.physics.arcade.overlap(this.recyclable, this.signs, this.checkRecyclable, null, this);
 		
 		pointer.x =  this.game.world.centerX;
-		pointer.y =  this.game.world.centerY+50;
+		pointer.y =  this.game.world.centerY+125;
 	},
 
 	checkRecyclable: function(recyclable, sign){
@@ -189,10 +188,13 @@ BinFunGame.Game.prototype = {
 		if (recyclable.binType == sign.binType){
 			this.playerScore+=1;
 			this.score.setText("score: "+ this.playerScore);
+			sign.animations.play('correct');
 			this.scoreEmitter();
 			recyclable.kill();
-			this.generateRecyclable();
 			this.checkEndGame(this.playerScore);
+			if(this.endGameScreen == false){
+				this.generateRecyclable();
+			}
 		}
 	},
 
