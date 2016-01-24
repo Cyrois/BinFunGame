@@ -19,7 +19,7 @@ BinFunGame.MainMenu.prototype = {
 	    //this.game.stage.backgroundColor = '#fff';
 	    this.skyBackground = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height-128, 'sky');
 	    this.groundBackground = this.game.add.tileSprite(0, this.game.world.height-128, this.game.world.width, 128, 'ground');
-
+	    this.generateClouds();
 	    //Title
 	    var title = "Bin Fun Game";
 	    var style = { font: "30px Arial", fill: "#000", align: "center" };
@@ -46,6 +46,14 @@ BinFunGame.MainMenu.prototype = {
 	update: function(){
 		if(this.game.input.activePointer.justPressed()) {
 		    //this.game.state.start('Game');
+		}
+	},
+	generateClouds: function(){
+		this.clouds =  this.game.add.group();
+	    this.clouds.enableBody = true;
+		for(var i=0;i<10;i++){
+			var cloud = this.clouds.create(this.game.world.randomX,this.game.world.randomY/2,'cloud');
+			cloud.body.velocity.x = this.game.rnd.integerInRange(-40, -10);
 		}
 	},
 	startGame: function(){

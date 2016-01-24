@@ -22,10 +22,11 @@ BinFunGame.Preload.prototype = {
     	this.load.image('sky', 'static/assets/images/sky.png');
     	this.load.image('ground', 'static/assets/images/ground.png');
     	this.load.image('star', 'static/assets/images/star.png');
+    	this.load.image('cloud', 'static/assets/images/cloudClear.png');
     	this.load.image('startButton', 'static/assets/images/buttons/start_button.png');
     	this.load.image('scoreboardButton', 'static/assets/images/buttons/scoreboard_button.png');
     	this.load.image('submitButton', 'static/assets/images/buttons/submit_button.png');
-    	this.load.image('scoreboard','static/assets/images/scoreboard.png');
+    	this.load.image('scoreboard','static/assets/images/scoreboard1.png');
     	this.load.image('wall', 'static/assets/images/wall.png');
     	this.load.spritesheet('arrow', 'static/assets/images/arrow.png', 96, 96);
 

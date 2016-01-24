@@ -14,12 +14,7 @@ BinFunGame.Scoreboard.prototype = {
 	    //this.game.stage.backgroundColor = '#fff';
 	    this.skyBackground = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height-128, 'sky');
 	    this.groundBackground = this.game.add.tileSprite(0, this.game.world.height-128, this.game.world.width, 128, 'ground');
-
-	    //Title
-	    var title = "Scoreboard!!";
-	    var style = { font: "30px Arial", fill: "#000", align: "center" };
-	    var t = this.game.add.text(this.game.width/4, this.game.height/4, title, style);
-	    t.anchor.set(0.5);
+	    this.generateClouds();
 
 	    var scoreText = "Your score: " + this.score;
 	    var style = { font: "30px Arial", fill: "#000", align: "center" };
@@ -41,6 +36,7 @@ BinFunGame.Scoreboard.prototype = {
 		{name:"Anon",score:99},{name:"Anon",score:99},{name:"Anon",score:99}
 		,{name:"Anon",score:99},{name:"Anon",score:99},{name:"Anon",score:99}
 		,{name:"Anon",score:99}];
+
 		this.initScoreboard(scoreboardList);
 
 
@@ -48,12 +44,21 @@ BinFunGame.Scoreboard.prototype = {
 	update: function(){
 
 		if(this.game.input.activePointer.justPressed()) {
-		   //this.updateScoreboard(scoreboardList);
+		   //this.getScoreboardList();
 		}
 		if(this.load == true){
 			console.log("First load");
-			this.updateScoreboard(scoreboardList);
+			this.getScoreboardList();
 			this.load =false;
+		}
+	},
+
+	generateClouds: function(){
+		this.clouds =  this.game.add.group();
+	    this.clouds.enableBody = true;
+		for(var i=0;i<10;i++){
+			var cloud = this.clouds.create(this.game.world.randomX,this.game.world.randomY/2,'cloud');
+			cloud.body.velocity.x = this.game.rnd.integerInRange(-40, -10);
 		}
 	},
 
@@ -72,7 +77,7 @@ BinFunGame.Scoreboard.prototype = {
 					}
 			});
 		}
-		this.updateScoreboard(scoreboardList);
+		this.getScoreboardList();
 	},
 
 	getScoreboardList: function(){
@@ -80,10 +85,11 @@ BinFunGame.Scoreboard.prototype = {
 				type: "POST",
 				data: {submit:"False"},
 				success: function(data) {
-					 scoreboardList = data;
-					 console.log("Get scoreboardList");
-					 console.log(scoreboardList);
-					 return scoreboardList;
+					scoreboardList = data;
+					console.log("Get scoreboardList");
+					console.log(scoreboardList);
+					BinFunGame.Scoreboard.prototype.updateScoreboard(scoreboardList);
+					return scoreboardList;
 					}
 			});
 	},
@@ -91,29 +97,29 @@ BinFunGame.Scoreboard.prototype = {
 	initScoreboard: function(scoreboard){
 		var scoreboardBackground = this.game.add.sprite(this.game.world.width/2, this.game.world.height/10, 'scoreboard');
 		scoreboardBackground.scale.setTo(1.5);
-		this.scoreboardEntries = this.game.add.group();
+		scoreboardEntries = this.game.add.group();
 		this.scoreboardNumbers =  this.game.add.group();
 		this.style = { font: "20px Arial", fill: "#000", align: "center" };
+		
 		for(var i=0;i<scoreboard.length;i++){
 			var entryText = scoreboard[i].name + " Score: " + scoreboard[i].score + " seconds";
-			this.scoreboardEntries.add(this.game.make.text(this.game.world.width/2+55, this.game.world.height/5+(i*35), entryText, this.style));
+			scoreboardEntries.add(this.game.make.text(this.game.world.width/2+55, this.game.world.height/10+70+(i*35), entryText, this.style));
 		}
 
 		var t = this.game.add.text(this.game.world.width/2+15, this.game.world.height/10+15, "Scoreboard: Top 10 Times", { font: "30px Arial", fill: "#000", align: "center" });
 		
 		//Change to top 10 when graphic changes
 		for(var i=0;i<10;i++){
-			this.scoreboardNumbers.add(this.game.make.text(this.game.world.width/2+25, this.game.world.height/5+(i*35), i+1, this.style));
+			this.scoreboardNumbers.add(this.game.make.text(this.game.world.width/2+15, this.game.world.height/10+70+(i*35), i+1, this.style));
 		}
 	},
 
 	updateScoreboard: function(scoreboard){
-		this.getScoreboardList(scoreboard);
 		//ERROR between here and passing the list around
 		// Add lock/flags thing here
 		scoreboard = this.parseData(scoreboard);
 		for(var i=0;i<scoreboard.length;i++){
-			this.scoreboardEntries.children[i].setText(scoreboard[i].name + " Score: " + scoreboard[i].score );
+			scoreboardEntries.children[i].setText(scoreboard[i].name + " Score: " + scoreboard[i].score );
 
 		}
 	},
