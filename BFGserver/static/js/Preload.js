@@ -26,6 +26,7 @@ BinFunGame.Preload.prototype = {
     	this.load.image('scoreboardButton', 'static/assets/images/buttons/scoreboard_button.png');
     	this.load.image('submitButton', 'static/assets/images/buttons/submit_button.png');
     	this.load.image('scoreboard','static/assets/images/scoreboard.png');
+    	this.load.image('wall', 'static/assets/images/wall.png');
     	this.load.spritesheet('arrow', 'static/assets/images/arrow.png', 96, 96);
 
 

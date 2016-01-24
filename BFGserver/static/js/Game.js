@@ -12,7 +12,8 @@ BinFunGame.Game.prototype = {
    		this.game.world.setBounds(0, 0, this.game.width, this.game.height);
 
    		//White background
-   		this.game.stage.backgroundColor = '#fff';
+   		this.game.stage.backgroundColor = '#9c9c9c';
+   		this.floor = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height/2, 'wall');
 
    		//Generate Signs
    		this.generateSigns();
@@ -20,7 +21,7 @@ BinFunGame.Game.prototype = {
 		//Randomly pick one recyclable
 
 		//Description
-		var description = "Click start the game! \n Sort the item into the correct bin! ";
+		var description = "Click to start the game! \n Sort the item into the correct bin! ";
 	    style = { font: "25px Arial", fill: "#000", align: "center" };
 		this.d = this.game.add.text(this.game.width/2, this.game.height/2 + 150, description, style);
 		this.d.anchor.set(0.5);
@@ -50,10 +51,10 @@ BinFunGame.Game.prototype = {
 		//Add arrow animation
 		this.arrows =  this.game.add.group();
 
-		this.arrow_0 = this.arrows.create(this.game.world.centerX-465, this.game.world.centerY-50, 'arrow');
-		this.arrow_1 = this.arrows.create(this.game.world.centerX-155, this.game.world.centerY-50, 'arrow'); 
-		this.arrow_2 = this.arrows.create(this.game.world.centerX+155, this.game.world.centerY-50, 'arrow');
-		this.arrow_3 = this.arrows.create(this.game.world.centerX+465, this.game.world.centerY-50, 'arrow');
+		this.arrow_0 = this.arrows.create(this.game.world.centerX-400, this.game.world.centerY+50, 'arrow');
+		this.arrow_1 = this.arrows.create(this.game.world.centerX-140, this.game.world.centerY+50, 'arrow'); 
+		this.arrow_2 = this.arrows.create(this.game.world.centerX+140, this.game.world.centerY+50, 'arrow');
+		this.arrow_3 = this.arrows.create(this.game.world.centerX+400, this.game.world.centerY+50, 'arrow');
 		this.arrows.callAll('anchor.set','anchor',0.5);
 		this.arrows.callAll('animations.add','animations', 'move',[0, 1, 2, 3, 4, 5], 10, true);
 		this.arrows.callAll('animations.play', 'animations','move');
@@ -124,30 +125,30 @@ BinFunGame.Game.prototype = {
 	    this.signs.enableBody = true;
 	    this.signs.physicsBodyType = Phaser.Physics.ARCADE;
 
-	    var style = { font: "30px Arial", fill: "#000", align: "center" };
-	    var foodText = this.game.add.text(this.game.world.centerX-465, 50, 'Food Scraps', style);
-	    var recyclableContainerText = this.game.add.text(this.game.world.centerX-150, 50, 'Recyclable \n Containers', style);
-		var paperText = this.game.add.text(this.game.world.centerX+155, 50, 'Paper', style);
-		var garbageText = this.game.add.text(this.game.world.centerX+465, 50, 'Garbage', style);
+	    var style = { font: "22px Arial", fill: "#000", align: "center" };
+	    var foodText = this.game.add.text(this.game.world.centerX-370, this.game.world.centerY-140, 'Food Scraps', style);
+	    var recyclableContainerText = this.game.add.text(this.game.world.centerX-135, this.game.world.centerY-135, 'Recyclable\nContainers', { font: "18px Arial", fill: "#000", align: "center" });
+		var paperText = this.game.add.text(this.game.world.centerX+145, this.game.world.centerY-140, 'Paper', style);
+		var garbageText = this.game.add.text(this.game.world.centerX+370, this.game.world.centerY-140, 'Garbage', style);
 		foodText.anchor.setTo(0.5);
 		recyclableContainerText.anchor.setTo(0.5);
 		paperText.anchor.setTo(0.5);
 		garbageText.anchor.setTo(0.5);
 
 	    //Generate Signs
-		this.foodSign = this.signs.create(this.game.world.centerX-465, 150, 'foodSign');
+		this.foodSign = this.signs.create(this.game.world.centerX-370, this.game.world.centerY-100, 'foodSign');
 		this.foodSign.anchor.setTo(0.5);
 		this.foodSign.binType = "FoodScraps";
 
-		this.recyclableContainersSign = this.signs.create(this.game.world.centerX-155, 150, 'recyclableContainersSign');
+		this.recyclableContainersSign = this.signs.create(this.game.world.centerX-140, this.game.world.centerY-100, 'recyclableContainersSign');
 		this.recyclableContainersSign.anchor.setTo(0.5);
 		this.recyclableContainersSign.binType = "RecyclableContainer";
 
-		this.paperSign = this.signs.create(this.game.world.centerX+155, 150, 'paperSign');
+		this.paperSign = this.signs.create(this.game.world.centerX+140, this.game.world.centerY-100, 'paperSign');
 		this.paperSign.anchor.setTo(0.5);
 		this.paperSign.binType = "Paper";
 
-		this.garbageSign = this.signs.create(this.game.world.centerX+465, 150, 'garbageSign');
+		this.garbageSign = this.signs.create(this.game.world.centerX+370, this.game.world.centerY-100, 'garbageSign');
 		this.garbageSign.anchor.setTo(0.5);
 		this.garbageSign.binType = "Garbage";
 
