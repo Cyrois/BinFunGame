@@ -25,7 +25,7 @@ BinFunGame.Game.prototype = {
 		this.d.anchor.set(0.5);
 
 		var mainMenuButton = this.game.add.button();
-		mainMenuButton = this.game.add.button(0, 0, 'scoreboardButton', this.goToMainMenu, this,1,0,2);
+		mainMenuButton = this.game.add.button(0, 0, 'mainMenuButton', this.goToMainMenu, this,1,0,2);
 
 		this.intro();
 
