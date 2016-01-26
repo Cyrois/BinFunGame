@@ -19,10 +19,13 @@ BinFunGame.Game.prototype = {
    		this.generateSigns();
 
 		//Description
-		var description = "Click to start the game! \n Sort the item into the correct bin! ";
+		var description = "Click to start the game!";
 	    style = { font: "25px Arial", fill: "#000", align: "center" };
 		this.d = this.game.add.text(this.game.width/2, this.game.height/2 + 150, description, style);
 		this.d.anchor.set(0.5);
+
+		var mainMenuButton = this.game.add.button();
+		mainMenuButton = this.game.add.button(0, 0, 'scoreboardButton', this.goToMainMenu, this,1,0,2);
 
 		this.intro();
 
@@ -35,6 +38,7 @@ BinFunGame.Game.prototype = {
 		if(this.gameRunning==false){
 			if(this.game.input.activePointer.justPressed()) {
 		    	this.endIntro();
+		    	this.gameRunning=true;
 		    }
 		}
 		if(this.endGameScreen==true){
@@ -42,6 +46,10 @@ BinFunGame.Game.prototype = {
 				this.game.state.start('MainMenu', true, false, this.timerCount);
 			}
 		}
+	},
+
+	goToMainMenu: function(){
+		this.game.state.start('MainMenu', true, false);
 	},
 
 	intro: function(){
@@ -62,11 +70,31 @@ BinFunGame.Game.prototype = {
 		this.arrows.forEach(function(sprite){
 			sprite.kill();
 		},this,true);
-		this.startGame();
+		
+		this.introCountDown();
+		
+	},
+
+	introCountDown: function(){
+		var count = 3;
+	    var style = { font: "50px Arial", fill: "#000", align: "center" };
+		var d = this.game.add.text(this.game.width/2, this.game.height/2 + 125, count, style);
+		d.anchor.set(0.5);
+		
+		this.game.time.events.repeat(Phaser.Timer.SECOND, 3,function(){
+			count--;
+			d.setText(count);
+			console.log(count);
+			if(count==0){
+				d.destroy();
+				this.startGame();
+			}
+		}, this);
+
+		
 	},
 
 	startGame: function(){
-		this.gameRunning=true;
 		this.generateRecyclable();
 		this.game.time.events.start();
 

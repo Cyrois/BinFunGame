@@ -23,11 +23,14 @@ BinFunGame.Preload.prototype = {
     	this.load.image('ground', 'static/assets/images/ground.png');
     	this.load.image('star', 'static/assets/images/star.png');
     	this.load.image('cloud', 'static/assets/images/cloudClear.png');
-    	this.load.image('startButton', 'static/assets/images/buttons/start_button.png');
-    	this.load.image('scoreboardButton', 'static/assets/images/buttons/scoreboard_button.png');
-    	this.load.image('submitButton', 'static/assets/images/buttons/submit_button.png');
+    	this.load.spritesheet('startButton', 'static/assets/images/buttons/start_button.png',210,60);
+    	this.load.spritesheet('scoreboardButton', 'static/assets/images/buttons/scoreboard_button.png',210,60);
+    	this.load.spritesheet('submitButton', 'static/assets/images/buttons/submit_button.png',210,60);
+    	this.load.spritesheet('infoButton','static/assets/images/buttons/info_button.png',210,60);
+    	this.load.spritesheet('mainMenuButton','static/assets/images/buttons/mainMenu_button.png',210,60);
     	this.load.image('scoreboard','static/assets/images/scoreboard1.png');
     	this.load.image('wall', 'static/assets/images/wall.png');
+    	this.load.image('bfg', 'static/assets/images/Logo.png');
     	this.load.spritesheet('arrow', 'static/assets/images/arrow.png', 96, 96);
 
 

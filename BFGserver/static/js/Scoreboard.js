@@ -23,13 +23,16 @@ BinFunGame.Scoreboard.prototype = {
 
 	    //Submit Score button
 		var submitButton = this.game.add.button();
-		submitButton = this.game.add.button(this.game.width/4, this.game.height/4 + 100, 'submitButton', this.submitScore, this);
+		submitButton = this.game.add.button(this.game.width/4, this.game.height/4 + 100, 'submitButton',this.submitScore, this,1,0,2);
 		submitButton.anchor.set(0.5);
 
 	    //Start Game button
 		var startButton = this.game.add.button();
-		startButton = this.game.add.button(this.game.width/4, this.game.height/4 + 150, 'startButton', this.startGame, this);
+		startButton = this.game.add.button(this.game.width/4, this.game.height/4 + 150, 'startButton', this.startGame, this,1,0,2);
 		startButton.anchor.set(0.5);
+
+		var mainMenuButton = this.game.add.button();
+		mainMenuButton = this.game.add.button(0, 0, 'mainMenuButton', this.goToMainMenu, this,1,0,2);
 
 		//Temp code for scoreboard
 		scoreboardList = [{name:"Anon",score:99},{name:"Anon",score:99},{name:"Anon",score:99},
@@ -51,6 +54,10 @@ BinFunGame.Scoreboard.prototype = {
 			this.getScoreboardList();
 			this.load =false;
 		}
+	},
+
+	goToMainMenu: function(){
+		this.game.state.start('MainMenu', true, false);
 	},
 
 	generateClouds: function(){
@@ -77,6 +84,7 @@ BinFunGame.Scoreboard.prototype = {
 					}
 			});
 		}
+		this.score = null;
 		this.getScoreboardList();
 	},
 
@@ -108,15 +116,12 @@ BinFunGame.Scoreboard.prototype = {
 
 		var t = this.game.add.text(this.game.world.width/2+15, this.game.world.height/10+15, "Scoreboard: Top 10 Times", { font: "30px Arial", fill: "#000", align: "center" });
 		
-		//Change to top 10 when graphic changes
 		for(var i=0;i<10;i++){
 			this.scoreboardNumbers.add(this.game.make.text(this.game.world.width/2+15, this.game.world.height/10+70+(i*35), i+1, this.style));
 		}
 	},
 
 	updateScoreboard: function(scoreboard){
-		//ERROR between here and passing the list around
-		// Add lock/flags thing here
 		scoreboard = this.parseData(scoreboard);
 		for(var i=0;i<scoreboard.length;i++){
 			scoreboardEntries.children[i].setText(scoreboard[i].name + " Score: " + scoreboard[i].score );
