@@ -122,9 +122,9 @@ BinFunGame.Game.prototype = {
 	    this.signs.enableBody = true;
 	    this.signs.physicsBodyType = Phaser.Physics.ARCADE;
 
-	    var style = { font: "22px Arial", fill: "#000", align: "center" };
+	    var style = { font: "22px Arial", fill: "#FFF", align: "center" };
 	    var foodText = this.game.add.text(this.game.world.centerX-370, this.game.world.centerY-140, 'Food Scraps', style);
-	    var recyclableContainerText = this.game.add.text(this.game.world.centerX-135, this.game.world.centerY-135, 'Recyclable\nContainers', { font: "18px Arial", fill: "#000", align: "center" });
+	    var recyclableContainerText = this.game.add.text(this.game.world.centerX-135, this.game.world.centerY-135, 'Recyclable\nContainers', { font: "18px Arial", fill: "#FFF", align: "center" });
 		var paperText = this.game.add.text(this.game.world.centerX+145, this.game.world.centerY-140, 'Paper', style);
 		var garbageText = this.game.add.text(this.game.world.centerX+370, this.game.world.centerY-140, 'Garbage', style);
 		foodText.anchor.setTo(0.5);
@@ -150,7 +150,8 @@ BinFunGame.Game.prototype = {
 		this.garbageSign.anchor.setTo(0.5);
 		this.garbageSign.binType = "Garbage";
 
-		this.signs.callAll('animations.add','animations','correct', [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0], 10, false);
+		this.signs.callAll('animations.add','animations','correct', [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0], 8, false);
+		this.signs.callAll('animations.add','animations','wrong', [0, 5, 0, 5, 0], 8, false);
 		this.signs.callAll('scale.setTo','scale',2);
 	},
 
@@ -196,6 +197,11 @@ BinFunGame.Game.prototype = {
 				this.generateRecyclable();
 			}
 		}
+		else{
+			sign.animations.play('wrong');
+		}
+
+		
 	},
 
 	scoreEmitter: function(){

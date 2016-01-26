@@ -15,10 +15,10 @@ BinFunGame.Preload.prototype = {
     	//This allows for easy loading bars
     	this.load.setPreloadSprite(this.preloadBar);
     	//Load images
-    	this.load.spritesheet('foodSign', 'static/assets/images/signs/foodBin.png',128,128);
-    	this.load.spritesheet('garbageSign', 'static/assets/images/signs/garbageBin.png',128,128);
-    	this.load.spritesheet('paperSign', 'static/assets/images/signs/paperBin.png',128,128);
-    	this.load.spritesheet('recyclableContainersSign', 'static/assets/images/signs/recyclableBin.png',128,128);
+    	this.load.spritesheet('foodSign', 'static/assets/images/signs/green.png',128,128);
+    	this.load.spritesheet('garbageSign', 'static/assets/images/signs/black.png',128,128);
+    	this.load.spritesheet('paperSign', 'static/assets/images/signs/blue.png',128,128);
+    	this.load.spritesheet('recyclableContainersSign', 'static/assets/images/signs/grey.png',128,128);
     	this.load.image('sky', 'static/assets/images/sky.png');
     	this.load.image('ground', 'static/assets/images/ground.png');
     	this.load.image('star', 'static/assets/images/star.png');
