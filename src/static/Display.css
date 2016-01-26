@@ -1,5 +1,5 @@
 html {
-    overflow: auto;
+    overflow: hidden;
     height: 100%;
 }
 
@@ -71,6 +71,7 @@ h2 {
 }
 
 #FoodScraps {
+	font-size: 3.4vmax;
     height: 100%;
     text-align: center;
     vertical-align: middle;
@@ -78,6 +79,8 @@ h2 {
     margin-bottom: 0%;
     margin-left: 3%;
     margin-right: 3%;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
     background-color: rgb(0,141,71);
 }
 
@@ -299,7 +302,7 @@ h2 {
 }
 
 #GreenText {
-	overflow: auto;
+	overflow: hidden;
 	width: 94%;
 	height: 100%;
 	margin-top: 0%;
@@ -311,11 +314,12 @@ h2 {
 	background-color: rgb(0, 141, 71);
 }
 
-#GreenMessage {
-    overflow: auto;
+#GreenTextBox {
+	overflow: hidden;
+	display: none;
     width: 100%;
     height: 100%;
-    font-size: 6vmin;
+    float: left;
     background-image: url("textBox.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -323,8 +327,21 @@ h2 {
     background-color: rgb(0, 141, 71);
 }
 
+#GreenMessage {
+    overflow: hidden;
+    width: 96%;
+    height: 98%;
+	margin-top: 2%;
+    margin-bottom: 0%;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 5.2vmin;
+    float: left;
+	text-align: center;
+}
+
 #GreyText {
-	overflow: auto;
+	overflow: hidden;
 	width: 94%;
 	height: 100%;
 	margin-top: 0%;
@@ -336,11 +353,12 @@ h2 {
 	background-color: rgb(128, 130, 133);
 }
 
-#GreyMessage {
-    overflow: auto;
+#GreyTextBox {
+	overflow: hidden;
+	display: none;
     width: 100%;
     height: 100%;
-    font-size: 6vmin;
+    float: left;
     background-image: url("textBox.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -348,8 +366,21 @@ h2 {
     background-color: rgb(128, 130, 133);
 }
 
+#GreyMessage {
+    overflow: hidden;
+    width: 96%;
+    height: 98%;
+	margin-top: 2%;
+    margin-bottom: 0%;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 5.2vmin;
+    float: left;
+	text-align: center;
+}
+
 #BlueText {
-	overflow: auto;
+	overflow: hidden;
 	width: 94%;
 	height: 100%;
 	margin-top: 0%;
@@ -361,11 +392,12 @@ h2 {
 	background-color: rgb(16, 116, 188);
 }
 
-#BlueMessage {
-    overflow: auto;
+#BlueTextBox {
+	overflow: hidden;
+	display: none;
     width: 100%;
     height: 100%;
-    font-size: 6vmin;
+    float: left;
     background-image: url("textBox.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -373,8 +405,21 @@ h2 {
     background-color: rgb(16, 116, 188);
 }
 
+#BlueMessage {
+    overflow: hidden;
+    width: 96%;
+    height: 98%;
+	margin-top: 2%;
+    margin-bottom: 0%;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 5.2vmin;
+    float: left;
+	text-align: center;
+}
+
 #BlackText {
-	overflow: auto;
+	overflow: hidden;
 	width: 94%;
 	height: 100%;
 	margin-top: 0%;
@@ -386,16 +431,30 @@ h2 {
 	background-color: rgb(35, 31, 32);
 }
 
-#BlackMessage {
-	overflow: auto;
-	width: 100%;
+#BlackTextBox {
+	overflow: hidden;
+	display: none;
+    width: 100%;
     height: 100%;
-    font-size: 6vmin;
+    float: left;
     background-image: url("textBox.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center center;
     background-color: rgb(35, 31, 32);
+}
+
+#BlackMessage {
+	overflow: hidden;
+    width: 96%;
+    height: 98%;
+	margin-top: 2%;
+    margin-bottom: 0%;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 5.2vmin;
+    float: left;
+	text-align: center;
 }
 
 #border4 {
@@ -408,7 +467,7 @@ h2 {
 }
 
 #GreenAnimation {
-    overflow: auto;
+    overflow: hidden;
     width: 94%;
     height: 100%;
     margin-top: 0%;
@@ -420,7 +479,7 @@ h2 {
 }
 
 #GreyAnimation {
-    overflow: auto;
+    overflow: hidden;
     width: 94%;
     height: 100%;
     margin-top: 0%;
@@ -432,7 +491,7 @@ h2 {
 }
 
 #BlueAnimation {
-    overflow: auto;
+    overflow: hidden;
     width: 94%;
     height: 100%;
     margin-top: 0%;
@@ -444,7 +503,7 @@ h2 {
 }
 
 #BlackAnimation {
-    overflow: auto;
+    overflow: hidden;
     width: 94%;
     height: 100%;
     margin-top: 0%;
