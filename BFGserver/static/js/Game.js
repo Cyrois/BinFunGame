@@ -102,14 +102,14 @@ BinFunGame.Game.prototype = {
 		//Create Score text
 		this.score = "score: "+ this.playerScore;
     	style = { font: "30px Arial", fill: "#000", align: "center" };
-    	this.score = this.game.add.text(this.game.world.centerX+150, this.game.world.centerY+125, this.score, style);
+    	this.score = this.game.add.text(this.game.world.centerX+150, this.game.world.height-50, this.score, style);
 		this.score.anchor.set(0.5);
 
 		//Create time
 		this.timerCount=0;
 		this.timer = "Total time: "+ 0;
 		style = { font: "30px Arial", fill: "#000", align: "center" };
-		this.timer = this.game.add.text(this.game.world.centerX-200, this.game.world.centerY+125, this.timer, style);
+		this.timer = this.game.add.text(this.game.world.centerX-200, this.game.world.height-50, this.timer, style);
 		this.timer.anchor.set(0.5);
 
 		this.game.time.events.loop(10, this.updateCounter, this);

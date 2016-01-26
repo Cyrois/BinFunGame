@@ -27,30 +27,37 @@ BinFunGame.MainMenu.prototype = {
 	    var t = this.game.add.text(this.game.width/2, this.game.height/2, title, style);
 	    t.anchor.set(0.5);
 	    */
-	   	var t = this.game.add.sprite(this.game.width/2, this.game.height*4/10, 'bfg');
+	   	var t = this.game.add.sprite(this.game.width/2, this.game.height*1/10, 'bfg');
+	   	t.scale.setTo(1.25);
 	   	t.anchor.set(0.5);
 
+	   	var emily = this.game.add.sprite(this.game.width/2 -150, this.game.height/3, 'emily');
+	   	emily.scale.setTo(0.5);
+	   	emily.anchor.set(0.5);
+
+	   	/*
 	   	//HighScore
 	   	var highScore = "High Score Time: " + this.highestScore;
 	   	style = { font: "25px Arial", fill: "#000", align: "center" };
 	    var h = this.game.add.text(this.game.width/2, this.game.height/2 + 55, highScore, style);
 	    h.anchor.set(0.5);
+	    */
 
 	    //Start Game button
 		var startButton = this.game.add.button();
-		startButton = this.game.add.button(this.game.width/2, this.game.height/2 + 100, 'startButton', this.startGame, this ,1,0,2);
+		startButton = this.game.add.button(this.game.width/2, this.game.height/2 + 115, 'startButton', this.startGame, this ,1,0,2);
 		startButton.anchor.set(0.5);
 		//Go to scoreboard
 		var scoreboardButton = this.game.add.button();
-		scoreboardButton = this.game.add.button(this.game.width/2, this.game.height/2 + 150, 'scoreboardButton', this.submitToScoreboard, this,1,0,2);
+		scoreboardButton = this.game.add.button(this.game.width/2, this.game.height/2 + 180, 'scoreboardButton', this.submitToScoreboard, this,1,0,2);
 		scoreboardButton.anchor.set(0.5);
 
-		var instructions = "Drag to sort the item into the correct bin as fast as you can!\n Compete for the highscore on the scoreboard!\n Click for more info about Sort It Out at UBC";
-	   	style = { font: "25px Arial", fill: "#000", align: "center", wordWrap: true, wordWrapWidth: 300 };
-	    var h = this.game.add.text(this.game.width*3/4, this.game.height/2, instructions, style);
+		var instructions = "Click and drag each item to its correct bin as fast as you can!\n Compete for a highscore on the scoreboard!\n\n Click Info to find out more about Sort It Out UBC";
+	   	style = { font: "20px Arial", fill: "#000", align: "center", wordWrap: true, wordWrapWidth: 300 };
+	    var h = this.game.add.text(this.game.width/2 +90, this.game.height/3, instructions, style);
 	    h.anchor.set(0.5);
 
-		var info = this.game.add.button(this.game.width*3/4, this.game.height/2 +155, 'infoButton', function() {  
+		var info = this.game.add.button(this.game.width/2, this.game.height/2 +50, 'infoButton', function() {  
 		// open in the same window (like clicking a link)  window.location.href = "http://www.google.com";  
 		// open in a new window instead (this will likely be blocked by popup blockers though) 
 		window.open("https://sustain.ubc.ca/campus-initiatives/recycling-waste/sort-it-out", "_blank");}, this,1,0,2);

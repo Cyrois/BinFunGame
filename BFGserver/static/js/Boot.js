@@ -5,7 +5,7 @@ BinFunGame.Boot = function(){};
 BinFunGame.Boot.prototype = {
   preload: function() {
 
-    this.load.image('logo', 'static/assets/images/Emily.jpg');
+    this.load.image('emily', 'static/assets/images/Emily.jpg');
     this.load.image('preloadbar', 'static/assets/images/loading_bar.jpg');
   },
   create: function() {

@@ -5,7 +5,7 @@ BinFunGame.Preload = function (){};
 BinFunGame.Preload.prototype = {
 	preload: function (){
 		//adds a sprite, logo, to center of game. Then sets the anchor point of the sprite in the middle
-		this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY-64, 'logo');
+		this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY-64, 'emily');
 	    this.splash.anchor.setTo(0.5);
 
 	    this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
@@ -30,7 +30,7 @@ BinFunGame.Preload.prototype = {
     	this.load.spritesheet('mainMenuButton','static/assets/images/buttons/mainMenu_button.png',210,60);
     	this.load.image('scoreboard','static/assets/images/scoreboard1.png');
     	this.load.image('wall', 'static/assets/images/wall.png');
-    	this.load.image('bfg', 'static/assets/images/Logo.png');
+    	this.load.image('bfg', 'static/assets/images/Logo1.png');
     	this.load.spritesheet('arrow', 'static/assets/images/arrow.png', 96, 96);
 
 
