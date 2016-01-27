@@ -37,8 +37,8 @@ BinFunGame.Game.prototype = {
 	update: function(){
 		if(this.gameRunning==false){
 			if(this.game.input.activePointer.justPressed()) {
+				this.gameRunning=true;
 		    	this.endIntro();
-		    	this.gameRunning=true;
 		    }
 		}
 		if(this.endGameScreen==true){
