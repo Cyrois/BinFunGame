@@ -83,6 +83,7 @@ class Database:
 		self.insertBuffer(target)
 		
 	#Select: http://zetcode.com/db/mysqlpython/
+	#there should be only one row in the table
 	def pullCount(self):
 		query = "SELECT *" + " FROM " + self.currentDate + "_count;"
 		self.cursor.execute(query)
