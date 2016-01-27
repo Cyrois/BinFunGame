@@ -26,6 +26,7 @@ def databaseStuff():
 	while(1):
 		result = db.pullCount()
 		#order is black, green, blue, grey
+		#todo: check if result length is = 4
 		globalVars.blackCount = result[0]
 		globalVars.greenCount = result[1]
 		globalVars.blueCount = result[2]
