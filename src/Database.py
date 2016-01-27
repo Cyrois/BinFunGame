@@ -60,4 +60,37 @@ class Database:
             # Commit your changes in the database
             self.db.commit()
         print "Finished inserting data into the table " + self.currentDate
-			
+         
+    #database functions for the sorting game application
+    #generates table for scores
+    def createScoreboardTable(self):
+        print "Creating Scoreboard Table.."
+        columns = ["Name","Score"]
+        query = "CREATE TABLE " + "Scoreboard" + "(" + columns[0] + " VARCHAR(50)," + columns[1] + " INT NOT NULL" + ");"
+        #EX: https://github.com/jat023/CS304_DB/blob/master/src/ca/ubc/cs/cs304/steemproject/access/oraclejdbc/InitializeDatabase.java
+        try: self.cursor.execute(query)
+        except MySQLdb.Error, e:
+                print "MySQL Error: " + str(e)
+        else:
+                print("Table Creation Success")
+
+    #insert score into scoreboard for game
+    def insertScore(self, target):
+        print "INSERTING INTO SCOREBOARD DATABASE"
+
+        for line in target:
+            name = Signal.parseSignal(line)[0] #EntryNum
+            #make sure entry numbers are different
+            score = Signal.parseSignal(line)[1] #Name
+            #enter into table
+            query = "INSERT INTO " + "Scoreboard" + " VALUES ( " + "'" + name + "'" + " ," + "'" + score + "'" + ");"
+            print("Inserting a row: " + query)
+            self.cursor.execute(query)
+            # Commit your changes in the database
+            self.db.commit()
+        print "Finished inserting data into the table " + self.currentDate
+
+    #def getTopScores(self):
+    #   print "GET TOP 10 SCORES"
+
+    #   query = "SELECT name, score" + "FROM Scoreboard" + "WHERE "

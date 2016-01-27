@@ -15,7 +15,18 @@ from Database import Database
 #                      passwd="bfg123", # your password
 #                      db="bfg") # name of the data base
 
-db = Database("localhost", "bfg", "bfg123", "bfg")
+#test scoreboard
+scoreboard = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+scoreboard.createScoreboardTable()
+
+test1 = ["Name,999"]
+test2 = ["Player1,333"]
+scoreboard.insertScore(test1)
+scoreboard.insertScore(test2)
+
+
+
+db = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
 
 testInput1 = ["green,nest,05:26:25"]
 testInput2 = ["green, nest, 03:59:25", "black, nest, 03:59:26"]

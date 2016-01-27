@@ -2,6 +2,7 @@
 #!/usr/bin/env python
 
 import web
+from Database import Database
 
 class Game:
 
@@ -19,8 +20,10 @@ class Game:
     def startGame():
         BFGGame = Game()
         BFGGame.app.run()
-    
-    
+        #create database for scores
+        scoredb = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+        scoredb.createScoreboardTable()
+
     def getTopScoreboardList(self):
         #print "get top 10"
         #print self.scoreboardList[0:10]
