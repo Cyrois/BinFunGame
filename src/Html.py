@@ -20,6 +20,17 @@ def test():
         globalVars.blackCount = input ("Enter black Count: ")
         logging.debug(globalVars.blackCount)
     return
+	
+def databaseStuff():
+	db = Database("localhost", "bfguser", "bfg123", "bfg")
+	while(1):
+		result = db.pullCount()
+		#order is black, green, blue, grey
+		globalVars.blackCount = result[0]
+		globalVars.greenCount = result[1]
+		globalVars.blueCount = result[2]
+		globalVars.greyCount = result[3]
+		time.sleep(0.1)
 
 if __name__ == '__main__':
     globalVars.init()
@@ -28,6 +39,9 @@ if __name__ == '__main__':
     t1.start()
     t2 = threading.Thread(target=Display.startDisplay)
     t2.start()
+	t3 = threading.Thread(target=databaseStuff)
+	t3.start()
 
     t1.join()
     t2.join()
+	t3.join()
