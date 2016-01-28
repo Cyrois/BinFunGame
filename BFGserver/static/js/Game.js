@@ -3,6 +3,10 @@ var BinFunGame = BinFunGame || {};
 BinFunGame.Game = function(){};
 
 BinFunGame.Game.prototype = {
+	init : function(){
+		this.gameRunning = false;
+		this.endGameScreen = false;
+	},
 	create: function(){
 
 		this.totalRecyclables = 40;
@@ -28,10 +32,8 @@ BinFunGame.Game.prototype = {
 		mainMenuButton = this.game.add.button(0, 0, 'mainMenuButton', this.goToMainMenu, this,1,0,2);
 
 		this.intro();
-
 		this.gameRunning = false;
 		this.endGameScreen = false;
-
 
 	},
 	update: function(){
@@ -81,7 +83,9 @@ BinFunGame.Game.prototype = {
 		var d = this.game.add.text(this.game.width/2, this.game.height/2 + 125, count, style);
 		d.anchor.set(0.5);
 		
-		this.game.time.events.repeat(Phaser.Timer.SECOND, 3,function(){
+		this.countdown = this.game.time.create(false);
+		this.countdown.start();
+		this.countdown.repeat(Phaser.Timer.SECOND, 3,function(){
 			count--;
 			d.setText(count);
 			console.log(count);
