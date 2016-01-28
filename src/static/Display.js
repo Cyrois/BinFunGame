@@ -155,7 +155,7 @@ jQuery(document).ready(function() {
 	function changeGreenPic() {  
         green_img.style.display = '';
 		green_msg.style.display = '';
-        green_img.src = "static/gifs/Food.gif";
+        green_img.src = "static/gifs/FoodScraps.gif";
         jQuery("#GreenTextBox").hide().fadeIn(500).delay(4000).fadeOut(500);
         jQuery("#GreenMessage").hide().fadeIn(500).delay(4000).fadeOut(500);
         //jQuery("#GreenTextBox").hide().fadeIn(2000);
@@ -167,7 +167,7 @@ jQuery(document).ready(function() {
     function changeGreyPic() {  
         grey_img.style.display = ''; 
         grey_msg.style.display = '';
-        grey_img.src = "static/gifs/Plastics.gif";
+        grey_img.src = "static/gifs/RecyclableContainers.gif";
         jQuery("#GreyTextBox").hide().fadeIn(500).delay(4000).fadeOut(500);
         jQuery("#GreyMessage").hide().fadeIn(500).delay(4000).fadeOut(500);
 		jQuery("#GreyMessage").html(grey_list[num % grey_list.length]);

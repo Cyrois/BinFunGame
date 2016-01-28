@@ -40,9 +40,9 @@ if __name__ == '__main__':
     t1.start()
     t2 = threading.Thread(target=Display.startDisplay)
     t2.start()
-	t3 = threading.Thread(target=databaseStuff)
-	t3.start()
+    t3 = threading.Thread(target=databaseStuff)
+    t3.start()
 
     t1.join()
     t2.join()
-	t3.join()
+    t3.join()
