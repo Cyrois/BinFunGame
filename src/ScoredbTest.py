@@ -27,6 +27,12 @@ scoreboard.insertScore(test2)
 scoreboard.insertScore(test3)
 scoreboard.insertScore(test4)
 
-scoreboard.getTopScores(list)
+sblist = []
+scoreboard.getTopScores(sblist)
+length = len(sblist)
+print "TOP 10 SCORES"
+for i in range(0, length):
+	print sblist[i]
+
 
 

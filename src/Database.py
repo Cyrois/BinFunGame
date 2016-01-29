@@ -146,7 +146,7 @@ class Database:
             self.db.commit()
 
     #get scores from scoreboard table
-    def getTopScores(self, list):
+    def getTopScores(self, sblist):
        print "GET TOP 10 SCORES"
        #sort score by lowest to highest
        sbquery = "SELECT Name, Score FROM Scoreboard ORDER BY Score ASC, Name ASC"
@@ -157,6 +157,8 @@ class Database:
        print "Number of scores: " + str(length)
        for i in range(0, length):
             name, score = result[i]
-            print str(i) + ", Name: " + str(name) + ", Time: " + str(score)
+            #print str(i) + ", Name: " + str(name) + ", Time: " + str(score)
+            sblist.append(i)
+            sblist[i] = name, score
 
        print "Finished getting scores"
