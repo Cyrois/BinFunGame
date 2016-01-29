@@ -1,4 +1,5 @@
 from Display import Display
+from Database import Database
 import web
 import globalVars
 import test
