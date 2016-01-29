@@ -1,4 +1,3 @@
-import mysql.connector
 import MySQLdb
 import time
 import os.path
