@@ -71,8 +71,8 @@ class Database:
             self.cursor.execute(query)
             # Commit your changes in the database
             self.db.commit()
-		
-	#This is for the server (Html.py)
+        
+    #This is for the server (Html.py)
     #Select: http://zetcode.com/db/mysqlpython/
     #there should be only one row in the table
     def pullCount(self):
