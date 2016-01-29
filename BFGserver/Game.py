@@ -2,6 +2,8 @@
 #!/usr/bin/env python
 
 import web
+import sys
+sys.path.insert(0,'/var/www/BinFunGame/src')
 from Database import Database
 
 class Game:
