@@ -71,6 +71,24 @@ class Database:
             self.cursor.execute(query)
             # Commit your changes in the database
             self.db.commit()
+		
+	#This is for the server (Html.py)
+    #Select: http://zetcode.com/db/mysqlpython/
+    #there should be only one row in the table
+    def pullCount(self):
+        self.setCurrentDate(time.strftime("%d_%m_%Y")) #might be inefficient
+        query = "SELECT *" + " FROM " + self.currentDate + "_count;"
+        try: self.cursor.execute(query)
+        except MySQLdb.Error, e:
+                print "MySQL Error: " + str(e)
+        else:
+                print("Table Creation Success")
+        if( self.cursor.rowcount > 0 ):
+            rows = self.cursor.fetchall()
+            result = rows[0]
+            return result
+        else:
+            print "ERROR: No rows"
             
     def updateDatabase(self, target, black, green, blue, grey):
         print "INSERTING INTO DATABASE"
@@ -82,19 +100,6 @@ class Database:
             
         self.insertCount(black, green, blue, grey)
         self.insertBuffer(target)
-        
-    #Select: http://zetcode.com/db/mysqlpython/
-    #there should be only one row in the table
-    def pullCount(self):
-        self.setCurrentDate(time.strftime("%d_%m_%Y")) #might be inefficient
-        query = "SELECT *" + " FROM " + self.currentDate + "_count;"
-        self.cursor.execute(query)
-        if( self.cursor.rowcount > 0 ):
-            rows = self.cursor.fetchall()
-            result = rows[0]
-            return result
-        else:
-            print "ERROR: No rows"
 
 
     #database functions for the sorting game application
