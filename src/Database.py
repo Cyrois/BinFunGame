@@ -84,7 +84,7 @@ class Database:
 			print "MySQL Error: " + str(e)
         else:    
 			print("Pull Success")
-			result = self.cursor.fetchall()
+			rows = self.cursor.fetchall()
 			if len(result) > 0:
 				result = rows[0]
 				return result
