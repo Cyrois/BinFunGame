@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from Display import Display
 from Database import Database
 import web
