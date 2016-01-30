@@ -11,28 +11,32 @@ class Game:
     app = None
     render = None
     scoreboardList = []
+    scoredb = None
 
     def __init__(self):
         urls = ('/', 'Game')
         self.render = web.template.render('templates/')
         self.app = web.application(urls, globals())
+        #create database for scores
+        self.scoredb = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+        self.scoredb.createScoreboardTable()
 
-    
     @staticmethod
     def startGame():
         BFGGame = Game()
         BFGGame.app.run()
-        #create database for scores
-        scoredb = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
-        scoredb.createScoreboardTable()
 
     def getTopScoreboardList(self):
+        self.scoredb.getTopScores(self.scoreboardList)
         #print "get top 10"
         #print self.scoreboardList[0:10]
         return self.scoreboardList[0:10]
 
     def submitToScoreboard(self,entry):
-        self.scoreboardList.append(entry)
+        #add score to the database
+        self.scoredb.insertScore(entry)
+
+        #self.scoreboardList.append(entry)
         #print "This is scoreboardList"
         #print self.scoreboardList
         #self.scoreboardList.sort()

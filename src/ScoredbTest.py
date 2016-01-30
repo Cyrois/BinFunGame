@@ -16,12 +16,13 @@ from Database import Database
 
 #test scoreboard
 scoreboard = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+scoreboard.dropScoreboardTable()
 scoreboard.createScoreboardTable()
 
-test1 = ["Name,321"]
-test2 = ["Player1,333"]
-test3 = ["Test,123"]
-test4 = ["Test,5123"]
+test1 = {'name':'Player1','score': 4.324}
+test2 = {'name':'MyName','score': 32.5}
+test3 = {'name':'Hello','score': 5.98}
+test4 = {'name':'Player','score': 1.23}
 scoreboard.insertScore(test1)
 scoreboard.insertScore(test2)
 scoreboard.insertScore(test3)
@@ -33,6 +34,3 @@ length = len(sblist)
 print "TOP 10 SCORES"
 for i in range(0, length):
 	print sblist[i]
-
-
-

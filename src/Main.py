@@ -59,24 +59,24 @@ if __name__ == '__main__':
     globalVars.init()
 
     #Start display thread
-    displayThread = threading.Thread(target=Display.startDisplay)
-    displayThread.start()
+    #displayThread = threading.Thread(target=Display.startDisplay)
+    #displayThread.start()
     
     while True:
         if binBuffer.getEmptyFlag() == False:
             mainDeque = binBuffer.flushBuffer()
             #Buffer queue should be empty
-            print "Sending signal to Display "
+            #print "Sending signal to Display "
             #Update global count values
-            print binBuffer.getCount("black")
+            #print binBuffer.getCount("black")
             globalVars.blackCount = binBuffer.getCount("black")
-            print binBuffer.getCount("green")
+            #print binBuffer.getCount("green")
             globalVars.greenCount = binBuffer.getCount("green")
-            print binBuffer.getCount("blue")
+            #print binBuffer.getCount("blue")
             globalVars.blueCount = binBuffer.getCount("blue")
-            print binBuffer.getCount("grey")
+            #print binBuffer.getCount("grey")
             globalVars.greyCount = binBuffer.getCount("grey")
-            print "Sending signal to SD to save "
+            #print "Sending signal to SD to save "
             sdFile.quickAppendBuffer(mainDeque)
             #inserts the buffer to database, and the count values to update the display
             db.updateDatabase(mainDeque, globalVars.blackCount, globalVars.greenCount, globalVars.blueCount, globalVars.greyCount)
