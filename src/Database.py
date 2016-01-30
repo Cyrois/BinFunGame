@@ -85,7 +85,7 @@ class Database:
         else:    
 			print("Pull Success")
 			rows = self.cursor.fetchall()
-			if len(result) > 0:
+			if len(rows) > 0:
 				result = rows[0]
 				return result
 			else:
