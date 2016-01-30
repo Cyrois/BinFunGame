@@ -109,7 +109,6 @@ class Database:
         print "Creating Scoreboard Table.."
         columns = ["Name","Score"]
         sbquery = "CREATE TABLE " + "Scoreboard" + "(" + columns[0] + " VARCHAR(50)," + columns[1] + " FLOAT NOT NULL" + ");"
-        #EX: https://github.com/jat023/CS304_DB/blob/master/src/ca/ubc/cs/cs304/steemproject/access/oraclejdbc/InitializeDatabase.java
         try: self.cursor.execute(sbquery)
         except MySQLdb.Error, e:
                 print "MySQL Error: " + str(e)
@@ -133,28 +132,6 @@ class Database:
         name = entry['name']
         #convert score to float value to be stored
         score = float(str(entry['score']))
-        #get count of how many scores in table
-        sbquery = "SELECT count(*), min(Score) FROM Scoreboard"
-        self.cursor.execute(sbquery)
-        result = self.cursor.fetchone()
-        count, minScore = result
-        print "Count: " + str(count)
-        """
-        if (10 <= count):
-            #if there are 10 or more scores, remove rank 10 
-            sbquery = "SELECT max(Score), Name FROM Scoreboard"
-            self.cursor.execute(sbquery)
-            result = self.cursor.fetchone()
-            dltScore, Name = result
-            print "Score: " + str(dltScore)
-            print "Name: " + str(Name)
-            sbquery = "DELETE FROM Scoreboard WHERE Score = %s" % (dltScore,)
-            print "Delete Rank 10"
-            self.cursor.execute(sbquery)
-            #Commit changes to the database
-            self.db.commit()
-            print "Finished deleting score"
-        """
         #enter new score into table
         sbquery = "INSERT INTO " + "Scoreboard" + " VALUES ( " + "'" + name + "'" + " ," + "'" + "%f" % (score,) + "'" + ");"
         print("Inserting a row: " + sbquery)

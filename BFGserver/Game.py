@@ -3,8 +3,7 @@
 
 import web
 import sys
-#sys.path.insert(0,'/var/www/BinFunGame/src')
-sys.path.insert(0,'C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src')
+sys.path.insert(0,'/var/www/BinFunGame/src')
 from Database import Database
 
 class Game:
@@ -30,12 +29,11 @@ class Game:
     def getTopScoreboardList(self):
         self.scoredb.getTopScores(self.scoreboardList)
         #print "get top 10"
-        print self.scoreboardList[0:10]
+        #print self.scoreboardList[0:10]
         return self.scoreboardList[0:10]
 
     def submitToScoreboard(self,entry):
         #add score to the database
-
         self.scoredb.insertScore(entry)
 
         #self.scoreboardList.append(entry)
@@ -55,8 +53,6 @@ class Game:
         #Submit
         if(web.input().submit == "True"):
             entry = {'name':web.input().name,'score':web.input().score}
-            #print entry['score']
-            #print entry['name']
             self.submitToScoreboard(entry)
         return
 
