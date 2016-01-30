@@ -81,15 +81,15 @@ class Database:
         query = "SELECT *" + " FROM " + self.currentDate + "_count;"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
-                print "MySQL Error: " + str(e)
-        else:
-                print("Table Creation Success")
-        if( self.cursor.rowcount > 0 ):
-            rows = self.cursor.fetchall()
-            result = rows[0]
-            return result
-        else:
-            print "ERROR: No rows"
+			print "MySQL Error: " + str(e)
+        else:    
+			print("Pull Success")
+			result = self.cursor.fetchall()
+			if len(result) > 0:
+				result = rows[0]
+				return result
+			else:
+				print "ERROR: No rows"
             
     def updateDatabase(self, target, black, green, blue, grey):
         print "INSERTING INTO DATABASE"
