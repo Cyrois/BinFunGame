@@ -78,7 +78,7 @@ class Database:
     #there should be only one row in the table
     def pullCount(self):
         self.setCurrentDate(time.strftime("%d_%m_%Y")) #might be inefficient
-        query = "SELECT *" + " FROM " + self.currentDate + "_count;"
+        query = "SELECT *" + " FROM " + self.currentDate + "_Count;"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
 			print "MySQL Error: " + str(e)
