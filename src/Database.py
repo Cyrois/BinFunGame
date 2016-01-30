@@ -35,7 +35,8 @@ class Database:
         except MySQLdb.Error, e:
                 print "MySQL Error: " + str(e)
         else:
-                print("Table Creation Success")
+                query = "INSERT INTO " + date + "_Count" + " VALUES ( " + str(0) + "," + str(0) + "," + str(0) + "," + str(0) + ");"
+                self.cursor.execute(query)
             
     def insertCount(self, black, green, blue, grey):
         query = "UPDATE " + self.currentDate + "_Count" + " SET Black =" + str(black) + ",Green =" + str(green) + ",Blue =" + str(blue) + ",Grey = " + str(grey) + ";" #WHERE some_column=some_value;
