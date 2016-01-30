@@ -30,10 +30,10 @@ def databaseStuff():
         result = db.pullCount()
         #order is black, green, blue, grey
         #todo: check if result length is = 4
-        globalVars.blackCount = result[0]
-        globalVars.greenCount = result[1]
-        globalVars.blueCount = result[2]
-        globalVars.greyCount = result[3]
+        globalVars.blackCount = int(result[0])
+        globalVars.greenCount = int(result[1])
+        globalVars.blueCount = int(result[2])
+        globalVars.greyCount = int(result[3])
         time.sleep(0.1)
 
 if __name__ == '__main__':
