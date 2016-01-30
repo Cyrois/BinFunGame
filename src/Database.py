@@ -108,7 +108,7 @@ class Database:
     def createScoreboardTable(self):
         print "Creating Scoreboard Table.."
         columns = ["Name","Score"]
-        sbquery = "CREATE TABLE " + "Scoreboard" + "(" + columns[0] + " VARCHAR(50)," + columns[1] + " INT NOT NULL" + ");"
+        sbquery = "CREATE TABLE " + "Scoreboard" + "(" + columns[0] + " VARCHAR(50)," + columns[1] + " FLOAT NOT NULL" + ");"
         #EX: https://github.com/jat023/CS304_DB/blob/master/src/ca/ubc/cs/cs304/steemproject/access/oraclejdbc/InitializeDatabase.java
         try: self.cursor.execute(sbquery)
         except MySQLdb.Error, e:
@@ -116,55 +116,73 @@ class Database:
         else:
                 print("Table Creation Success")
 
-    #insert score into scoreboard for game
-    def insertScore(self, target):
-        print "INSERTING INTO SCOREBOARD DATABASE"
+    #delete scoreboard table
+    def dropScoreboardTable(self):
+        print "Deleting Scoreboard Table"
+        sbquery = "DROP TABLE Scoreboard"
+        try: self.cursor.execute(sbquery)
+        except MySQLdb.Error, e:
+                print "MySQL Error: " + str(e)
+        else:
+                print("Table Deletion Success")
 
-        for line in target:
-            #get name and score
-            name = Signal.parseSignal(line)[0] 
-            score = Signal.parseSignal(line)[1]
-            #get count of how many scores in table
-            sbquery = "SELECT count(*), min(Score) FROM Scoreboard"
+    #insert score into scoreboard for game
+    def insertScore(self, entry):
+        print "INSERTING INTO SCOREBOARD DATABASE"
+        #get name and score
+        name = entry['name']
+        #convert score to float value to be stored
+        score = float(str(entry['score']))
+        #get count of how many scores in table
+        sbquery = "SELECT count(*), min(Score) FROM Scoreboard"
+        self.cursor.execute(sbquery)
+        result = self.cursor.fetchone()
+        count, minScore = result
+        print "Count: " + str(count)
+        """
+        if (10 <= count):
+            #if there are 10 or more scores, remove rank 10 
+            sbquery = "SELECT max(Score), Name FROM Scoreboard"
             self.cursor.execute(sbquery)
             result = self.cursor.fetchone()
-            count, Score = result
-            print "Count: " + str(count)
-            if (10 <= count):
-                #if there are 10 or more scores, remove rank 10 
-                sbquery = "SELECT max(Score), Name FROM Scoreboard"
-                self.cursor.execute(sbquery)
-                result = self.cursor.fetchone()
-                Score, Name = result
-                print "Score: " + str(Score)
-                print "Name: " + str(Name)
-                sbquery = "DELETE FROM Scoreboard WHERE Score = %s" % (Score,)
-                print "Delete Rank 10"
-                self.cursor.execute(sbquery)
-                #Commit changes to the database
-                self.db.commit()
-                print "Finished deleting score"
-            #enter new score into table
-            sbquery = "INSERT INTO " + "Scoreboard" + " VALUES ( " + "'" + name + "'" + " ," + "'" + score + "'" + ");"
-            print("Inserting a row: " + sbquery)
+            dltScore, Name = result
+            print "Score: " + str(dltScore)
+            print "Name: " + str(Name)
+            sbquery = "DELETE FROM Scoreboard WHERE Score = %s" % (dltScore,)
+            print "Delete Rank 10"
             self.cursor.execute(sbquery)
-            # Commit your changes in the database
+            #Commit changes to the database
             self.db.commit()
+            print "Finished deleting score"
+        """
+        #enter new score into table
+        sbquery = "INSERT INTO " + "Scoreboard" + " VALUES ( " + "'" + name + "'" + " ," + "'" + "%f" % (score,) + "'" + ");"
+        print("Inserting a row: " + sbquery)
+        self.cursor.execute(sbquery)
+        # Commit your changes in the database
+        self.db.commit()
 
     #get scores from scoreboard table
     def getTopScores(self, sblist):
-       print "GET TOP 10 SCORES"
-       #sort score by lowest to highest
-       sbquery = "SELECT Name, Score FROM Scoreboard ORDER BY Score ASC, Name ASC"
-       self.cursor.execute(sbquery)
-       result = self.cursor.fetchall()
-       #get amount of score 
-       length = len(result)
-       print "Number of scores: " + str(length)
-       for i in range(0, length):
+        print "GET TOP 10 SCORES"
+        #sort score by lowest to highest
+        sbquery = "SELECT Name, Score FROM Scoreboard ORDER BY Score ASC, Name ASC LIMIT 10"
+        self.cursor.execute(sbquery)
+        result = self.cursor.fetchall()
+        #get amount of score 
+        length = len(result)
+        print "Number of scores: " + str(length)
+        if (length >= 10):
+            length = 10
+        else:
+            #if list does not have 10 scores yet
+            for i in range(length, 10):
+                entry = {'name':'Anon','score': 99.99}
+                sblist.insert(i, entry)
+        #return the scores in sblist
+        for i in range(0, length):
             name, score = result[i]
+            entry = {'name':name,'score':score}
             #print str(i) + ", Name: " + str(name) + ", Time: " + str(score)
-            sblist.append(i)
-            sblist[i] = name, score
-
-       print "Finished getting scores"
+            sblist.insert(i, entry)
+        print "Finished getting scores"
