@@ -79,6 +79,7 @@ if __name__ == '__main__':
             #print "Sending signal to SD to save "
             sdFile.quickAppendBuffer(mainDeque)
             #inserts the buffer to database, and the count values to update the display
+			print "calling update database"
             db.updateDatabase(mainDeque, globalVars.blackCount, globalVars.greenCount, globalVars.blueCount, globalVars.greyCount)
             
             #date = time.strftime("%d_%m_%Y") #get current date
