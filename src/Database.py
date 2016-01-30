@@ -38,7 +38,8 @@ class Database:
                 print("Table Creation Success")
             
     def insertCount(self, black, green, blue, grey):
-        query = "UPDATE " + date + "_count" + " SET Black =" + black + ",Green =" + green + ",Blue =" + blue + ",Grey = " + grey + ";" #WHERE some_column=some_value;
+        query = "UPDATE " + self.currentDate + "_Count" + " SET Black =" + str(black) + ",Green =" + str(green) + ",Blue =" + str(blue) + ",Grey = " + str(grey) + ";" #WHERE some_column=some_value;
+        print "Inserting Count.."
         self.cursor.execute(query)
         self.db.commit()
     
@@ -65,9 +66,9 @@ class Database:
             theTime = str(Signal.parseSignal(line)[2])
 
             #SQL Date format: YYYY-MM-DD
-            splitResult = date.split("_")
+            splitResult = self.currentDate.split("_")
             theDate = splitResult[2] + "-" + splitResult[1] + "-" + splitResult[0]
-            query = "INSERT INTO " + date + " VALUES ( " + "'" + color + "'" + " ," + "'" + location + "'" + " ," + "'" + theDate + "'" + " ," + "'" + theTime + "'" + ");"
+            query = "INSERT INTO " + self.currentDate + " VALUES ( " + "'" + color + "'" + " ," + "'" + location + "'" + " ," + "'" + theDate + "'" + " ," + "'" + theTime + "'" + ");"
             self.cursor.execute(query)
             # Commit your changes in the database
             self.db.commit()
