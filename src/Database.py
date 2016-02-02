@@ -42,10 +42,10 @@ class Database:
     def insertCount(self, black, green, blue, grey):
         #query = "UPDATE " + self.currentDate + "_Count" + " SET Black =" + str(black) + ",Green =" + str(green) + ",Blue =" + str(blue) + ",Grey = " + str(grey) + ";" #WHERE some_column=some_value;
         print "Inserting Count.."
-        query = "DELETE * FROM " + self.currentDate + "_Count" + ";"
+        query = "DELETE FROM " + self.currentDate + "_Count" + ";"
         queryTwo = "INSERT INTO " + self.currentDate + "_Count" + " VALUES ( " + str(black) + "," + str(green) + "," + str(blue) + "," + str(grey) + ");"
         self.cursor.execute(query)
-        self.cursor.execute(query2)
+        self.cursor.execute(queryTwo)
         self.db.commit()
     
     #generates a BFG table with name based off of date
