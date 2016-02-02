@@ -25,10 +25,10 @@ def test():
     return
     
 def databaseStuff():
-    #db = Database("localhost", "bfguser", "bfg123", "bfg")
+    db = Database("localhost", "bfguser", "bfg123", "bfg")
     while(1):
         #super slow
-        db = Database("localhost", "bfguser", "bfg123", "bfg")
+        #db = Database("localhost", "bfguser", "bfg123", "bfg")
         result = db.pullCount()
         if( result != None ):
             #order is black, green, blue, grey
@@ -40,7 +40,6 @@ def databaseStuff():
             globalVars.greyCount += 1
         else:
             print("nothing in the db")
-        db.close()
         time.sleep(4)
 
 if __name__ == '__main__':

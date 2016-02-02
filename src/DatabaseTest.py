@@ -58,7 +58,7 @@ db.updateDatabase(testInput1,66,77,88,99)
 db.updateDatabase(testInput1,1,2,3,4)
 
 print("-----------------------------------")
-print("TEST3 - PullCount")
+print("TEST3.0 - PullCount")
 print("-----------------------------------")
 result = db.pullCount()
 print("PullCount1: " + str(result[0]) + "," + str(result[1]) + "," + str(result[2]) + "," + str(result[3]) )
@@ -66,5 +66,20 @@ try:
 	db.insertCount(16,None,13,0)
 except:
 	print "Insert didnt work"
+else:
+	result = db.pullCount()
+	print("PullCount2: " + str(result[0]) + "," + str(result[1]) + "," + str(result[2]) + "," + str(result[3]) )
+
+print("-----------------------------------")
+print("TEST3.1 - Update, then PullCount")
+print("-----------------------------------")
+db.updateDatabase(testInput1,1,1,1,1)
+result = db.pullCount()
+print("PullCount1: " + str(result[0]) + "," + str(result[1]) + "," + str(result[2]) + "," + str(result[3]) )
+try:
+	db.insertCount(16,None,13,0)
+except:
+	print "Insert didnt work"
+db.updateDatabase(testInput1,2,2,2,2)
 result = db.pullCount()
 print("PullCount2: " + str(result[0]) + "," + str(result[1]) + "," + str(result[2]) + "," + str(result[3]) )

@@ -42,9 +42,9 @@ class Database:
     def insertCount(self, black, green, blue, grey):
         #query = "UPDATE " + self.currentDate + "_Count" + " SET Black =" + str(black) + ",Green =" + str(green) + ",Blue =" + str(blue) + ",Grey = " + str(grey) + ";" #WHERE some_column=some_value;
         print "Inserting Count.."
-        query = "DELETE FROM " + self.currentDate + "_Count" + ";"
+        #query = "DELETE FROM " + self.currentDate + "_Count" + ";"
         queryTwo = "INSERT INTO " + self.currentDate + "_Count" + " VALUES ( " + str(black) + "," + str(green) + "," + str(blue) + "," + str(grey) + ");"
-        self.cursor.execute(query)
+        #self.cursor.execute(query)
         self.cursor.execute(queryTwo)
         self.db.commit()
     
@@ -91,8 +91,8 @@ class Database:
             print("Pull Success from: " + self.currentDate + "_Count;" )
             rows = self.cursor.fetchall()
             if len(rows) > 0:
-                result = rows[0]
-                print(str(rows[0]))
+                result = rows[len(rows)-1]
+                print("Result of index " + str((len(rows)-1)) + " is: " + str(rows[len(rows)-1]))
                 return result
             else:
                 print "ERROR: No rows"
