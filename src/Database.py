@@ -33,10 +33,10 @@ class Database:
         query = "CREATE TABLE " + date + "_Count" + "(" + columns[0] + " INT," + columns[1] + " INT," + columns[2] + " INT," + columns[3] + " INT" + ");"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
-                #print "MySQL Error: " + str(e)
+            #print "MySQL Error: " + str(e)
         else:
-                query = "INSERT INTO " + date + "_Count" + " VALUES ( " + str(0) + "," + str(0) + "," + str(0) + "," + str(0) + ");"
-                self.cursor.execute(query)
+            query = "INSERT INTO " + date + "_Count" + " VALUES ( " + str(0) + "," + str(0) + "," + str(0) + "," + str(0) + ");"
+            self.cursor.execute(query)
             
     def insertCount(self, black, green, blue, grey):
         query = "UPDATE " + self.currentDate + "_Count" + " SET Black =" + str(black) + ",Green =" + str(green) + ",Blue =" + str(blue) + ",Grey = " + str(grey) + ";" #WHERE some_column=some_value;
@@ -55,9 +55,9 @@ class Database:
         #EX: https://github.com/jat023/CS304_DB/blob/master/src/ca/ubc/cs/cs304/steemproject/access/oraclejdbc/InitializeDatabase.java
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
-                #print "MySQL Error: " + str(e)
+            #print "MySQL Error: " + str(e)
         else:
-                #print("Table Creation Success")
+            #print("Table Creation Success")
     
     #one table per day??
     #table names by date?
@@ -117,9 +117,9 @@ class Database:
         sbquery = "CREATE TABLE " + "Scoreboard" + "(" + columns[0] + " VARCHAR(50)," + columns[1] + " FLOAT NOT NULL" + ");"
         try: self.cursor.execute(sbquery)
         except MySQLdb.Error, e:
-                print "MySQL Error: " + str(e)
+            print "MySQL Error: " + str(e)
         else:
-                print("Table Creation Success")
+            print("Table Creation Success")
 
     #delete scoreboard table
     def dropScoreboardTable(self):
@@ -127,9 +127,9 @@ class Database:
         sbquery = "DROP TABLE Scoreboard"
         try: self.cursor.execute(sbquery)
         except MySQLdb.Error, e:
-                print "MySQL Error: " + str(e)
+            print "MySQL Error: " + str(e)
         else:
-                print("Table Deletion Success")
+            print("Table Deletion Success")
 
     #insert score into scoreboard for game
     def insertScore(self, entry):
