@@ -30,7 +30,7 @@ class Database:
     def createCountTable(self, date):
         print "Creating Count Table.."
         columns = ["Black","Green","Blue","Grey"]
-        query = "CREATE TABLE IF NOT EXISTS " + date + "_Count" + "(" + columns[0] + " INT," + columns[1] + " INT," + columns[2] + " INT," + columns[3] + " INT" + ");"
+        query = "CREATE TABLE " + date + "_Count" + "(" + columns[0] + " INT," + columns[1] + " INT," + columns[2] + " INT," + columns[3] + " INT" + ");"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
                 print "MySQL Error: " + str(e)
