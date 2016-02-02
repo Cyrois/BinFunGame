@@ -36,12 +36,12 @@ def databaseStuff():
             globalVars.blackCount = int(result[0])
             globalVars.greenCount = int(result[1])
             globalVars.blueCount = int(result[2])
-            #globalVars.greyCount = int(result[3])
-            globalVars.greyCount += 1
+            globalVars.greyCount = int(result[3])
+            #globalVars.greyCount += 1
         else:
             print("nothing in the db")
         db.turnOff()
-        time.sleep(4)
+        time.sleep(3)
 
 if __name__ == '__main__':
     globalVars.init()
