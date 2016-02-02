@@ -53,7 +53,7 @@ if __name__ == '__main__':
     #sdFile.quickInit(headers)
 
     #Init database
-    db = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+    #db = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
     
     #Init global variables
     globalVars.init()
@@ -80,8 +80,10 @@ if __name__ == '__main__':
             sdFile.quickAppendBuffer(mainDeque)
             #inserts the buffer to database, and the count values to update the display
             print "calling update database"
+            db = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
             db.updateDatabase(mainDeque, globalVars.blackCount, globalVars.greenCount, globalVars.blueCount, globalVars.greyCount)
-            
+            db.close()
+			
             #date = time.strftime("%d_%m_%Y") #get current date
             #filePath = relativePath + date + "_" + location + "_" + color + ".csv"
             #print "quickRead: " + str(sdFile.quickRead(filePath))
