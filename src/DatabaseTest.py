@@ -36,9 +36,20 @@ db.insertCount(24,23,22,0)
 #Verified up to here works
 
 print("-----------------------------------")
-print("TEST2 - updateDatabase")
+print("TEST2.0 - createCountTable x2")
 print("-----------------------------------")
-db.updateDatabase(testInput1,22,33,44,55)
+db.createCountTable("TEST1")
+db.createCountTable("TEST1")
+
+print("-----------------------------------")
+print("TEST2.1 - mimic updateDatabse")
+print("-----------------------------------")
+date = time.strftime("%d_%m_%Y")
+db.createCountTable(date)
+
+print("-----------------------------------")
+print("TEST2.2 - updateDatabase")
+print("-----------------------------------")
 db.updateDatabase(testInput1,66,77,88,99)
 db.updateDatabase(testInput1,1,2,3,4)
 
