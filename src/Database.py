@@ -35,6 +35,7 @@ class Database:
         except MySQLdb.Error, e:
                 print "MySQL Error: " + str(e)
         else:
+                print "test0"
                 query = "INSERT INTO " + date + "_Count" + " VALUES ( " + str(0) + "," + str(0) + "," + str(0) + "," + str(0) + ");"
                 self.cursor.execute(query)
             
