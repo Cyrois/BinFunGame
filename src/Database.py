@@ -84,7 +84,7 @@ class Database:
         except MySQLdb.Error, e:
 			print "MySQL Error: " + str(e)
         else:    
-			print("Pull Success")
+			print("Pull Success from: " + self.currentDate + "_Count;" )
 			rows = self.cursor.fetchall()
 			if len(rows) > 0:
 				result = rows[0]
