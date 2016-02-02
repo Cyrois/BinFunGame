@@ -79,7 +79,7 @@ if __name__ == '__main__':
             #print "Sending signal to SD to save "
             sdFile.quickAppendBuffer(mainDeque)
             #inserts the buffer to database, and the count values to update the display
-            print "calling update database"
+            #print "calling update database"
             db = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
             db.updateDatabase(mainDeque, globalVars.blackCount, globalVars.greenCount, globalVars.blueCount, globalVars.greyCount)
             db.turnOff()

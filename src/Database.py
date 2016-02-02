@@ -28,20 +28,19 @@ class Database:
     #One table per day would be fastest. Should delete old tables since they arnt really needed
     #(can use COUNT function on existing signla data to get count values)
     def createCountTable(self, date):
-        print "Creating Count Table.."
+        #print "Creating Count Table.."
         columns = ["Black","Green","Blue","Grey"]
         query = "CREATE TABLE " + date + "_Count" + "(" + columns[0] + " INT," + columns[1] + " INT," + columns[2] + " INT," + columns[3] + " INT" + ");"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
-                print "MySQL Error: " + str(e)
+                #print "MySQL Error: " + str(e)
         else:
-                print "test0"
                 query = "INSERT INTO " + date + "_Count" + " VALUES ( " + str(0) + "," + str(0) + "," + str(0) + "," + str(0) + ");"
                 self.cursor.execute(query)
             
     def insertCount(self, black, green, blue, grey):
         query = "UPDATE " + self.currentDate + "_Count" + " SET Black =" + str(black) + ",Green =" + str(green) + ",Blue =" + str(blue) + ",Grey = " + str(grey) + ";" #WHERE some_column=some_value;
-        print "Inserting Count.."
+        #print "Inserting Count.."
         #query = "DELETE FROM " + self.currentDate + "_Count" + ";"
         #queryTwo = "INSERT INTO " + self.currentDate + "_Count" + " VALUES ( " + str(black) + "," + str(green) + "," + str(blue) + "," + str(grey) + ");"
         self.cursor.execute(query)
@@ -50,15 +49,15 @@ class Database:
     
     #generates a BFG table with name based off of date
     def createBFGTable(self, date):
-        print "Creating BFG Table.."
+        #print "Creating BFG Table.."
         columns = ["ID","Location","Date","Time"]
         query = "CREATE TABLE " + date + "(" + columns[0] + " VARCHAR(15)," + columns[1] + " VARCHAR(50)," + columns[2] + " DATE NOT NULL," + columns[3] + " TIME" + ");"
         #EX: https://github.com/jat023/CS304_DB/blob/master/src/ca/ubc/cs/cs304/steemproject/access/oraclejdbc/InitializeDatabase.java
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
-                print "MySQL Error: " + str(e)
+                #print "MySQL Error: " + str(e)
         else:
-                print("Table Creation Success")
+                #print("Table Creation Success")
     
     #one table per day??
     #table names by date?
@@ -86,9 +85,9 @@ class Database:
         query = "SELECT SQL_NO_CACHE *" + " FROM " + self.currentDate + "_Count;"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
-            print "MySQL Error: " + str(e)
+            #print "MySQL Error: " + str(e)
         else:    
-            print("Pull Success from: " + self.currentDate + "_Count;" )
+            #print("Pull Success from: " + self.currentDate + "_Count;" )
             rows = self.cursor.fetchall()
             if len(rows) > 0:
                 #result = rows[len(rows)-1]
@@ -96,10 +95,10 @@ class Database:
                 result = rows[0]
                 return result
             else:
-                print "ERROR: No rows"
+                #print "ERROR: No rows"
             
     def updateDatabase(self, target, black, green, blue, grey):
-        print "INSERTING INTO DATABASE"
+        #print "INSERTING INTO DATABASE"
         date = time.strftime("%d_%m_%Y") #get current date
         if not self.isCurrentDate(date): #check if the date has changed
             self.createCountTable(date)
