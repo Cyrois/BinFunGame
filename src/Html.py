@@ -28,15 +28,15 @@ def databaseStuff():
     db = Database("localhost", "bfguser", "bfg123", "bfg")
     while(1):
         result = db.pullCount()
-		if( len(result) == 4 ):
+        if( len(result) == 4 ):
             #order is black, green, blue, grey
             #todo: check if result length is = 4
             globalVars.blackCount = int(result[0])
             globalVars.greenCount = int(result[1])
             globalVars.blueCount = int(result[2])
             globalVars.greyCount = int(result[3])
-		else:
-			print("result too small/big")
+        else:
+            print("result too small/big")
         time.sleep(2)
 
 if __name__ == '__main__':
