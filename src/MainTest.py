@@ -92,6 +92,6 @@ if __name__ == '__main__':
         #binBuffer.simulateQueue(test,color)
         
         sleep(3)
-		globalVars.blackCount += 1
-		binBuffer.setEmptyFlag(false)
-	' 
+  globalVars.blackCount += 1
+  binBuffer.setEmptyFlag(false)
+ ' 
