@@ -41,7 +41,7 @@ def databaseStuff():
         else:
             print("nothing in the db")
         db.turnOff()
-        time.sleep(3)
+        time.sleep(0.15)
 
 if __name__ == '__main__':
     globalVars.init()
