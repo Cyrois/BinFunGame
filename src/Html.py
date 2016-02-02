@@ -34,7 +34,7 @@ def databaseStuff():
         globalVars.greenCount = int(result[1])
         globalVars.blueCount = int(result[2])
         globalVars.greyCount = int(result[3])
-        time.sleep(0.1)
+        time.sleep(1)
 
 if __name__ == '__main__':
     globalVars.init()
