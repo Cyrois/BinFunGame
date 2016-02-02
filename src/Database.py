@@ -33,6 +33,7 @@ class Database:
         query = "CREATE TABLE " + date + "_Count" + "(" + columns[0] + " INT," + columns[1] + " INT," + columns[2] + " INT," + columns[3] + " INT" + ");"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
+            pass
             #print "MySQL Error: " + str(e)
         else:
             query = "INSERT INTO " + date + "_Count" + " VALUES ( " + str(0) + "," + str(0) + "," + str(0) + "," + str(0) + ");"
@@ -55,8 +56,10 @@ class Database:
         #EX: https://github.com/jat023/CS304_DB/blob/master/src/ca/ubc/cs/cs304/steemproject/access/oraclejdbc/InitializeDatabase.java
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
+            pass
             #print "MySQL Error: " + str(e)
         else:
+            pass
             #print("Table Creation Success")
     
     #one table per day??
@@ -85,8 +88,9 @@ class Database:
         query = "SELECT SQL_NO_CACHE *" + " FROM " + self.currentDate + "_Count;"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
+            pass
             #print "MySQL Error: " + str(e)
-        else:    
+        else:
             #print("Pull Success from: " + self.currentDate + "_Count;" )
             rows = self.cursor.fetchall()
             if len(rows) > 0:
@@ -95,6 +99,7 @@ class Database:
                 result = rows[0]
                 return result
             else:
+                pass
                 #print "ERROR: No rows"
             
     def updateDatabase(self, target, black, green, blue, grey):
