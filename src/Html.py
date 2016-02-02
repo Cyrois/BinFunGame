@@ -28,7 +28,7 @@ def databaseStuff():
     db = Database("localhost", "bfguser", "bfg123", "bfg")
     while(1):
         result = db.pullCount()
-        if( len(result) == 4 ):
+        if( result != None ):
             #order is black, green, blue, grey
             #todo: check if result length is = 4
             globalVars.blackCount = int(result[0])
