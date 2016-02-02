@@ -25,7 +25,7 @@ testInput2 = ["green, TEST1, 03:59:25", "black, nest, 03:59:26"]
 #db.insertBuffer(testInput2)
 
 print("-----------------------------------")
-print("TEST1")
+print("TEST1 - Create/Insert Count")
 print("-----------------------------------")
 db.setCurrentDate("TEST1")
 db.createCountTable("TEST1")
@@ -36,8 +36,20 @@ db.insertCount(24,23,22,0)
 #Verified up to here works
 
 print("-----------------------------------")
-print("TEST2")
+print("TEST2 - updateDatabase")
 print("-----------------------------------")
 db.updateDatabase(testInput1,22,33,44,55)
 db.updateDatabase(testInput1,66,77,88,99)
 db.updateDatabase(testInput1,1,2,3,4)
+
+print("-----------------------------------")
+print("TEST3 - PullCount")
+print("-----------------------------------")
+result = db.pullCount()
+print("PullCount1: " + str(result[0]) + "," + str(result[1]) + "," + str(result[2]) + "," + str(result[3]) )
+try:
+	db.insertCount(16,None,13,0)
+except:
+	print "Insert didnt work"
+result = db.pullCount()
+print("PullCount2: " + str(result[0]) + "," + str(result[1]) + "," + str(result[2]) + "," + str(result[3]) )
