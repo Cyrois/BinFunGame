@@ -169,3 +169,6 @@ class Database:
             #print str(i) + ", Name: " + str(name) + ", Time: " + str(score)
             sblist.insert(i, entry)
         print "Finished getting scores"
+        
+    def turnOff(self):
+        self.db.close()
