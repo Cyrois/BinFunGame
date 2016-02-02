@@ -34,7 +34,8 @@ def databaseStuff():
             globalVars.blackCount = int(result[0])
             globalVars.greenCount = int(result[1])
             globalVars.blueCount = int(result[2])
-            globalVars.greyCount = int(result[3])
+            #globalVars.greyCount = int(result[3])
+            globalVars.greyCount += 1
         else:
             print("nothing in the db")
         time.sleep(2)

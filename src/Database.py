@@ -40,8 +40,9 @@ class Database:
                 self.cursor.execute(query)
             
     def insertCount(self, black, green, blue, grey):
-        query = "UPDATE " + self.currentDate + "_Count" + " SET Black =" + str(black) + ",Green =" + str(green) + ",Blue =" + str(blue) + ",Grey = " + str(grey) + ";" #WHERE some_column=some_value;
+        #query = "UPDATE " + self.currentDate + "_Count" + " SET Black =" + str(black) + ",Green =" + str(green) + ",Blue =" + str(blue) + ",Grey = " + str(grey) + ";" #WHERE some_column=some_value;
         print "Inserting Count.."
+        query = "DELETE * FROM self.currentDate + "_Count"
         self.cursor.execute(query)
         self.db.commit()
     
@@ -80,7 +81,7 @@ class Database:
     #there should be only one row in the table
     def pullCount(self):
         self.setCurrentDate(time.strftime("%d_%m_%Y")) #might be inefficient
-        query = "SELECT *" + " FROM " + self.currentDate + "_Count;"
+        query = "SELECT SQL_NO_CACHE *" + " FROM " + self.currentDate + "_Count;"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
 			print "MySQL Error: " + str(e)
@@ -89,6 +90,7 @@ class Database:
 			rows = self.cursor.fetchall()
 			if len(rows) > 0:
 				result = rows[0]
+				print(str(rows[0]))
 				return result
 			else:
 				print "ERROR: No rows"
