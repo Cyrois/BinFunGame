@@ -36,7 +36,7 @@ def databaseStuff():
             globalVars.blueCount = int(result[2])
             globalVars.greyCount = int(result[3])
         else:
-            print("result too small/big")
+            print("nothing in the db")
         time.sleep(2)
 
 if __name__ == '__main__':
