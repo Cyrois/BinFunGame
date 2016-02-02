@@ -86,16 +86,16 @@ class Database:
         query = "SELECT SQL_NO_CACHE *" + " FROM " + self.currentDate + "_Count;"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
-        print "MySQL Error: " + str(e)
+            print "MySQL Error: " + str(e)
         else:    
-        print("Pull Success from: " + self.currentDate + "_Count;" )
-        rows = self.cursor.fetchall()
-        if len(rows) > 0:
-            result = rows[0]
-            print(str(rows[0]))
-            return result
-        else:
-            print "ERROR: No rows"
+            print("Pull Success from: " + self.currentDate + "_Count;" )
+            rows = self.cursor.fetchall()
+            if len(rows) > 0:
+                result = rows[0]
+                print(str(rows[0]))
+                return result
+            else:
+                print "ERROR: No rows"
             
     def updateDatabase(self, target, black, green, blue, grey):
         print "INSERTING INTO DATABASE"
