@@ -38,7 +38,7 @@ def databaseStuff():
             globalVars.greyCount += 1
         else:
             print("nothing in the db")
-        time.sleep(2)
+        time.sleep(4)
 
 if __name__ == '__main__':
     globalVars.init()
