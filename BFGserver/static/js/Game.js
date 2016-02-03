@@ -6,12 +6,13 @@ BinFunGame.Game.prototype = {
 	init : function(){
 		this.gameRunning = false;
 		this.endGameScreen = false;
+		this.gameRecyclableArray = this.copyArray(recyclableArray);
+
 	},
 	create: function(){
 
 		this.totalRecyclables = 40;
 		this.maxScore=15;
-
 		//set world dimensions
    		this.game.world.setBounds(0, 0, this.game.width, this.game.height);
 
@@ -52,6 +53,14 @@ BinFunGame.Game.prototype = {
 
 	goToMainMenu: function(){
 		this.game.state.start('MainMenu', true, false);
+	},
+
+	copyArray: function(oldArray){
+		var newArray = [];
+		for(var i=0;i<oldArray.length;i++){
+			newArray[i]=oldArray[i];
+		}
+		return newArray;
 	},
 
 	intro: function(){
@@ -189,9 +198,11 @@ BinFunGame.Game.prototype = {
 
 	generateRecyclable: function(){
 		//Randomly pick a item and add it in the center of world
-		var rand = this.game.rnd.integerInRange(0, (this.totalRecyclables-1));
-		this.recyclable = this.game.add.sprite(this.game.world.centerX,this.game.world.centerY+125,recyclableArray[rand].name);
-		this.recyclable.binType = recyclableArray[rand].binType;
+		var rand = this.game.rnd.integerInRange(0, (this.gameRecyclableArray.length-1));
+		this.recyclable = this.game.add.sprite(this.game.world.centerX,this.game.world.centerY+125,this.gameRecyclableArray[rand].name);
+		this.recyclable.binType = this.gameRecyclableArray[rand].binType;
+		
+		this.gameRecyclableArray.splice(rand,1);
 		
 		this.recyclable.anchor.setTo(0.5);
 
