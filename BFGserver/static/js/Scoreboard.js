@@ -133,9 +133,9 @@ BinFunGame.Scoreboard.prototype = {
 		var indexScore = scoreboard.indexOf('score');
 		var tempScoreboard = [];
 		while(indexScore !==-1){
-			var indexBegin =  indexScore+10;
-			var indexNameBegin = indexBegin+17;
-			var indexEnd = scoreboard.indexOf('\'',indexBegin);
+			var indexBegin =  indexScore+8;
+			var indexEnd = scoreboard.indexOf(',',indexBegin);
+			var indexNameBegin = indexEnd+11;
 			var indexNameEnd = scoreboard.indexOf('\'',indexNameBegin);
 			var entry={name:"", score:0};
 			entry.score = String(scoreboard).substring(indexBegin,indexEnd);

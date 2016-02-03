@@ -10,7 +10,7 @@ BinFunGame.Game.prototype = {
 	create: function(){
 
 		this.totalRecyclables = 40;
-		this.maxScore=5;
+		this.maxScore=15;
 
 		//set world dimensions
    		this.game.world.setBounds(0, 0, this.game.width, this.game.height);
@@ -23,7 +23,7 @@ BinFunGame.Game.prototype = {
    		this.generateSigns();
 
 		//Description
-		var description = "Click to start the game!";
+		var description = "Click to start the game!\nThere is a total of 15 items!";
 	    style = { font: "25px Arial", fill: "#000", align: "center" };
 		this.d = this.game.add.text(this.game.width/2, this.game.height/2 + 150, description, style);
 		this.d.anchor.set(0.5);

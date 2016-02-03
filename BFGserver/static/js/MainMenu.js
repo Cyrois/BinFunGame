@@ -52,7 +52,7 @@ BinFunGame.MainMenu.prototype = {
 		scoreboardButton = this.game.add.button(this.game.width/2, this.game.height/2 + 180, 'scoreboardButton', this.submitToScoreboard, this,1,0,2);
 		scoreboardButton.anchor.set(0.5);
 
-		var instructions = "Click and drag each item to its correct bin as fast as you can!\n Compete for a highscore on the scoreboard!\n\n Click Info to find out more about Sort It Out UBC";
+		var instructions = "Click and drag each item to its correct bin as fast as you can!\nCompete for a highscore on the scoreboard!\n\nClick Info to find out more about Sort It Out UBC";
 	   	style = { font: "20px Arial", fill: "#000", align: "center", wordWrap: true, wordWrapWidth: 300 };
 	    var h = this.game.add.text(this.game.width/2 +90, this.game.height/3, instructions, style);
 	    h.anchor.set(0.5);

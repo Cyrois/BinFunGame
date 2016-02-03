@@ -3,7 +3,8 @@
 
 import web
 import sys
-sys.path.insert(0,'/var/www/BinFunGame/src')
+#sys.path.insert(0,'/var/www/BinFunGame/src')
+sys.path.insert(0,'c:/users/steph/desktop/steph/ubc/y4/capstone/binfungame/src')
 from Database import Database
 
 class Game:
@@ -19,7 +20,7 @@ class Game:
         self.app = web.application(urls, globals())
         #create database for scores
         self.scoredb = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
-        self.scoredb.createScoreboardTable()
+        #self.scoredb.createScoreboardTable()
 
     @staticmethod
     def startGame():
@@ -28,8 +29,8 @@ class Game:
 
     def getTopScoreboardList(self):
         self.scoredb.getTopScores(self.scoreboardList)
-        #print "get top 10"
-        #print self.scoreboardList[0:10]
+        print "get top 10"
+        print self.scoreboardList[0:10]
         return self.scoreboardList[0:10]
 
     def submitToScoreboard(self,entry):
@@ -46,8 +47,8 @@ class Game:
         return  self.render.Game()
     
     def POST(self):
-        #print "This is the web input"
-        #print web.input()
+        print "This is the web input"
+        print web.input()
         if(web.input().submit == "False"):
             return self.getTopScoreboardList()
         #Submit
