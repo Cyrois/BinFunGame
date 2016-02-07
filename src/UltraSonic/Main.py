@@ -32,7 +32,7 @@ def main(argv):
 """
 if __name__ == '__main__':
     #location to store files
-    relativePath = "/home/pi/BinFunGame/src/TempFiles/"
+    relativePath = "/home/pi/BinFunGame/src/UltraSonic/TempFiles/"
     
     mainDeque = deque()
     
