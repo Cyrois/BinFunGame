@@ -40,6 +40,13 @@ do
 				else
 					echo "ping fail";
 					count=$((count+1))
+					#restart wifi
+					if [ $count -eq 120 ];
+					then
+						sudo ifdown wlan0
+						sleep 1;
+						sudo ifup wlan0
+					fi
 					sleep 1;
 				fi
 			done
@@ -47,10 +54,13 @@ do
 			#Else, print FAIL and how many seconds the internet was down for
 			if [ $count -eq 0 ];
 			then
-				printf $time' - OK\n' >> ${currDate}.txt
+				printf $time' - OK' >> ${currDate}.txt
+				#awk 'NR==3 {printf " - LINK: "$3"00% - NOISE: "$4}''' /proc/net/wireless >> ${currDate}.txt
+				awk 'NR==3 {printf " - LINK: "$3"00%"}''' /proc/net/wireless >> ${currDate}.txt
+				printf "\n" >> ${currDate}.txt
 			else
-				awk 'NR==3 {printf $time" - FAIL - DOWNTIME: "$count" - LINK: "$3"00%"" - NOISE: "$4"\n"}''' /proc/net/wireless
-				#printf $time' - FAIL - DOWNTIME: '$count'\n' >> ${currDate}.txt
+				printf $time' - FAIL - DOWNTIME: '$count >> ${currDate}.txt
+				printf "\n" >> ${currDate}.txt
 			fi
 		fi
 	else
