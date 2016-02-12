@@ -68,13 +68,13 @@ if __name__ == '__main__':
             #Buffer queue should be empty
             #print "Sending signal to Display "
             #Update global count values
-            #print binBuffer.getCount("black")
+            print binBuffer.getCount("black")
             globalVars.blackCount = binBuffer.getCount("black")
-            #print binBuffer.getCount("green")
+            print binBuffer.getCount("green")
             globalVars.greenCount = binBuffer.getCount("green")
-            #print binBuffer.getCount("blue")
+            print binBuffer.getCount("blue")
             globalVars.blueCount = binBuffer.getCount("blue")
-            #print binBuffer.getCount("grey")
+            print binBuffer.getCount("grey")
             globalVars.greyCount = binBuffer.getCount("grey")
             #print "Sending signal to SD to save "
             sdFile.quickAppendBuffer(mainDeque)
