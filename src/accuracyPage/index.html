@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Accuracy</title>
+
+	<!-- Include Bootstrap Datepicker -->
+	<link rel="stylesheet" href="bootstrap_datepicker/css/bootstrap-datepicker.css" />
+	<link rel="stylesheet" href="bootstrap_datepicker/css/bootstrap-datepicker3.css" />	
+	
+	<!-- Bootstrap -->
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+
+	<!-- The main css for code -->
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<!-- Datepicker -->
+	<script src="bootstrap_datepicker/js/bootstrap-datepicker.js"></script>
+	<!-- The main script code -->
+	<script src="js/script.js"></script>
+</head>
+
+<body>
+	<div class="page-header">
+		<h1><center>Accuracy Scores</center></h1>
+	</div>
+	
+	<div id="mainContent">
+	
+		<nav class="navbar navbar-inverse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Input Accuracy Data (%)<span class="sr-only">(current)</span></a></li>
+				<li><a href="#">View</a></li>
+			</ul>
+		</nav>
+	
+		<div class="input-tab-container">
+			<div class="input-container">
+				<div class="form-group">
+					<label for="usr">Food Scraps:</label>
+					<input type="text" class="form-control" id="usr">
+					<br>
+					<label for="usr">Recyclable Containers:</label>
+					<input type="text" class="form-control" id="usr">
+					<br>
+					<label for="usr">Paper:</label>
+					<input type="text" class="form-control" id="usr">
+					<br>
+					<label for="usr">Garbage:</label>
+					<input type="text" class="form-control" id="usr">
+				</div>
+			</div>
+
+			<div class="date-container">
+				<div class="datepicker1">
+				</div>
+			</div>
+		
+			<div class="submit-button">
+				<button type="button" class="btn btn-lg btn-primary">Submit</button>
+			</div>
+		</div>
+		 
+		<div class="view-tab-container">
+			<!-- TODO: Contains table that shows the accuracy info
+					There should be some selection options to pick what kind of info you want to show
+					e.g. show all accuracy scores for September, 2015
+			-->
+		</div>
+		
+	</div>
+</body>
+
+</html>
