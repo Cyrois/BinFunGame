@@ -1,18 +1,21 @@
 function submitAccuracyData() {
 	var food = document.getElementById('food').value
 	var recyclables = document.getElementById('recyclables').value
-	var recyclables = document.getElementById('recyclables').value
-	var food = document.getElementById('food').value
-	asdfasfdasf
-	if(this.score!=null && name){
+	var paper = document.getElementById('paper').value
+	var garbage = document.getElementById('garbage').value
+	//TODO: get the date from the calendar
+	var date = "2016-02-22" //temp date
+	if(isNaN(food) || isNaN(recyclables) || isNaN(paper) || isNaN(garbage)){
+		alert("Please make sure all the values in the textboxes are numbers");
+	}
+	else {
 		jQuery.ajax({
 			type: "POST",
-			data: {submit:"True", name : name, score: this.score },
+			data: {submit:"True", food : food, recyclables: recyclables, paper: paper, garbage: garbage, date: date },
 			success: function(data) {
-				this.score=null;
+				console.log("submit success");
 				}
 		});
 	}
-	this.score = null;
-	this.getScoreboardList();
-},
+	console.log("submit function done");
+}
