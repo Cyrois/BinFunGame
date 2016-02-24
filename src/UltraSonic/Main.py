@@ -80,9 +80,9 @@ if __name__ == '__main__':
             sdFile.quickAppendBuffer(mainDeque)
             #inserts the buffer to database, and the count values to update the display
             #print "calling update database"
-            db = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
-            db.updateDatabase(mainDeque, globalVars.blackCount, globalVars.greenCount, globalVars.blueCount, globalVars.greyCount)
-            db.turnOff()
+            #db = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+            #db.updateDatabase(mainDeque, globalVars.blackCount, globalVars.greenCount, globalVars.blueCount, globalVars.greyCount)
+            #db.turnOff()
 			
             #date = time.strftime("%d_%m_%Y") #get current date
             #filePath = relativePath + date + "_" + location + "_" + color + ".csv"
