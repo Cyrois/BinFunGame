@@ -8,8 +8,10 @@ sys.path.insert(0,'/home/chris/BinFunGame/src')
 #sys.path.insert(0,'c:/users/steph/desktop/steph/ubc/y4/capstone/binfunAccuracy/src')
 from Database import Database
 
-
-#TODO: need to setup the Html.py stuff and change port to 8082
+########################################
+#use port 8082
+#python Accuracy.py 8082
+########################################
 
 
 class Accuracy:
