@@ -174,6 +174,36 @@ class Database:
             #print str(i) + ", Name: " + str(name) + ", Time: " + str(score)
             sblist.insert(i, entry)
         print "Finished getting scores"
+
+    ########################################################################    
+    #database functions for the accuracy info  
+    ########################################################################    
+    
+    #one table can fit all the accuracy info (one entry per day)
+    def createAccuracyTable(self):
+        print "Creating Accuracy Table.."
+        columns = ["Food","Recyclables","Paper","Garbage","Date"]
+        query = "CREATE TABLE " + "Accuracy" + "(" + columns[0] + " INT," + columns[1] + " INT," + columns[2] + " INT," + columns[3] + " INT," + columns[4] + " DATE NOT NULL," + "PRIMARY KEY (" + columns[4] + ")" + ");"
+        #EX: https://github.com/jat023/CS304_DB/blob/master/src/ca/ubc/cs/cs304/steemproject/access/oraclejdbc/InitializeDatabase.java
+        try: self.cursor.execute(query)
+        except MySQLdb.Error, e:
+            print "MySQL Error: " + str(e)
+        else:
+            print("Table Creation Success")
+            
+    def insertAccuracy(self, entry):
+        food = entry['food']
+        recyclables = entry['recyclables']
+        paper = entry['paper']
+        garbage = entry['garbage']
+        date = entry['date']
+        print date
+        queryA = "INSERT INTO Accuracy VALUES(" + str(food) + "," + str(recyclables) + "," + str(paper) + "," + str(garbage) + ",'" + date + "') "
+        queryB = "ON DUPLICATE KEY UPDATE Food = VALUES(Food), Recyclables = VALUES(Recyclables), Paper = VALUES(Paper), Garbage = VALUES(Garbage)" + ";"
+        query = queryA + queryB
+        self.cursor.execute(query)
+        self.db.commit()
+        print "Finished inserting Accuracy"
         
     def turnOff(self):
         self.db.close()
