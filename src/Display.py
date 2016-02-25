@@ -47,6 +47,10 @@ class Display:
         colorCount = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
         return colorCount
 
+    def getAllAccuracy(self):
+        colorAccuracy = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
+        return colorAccuracy
+
 
     def GET(self):
         # give copy of the form instance
@@ -56,11 +60,13 @@ class Display:
         return self.render.Display(form, "0")
     
     def POST(self):
-        #print web.input()
+        if (web.input().type == "accuracy"):
+            return self.getAllAccuracy()
+        else:
         #logging.debug(web.input())
         #print color
         #logging.debug(self.getAllCount())
-        return self.getAllCount()
+            return self.getAllCount()
     
     """
     def POST(self):

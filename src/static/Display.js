@@ -26,6 +26,7 @@ jQuery(document).ready(function() {
 	blue_msg.style.display = 'none';
 	black_msg.style.display = 'none';
 	var counter = setInterval(updateCount, 500);
+	var counterAccuracy = setInterval(updateAccuracy, 500);
 
 	//list of bin fun game tips
 	var green_list = new Array();
@@ -109,6 +110,7 @@ jQuery(document).ready(function() {
 	function updateCount() {
 		jQuery.ajax({
 			type: "POST",
+			data: {type:"count"},
 			success: function(data) {
 				var array = parseData(data);
 				num = num + 1;
@@ -140,6 +142,20 @@ jQuery(document).ready(function() {
 					changeBlackPic();
 					prev_black = array[3];
 				}
+			}
+		});
+	}
+
+	function updateAccuracy() {
+		jQuery.ajax({
+			type: "POST",
+			data: {type:"accuracy"},
+			success: function(data){
+				var array = parseData(data);
+				$("#green_accuracy").html(array[0]);
+				$("#grey_accuracy").html(array[1]);
+				$("#blue_accuracy").html(array[2]);
+				$("#black_accuracy").html(array[3]);
 			}
 		});
 	}
