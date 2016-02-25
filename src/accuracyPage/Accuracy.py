@@ -24,9 +24,7 @@ class Accuracy:
         urls = ('/', 'Accuracy')
         self.render = web.template.render('Website/')
         self.app = web.application(urls, globals())
-        #create database for scores
         self.accuracyDB = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
-        #self.scoredb.createScoreboardTable()
 
     @staticmethod
     def startAccuracy():
@@ -41,9 +39,7 @@ class Accuracy:
 
     def insertAccuracy(self,entry):
         print "insertAccuracy"
-        #add accuracy to database
-        #TODO: make function to add to database
-        #self.scoredb.insertScore(entry)
+        self.accuracyDB.insertAccuracy(entry)
 
 
     def GET(self):

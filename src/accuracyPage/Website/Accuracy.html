@@ -8,7 +8,6 @@
 	<title>Accuracy</title>
 
 	<!-- Include Bootstrap Datepicker -->
-	<link rel="stylesheet" href="static/bootstrap_datepicker/css/bootstrap-datepicker.css" />
 	<link rel="stylesheet" href="static/bootstrap_datepicker/css/bootstrap-datepicker3.css" />	
 	
 	<!-- Bootstrap -->
@@ -38,7 +37,7 @@
 	
 		<nav class="navbar navbar-inverse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Input Accuracy Data (%)<span class="sr-only">(current)</span></a></li>
+				<li class="active"><a href="#">Input Accuracy Data (%)</a></li>
 				<li><a href="#">View</a></li>
 			</ul>
 		</nav>
@@ -61,19 +60,24 @@
 			</div>
 
 			<div class="date-container">
-				<div class="datepicker1">
+				<div id="datepicker1" data-provide="datepicker">
+					<input type="hidden" id="my_hidden_input">
 				</div>
 			</div>
-		
+
 			<div class="submit-button">
 				<button type="button" class="btn btn-lg btn-primary" onclick=submitAccuracyData()>Submit</button>
 			</div>
+			<br>
+			<div id="successText">
+				Success!
+			</div>
 		</div>
 		 
-		<div class="view-tab-container">
+		<div class="view-tab-container" style="display: none;">
+			Hello World <br> Hello World <br> Hello World <br> Hello World <br> Hello World <br> Hello World <br> Hello World <br> Hello World <br> Hello World <br> Hello World
 			<!-- TODO: Contains table that shows the accuracy info
-					There should be some selection options to pick what kind of info you want to show
-					e.g. show all accuracy scores for September, 2015
+					Some selection options might be helpful like showing only accuracy data for a specific month
 			-->
 		</div>
 		
