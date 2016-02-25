@@ -22,7 +22,7 @@ def test():
         logging.debug(globalVars.blueCount)
         globalVars.blackCount = input ("Enter black Count: ")
         logging.debug(globalVars.blackCount)
-    return
+    #return
     
 def databaseStuff():
     #db = Database("localhost", "bfguser", "bfg123", "bfg")
@@ -46,13 +46,13 @@ def databaseStuff():
 if __name__ == '__main__':
     globalVars.init()
 
-    #t1 = threading.Thread(target=test)
-    #t1.start()
+    t1 = threading.Thread(target=test)
+    t1.start()
     t2 = threading.Thread(target=Display.startDisplay)
     t2.start()
-    t3 = threading.Thread(target=databaseStuff)
-    t3.start()
+    #t3 = threading.Thread(target=databaseStuff)
+    #t3.start()
 
-    #t1.join()
+    t1.join()
     t2.join()
-    t3.join()
+    #t3.join()

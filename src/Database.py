@@ -1,6 +1,7 @@
 import MySQLdb
 import time
 import os.path
+from datetime import timedelta, date
 from Signal import Signal
 
 class Database:
@@ -101,6 +102,54 @@ class Database:
             else:
                 pass
                 #print "ERROR: No rows"
+
+    #used by getBinData for the range of dates between start and end inputs
+    def daterange(self, start_date, end_date):
+        for n in range(int ((end_date - start_date).days)):
+            yield start_date + timedelta(n)
+
+    def getBinData(self, bindata, entry):
+        print "GETTING BIN DATA"
+        #separate entry into startdate, enddate, binlocation, color
+        startdate = entry['startdate']
+        enddate = entry['enddate']
+        binlocation = entry['binlocation']
+        color = entry['color']
+        #convert startdate and enddate to use daterange function
+        dsplit = startdate.split("-")
+        start_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
+        dsplit = enddate.split("-")
+        end_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
+        #start in bindata list
+        stlist = 0
+        #query for all entries between startdate and enddate
+        #SQL Date format: YYYY-MM-DD
+        for single_date in self.daterange(start_date, end_date):
+            print single_date
+            getdate = single_date.strftime("%d_%m_%Y")
+            #getdate = single_date.strftime("%Y_%m_%d")
+            #check if a table exists for specific date
+            #query = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='%s'" % (getdate,)
+            #self.cursor.execute(query)
+            #result = self.cursor.fetchall()
+            #print result
+            #returning in ID, Location, Date, Time format
+            query = "SELECT * FROM %s " % (getdate,) + "WHERE ID='%s' " % (color,) + "AND Location='%s' " % (binlocation,) + "ORDER BY Date ASC, Time ASC;"
+            self.cursor.execute(query)
+            result = self.cursor.fetchall()
+            #get # of entries in table
+            length = len(result)
+            print "length = " + str(length)
+            #return scores in bindata list
+            for i in range(0, length):
+                ID, Location, Date, Time = result[i]
+                print Time
+                en = {'ID':ID,'Location':Location,'Date':Date,'Time':Time}
+                bindata.insert(stlist+i, en)
+            #change start of bindata list
+            stlist = length
+        #finished compiling all entries
+        print "FINISHED GETTING BIN DATA"
             
     def updateDatabase(self, target, black, green, blue, grey):
         #print "INSERTING INTO DATABASE"
@@ -174,6 +223,36 @@ class Database:
             #print str(i) + ", Name: " + str(name) + ", Time: " + str(score)
             sblist.insert(i, entry)
         print "Finished getting scores"
+
+    ########################################################################    
+    #database functions for the accuracy info  
+    ########################################################################    
+    
+    #one table can fit all the accuracy info (one entry per day)
+    def createAccuracyTable(self):
+        print "Creating Accuracy Table.."
+        columns = ["Food","Recyclables","Paper","Garbage","Date"]
+        query = "CREATE TABLE " + "Accuracy" + "(" + columns[0] + " INT," + columns[1] + " INT," + columns[2] + " INT," + columns[3] + " INT," + columns[4] + " DATE NOT NULL," + "PRIMARY KEY (" + columns[4] + ")" + ");"
+        #EX: https://github.com/jat023/CS304_DB/blob/master/src/ca/ubc/cs/cs304/steemproject/access/oraclejdbc/InitializeDatabase.java
+        try: self.cursor.execute(query)
+        except MySQLdb.Error, e:
+            print "MySQL Error: " + str(e)
+        else:
+            print("Table Creation Success")
+            
+    def insertAccuracy(self, entry):
+        food = entry['food']
+        recyclables = entry['recyclables']
+        paper = entry['paper']
+        garbage = entry['garbage']
+        date = entry['date']
+        print date
+        queryA = "INSERT INTO Accuracy VALUES(" + str(food) + "," + str(recyclables) + "," + str(paper) + "," + str(garbage) + ",'" + date + "') "
+        queryB = "ON DUPLICATE KEY UPDATE Food = VALUES(Food), Recyclables = VALUES(Recyclables), Paper = VALUES(Paper), Garbage = VALUES(Garbage)" + ";"
+        query = queryA + queryB
+        self.cursor.execute(query)
+        self.db.commit()
+        print "Finished inserting Accuracy"
         
     def turnOff(self):
         self.db.close()

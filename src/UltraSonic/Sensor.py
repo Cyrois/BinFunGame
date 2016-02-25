@@ -14,6 +14,7 @@ class Sensor:
         
     #GPIO Input Pin for the Sensor
     __gpiopin = 12
+    __gpiopinTwo = 16
 
     __trig = ''
     __echo = ''
@@ -21,15 +22,21 @@ class Sensor:
     
     #set up GPIO
     def __init__(self, ID, Location):
+	GPIO.cleanup()
         self.__ID = ID
         self.__Location = Location
         
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setwarnings(False)
+        #GPIO.setwarnings(False)
         
         self.__gpiopin = self.getGPIOPin(ID)
-        GPIO.setup(self.__gpiopin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(self.__gpiopin, GPIO.RISING, callback=self.testSendSignal)
+        #GPIO.setup(self.__gpiopin, GPIO.IN)
+	#GPIO.setup(self.__gpiopinTwo, GPIO.IN)
+	GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+	GPIO.setup(self.__gpiopin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(16, GPIO.RISING, callback=self.testSendSignal)
+	GPIO.add_event_detect(self.__gpiopin, GPIO.RISING, callback=self.testSendSignal)
+	"""
 	time.sleep(5)
         
         self.setGPIOPin()
@@ -41,7 +48,7 @@ class Sensor:
         t=threading.Thread(target=self.run)
         t.daemon = True
         t.start()
-    
+    	"""
     def run(self):
         while True:
             #send 10ms high signal to US sensor
