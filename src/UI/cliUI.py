@@ -1,0 +1,70 @@
+
+import sys
+sys.path.insert(0,'c:/users/steph/desktop/steph/ubc/y4/t1/capstone/binfungame/src')
+import web
+#sys.path.insert(0,'/home/chris/BinFunGame/src')
+#sys.path.insert(0,'/var/www/BinFunGame/src')
+from Database import Database
+
+########################################
+#use port 8083
+#python cliUI.py 8083
+########################################
+
+
+class cliUI:
+
+    app = None
+    render = None
+    db = None
+    bindata = []
+
+    def __init__(self):
+        urls = ('/', 'cliUI')
+        self.render = web.template.render('Website/')
+        self.app = web.application(urls, globals())
+        #open database
+        self.db = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+
+    @staticmethod
+    def startUI():
+        BFGclient = cliUI()
+        BFGclient.app.run()
+
+    #retrieve data from database, and return to user
+    def getData(self, entry):
+        print "get Data"
+        #clear bindata list before getting new data
+        del self.bindata[:]
+        self.db.getBinData(self.bindata, entry)
+        #print returned bin data
+        length = len(self.bindata)
+        for i in range(0, length):
+            ID = self.bindata[i]['ID']
+            Location = self.bindata[i]['Location']
+            Date = self.bindata[i]['Date']
+            Time = self.bindata[i]['Time']
+            print "Entry " + str(i) + ": " + str(ID) + ", " + str(Location) + ", " + str(Date) + ", " + str(Time)
+        #print self.bindata[0:length]
+        #TODO: also add to file
+
+    def GET(self):
+        return  self.render.cliUI()
+    
+    def POST(self):
+        print "This is the web input"
+        print web.input()
+        if(web.input().submit == "False"):
+            print "todo"
+			#TODO: uncomment after implement that function
+        if(web.input().submit == "True"):
+            #user submits entry, return data
+            #INPUT FORMAT: 
+            #Start Date & End Date: YYYY-MM-DD
+            entry = {'startdate':web.input().startdate, 'enddate':web.input().enddate, 'binlocation':web.input().binlocation, 'color':web.input().color}
+            self.getData(entry)
+        return
+
+if __name__ == '__main__':
+
+    cliUI.startUI()

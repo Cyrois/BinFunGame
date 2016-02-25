@@ -1,0 +1,31 @@
+#header, #mainContent, #footer {
+    margin:0px auto;
+    overflow: auto;
+    width: 980px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.input-container {
+	display: block;
+	float: left;
+	width: 50%;
+	height: 350px;
+}
+
+.date-container {
+	display: block;
+	float: right;
+	width: 50%;
+	height: 350px;
+	text-align: center;
+}
+
+.datepicker1 {
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.submit-button {
+	text-align: center;
+}
