@@ -3,8 +3,8 @@
 
 import web
 import sys
-sys.path.insert(0,'/home/chris/BinFunGame/src')
-#sys.path.insert(0,'/var/www/BinFunGame/src')
+#sys.path.insert(0,'/home/chris/BinFunGame/src')
+sys.path.insert(0,'/var/www/BinFunGame/src')
 #sys.path.insert(0,'c:/users/steph/desktop/steph/ubc/y4/capstone/binfunAccuracy/src')
 from Database import Database
 
