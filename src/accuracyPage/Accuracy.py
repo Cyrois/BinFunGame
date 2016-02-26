@@ -24,22 +24,23 @@ class Accuracy:
         urls = ('/', 'Accuracy')
         self.render = web.template.render('Website/')
         self.app = web.application(urls, globals())
-        self.accuracyDB = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
 
     @staticmethod
     def startAccuracy():
         BFGAccuracy = Accuracy()
         BFGAccuracy.app.run()
-		
+        
     def getAccuracy(self):
         print "getAccuracy"
-		#get accuracy from database
+        #get accuracy from database
         #TODO: make get from database function
-		#self.scoredb.getTopScores(self.scoreboardList)
+        #self.scoredb.getTopScores(self.scoreboardList)
 
     def insertAccuracy(self,entry):
         print "insertAccuracy"
-        self.accuracyDB.insertAccuracy(entry)
+        accuracyDB = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+        accuracyDB.insertAccuracy(entry)
+        accuracyDB.turnOff()
 
 
     def GET(self):
@@ -50,10 +51,10 @@ class Accuracy:
         print web.input()
         if(web.input().submit == "False"):
             print "todo"
-			#TODO: uncomment after implement that function
+            #TODO: uncomment after implement that function
             #return self.getAccuracy()
         if(web.input().submit == "True"):
-			#TODO: make the database table
+            #TODO: make the database table
             entry = {'food':web.input().food, 'recyclables':web.input().recyclables, 'paper':web.input().paper, 'garbage':web.input().garbage, 'date':web.input().date}
             self.insertAccuracy(entry)
         return
