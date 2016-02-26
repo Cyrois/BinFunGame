@@ -57,8 +57,8 @@ class Display:
         colorAccuracy = displayDB.pullAccuracy(yesterday.strftime("%Y-%m-%d"))
         displayDB.turnOff()
         print colorAccuracy
-        result=[int(colorAccuracy[0]),int(colorAccuracy[1]),int(colorAccuracy[2]),int(colorAccuracy[3]),colorAccuracy[4]]
-        return result
+        #result=[int(colorAccuracy[0]),int(colorAccuracy[1]),int(colorAccuracy[2]),int(colorAccuracy[3]),colorAccuracy[4]]
+        return colorAccuracy
 
 
     def GET(self):
