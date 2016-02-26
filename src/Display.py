@@ -58,7 +58,7 @@ class Display:
         displayDB.turnOff()
         print colorAccuracy
         result=[int(colorAccuracy[0]),int(colorAccuracy[1]),int(colorAccuracy[2]),int(colorAccuracy[3])]
-        return colorAccuracy
+        return result
 
 
     def GET(self):
