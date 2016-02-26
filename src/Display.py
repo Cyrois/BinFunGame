@@ -53,7 +53,7 @@ class Display:
 
     def getAllAccuracy(self):
         #colorAccuracy = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
-        yesterday = date.today() - timedelta(1)
+        yesterday = datetime.now() - timedelta(days=1)
         colorAccuracy = self.displayDB.pullAccuracy(yesterday.strftime("%Y-%d-%m"))
         print colorAccuracy[0]
         return colorAccuracy[0]
