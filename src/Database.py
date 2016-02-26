@@ -253,8 +253,8 @@ class Database:
         self.cursor.execute(query)
         self.db.commit()
         print "Finished inserting Accuracy"
-		
-	def pullAccuracy(self, date):
+        
+    def pullAccuracy(self, date):
         query = "SELECT * " + "FROM " + "Accuracy " + "WHERE Date = " + date + ";"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
