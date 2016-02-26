@@ -253,6 +253,21 @@ class Database:
         self.cursor.execute(query)
         self.db.commit()
         print "Finished inserting Accuracy"
+		
+	def pullAccuracy(self, date):
+        query = "SELECT * " + "FROM " + "Accuracy " + "WHERE Date = " + date + ";"
+        try: self.cursor.execute(query)
+        except MySQLdb.Error, e:
+            pass
+            #print "MySQL Error: " + str(e)
+        else:
+            print("Pull Success")
+            rows = self.cursor.fetchall()
+            if len(rows) > 0:
+                result = rows[0]
+                return result
+            else:
+                print "No rows found"
         
     def turnOff(self):
         self.db.close()

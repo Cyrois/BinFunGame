@@ -5,6 +5,8 @@
 import web
 import globalVars
 import logging
+import datetime
+from Database import Database
 # from time import strftime
 
 class Display:
@@ -12,6 +14,7 @@ class Display:
     app = None
     my_form = None
     render = None
+	displayDB = None
 
     def __init__(self):
         urls = ('/', 'Display')
@@ -19,6 +22,7 @@ class Display:
         # HTML templates with render
         self.render = web.template.render('templates/')
         self.app = web.application(urls, globals())
+		self.displayDB = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
         # creates an HTML text entry box that we render
         self.my_form = web.form.Form(
                                 web.form.Textbox('', class_='textfield', id='textfield'),
@@ -48,8 +52,11 @@ class Display:
         return colorCount
 
     def getAllAccuracy(self):
-        colorAccuracy = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
-        return colorAccuracy
+        #colorAccuracy = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
+		yesterday = date.today() - timedelta(1)
+		colorAccuracy = self.displayDB.pullAccuracy(yesterday.strftime("%Y-%d-%m"))
+        print colorAccuracy[0]
+        return colorAccuracy[0]
 
 
     def GET(self):

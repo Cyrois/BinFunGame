@@ -150,7 +150,9 @@ jQuery(document).ready(function() {
 		jQuery.ajax({
 			type: "POST",
 			data: {type:"accuracy"},
+			console.log("accuracy pull start");
 			success: function(data){
+				console.log("accuracy pull success");
 				var array = parseData(data);
 				$("#green_accuracy").html(array[0]);
 				$("#grey_accuracy").html(array[1]);
