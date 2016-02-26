@@ -256,6 +256,7 @@ class Database:
         
     def pullAccuracy(self, date):
         query = "SELECT * " + "FROM " + "Accuracy " + "WHERE Date = '" + date + "';"
+		print("The query: " + query)
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
             print "MySQL Error: " + str(e)
