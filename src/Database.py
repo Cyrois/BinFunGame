@@ -258,8 +258,7 @@ class Database:
         query = "SELECT * " + "FROM " + "'Accuracy' " + "WHERE Date = '" + date + "';"
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
-            pass
-            #print "MySQL Error: " + str(e)
+            print "MySQL Error: " + str(e)
         else:
             print("Pull Success")
             rows = self.cursor.fetchall()
