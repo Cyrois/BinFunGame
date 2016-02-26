@@ -154,7 +154,7 @@ jQuery(document).ready(function() {
 			success: function(data){
 				console.log("accuracy pull success");
 				var array = parseData(data);
-				$("#green_accuracy").html(array[0]);
+				$("#green_accuracy").html(parseInt(array[0]);
 				$("#grey_accuracy").html(array[1]);
 				$("#blue_accuracy").html(array[2]);
 				$("#black_accuracy").html(array[3]);
