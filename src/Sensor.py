@@ -11,34 +11,47 @@ class Sensor:
     __Location = '' #the location of the sensor
         
     #GPIO Input Pin for the Sensor
-    __gpiopin = 7
+    __gpiopin1 = 7
+    __gpiopin2 = 7
 
     #set up GPIO
     def __init__(self, ID, Location):
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setwarnings(False)
-        self.__gpiopin = self.getGPIOPin(ID)
-        GPIO.setup(self.__gpiopin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.cleanup()
         self.__ID = ID
         self.__Location = Location
-	#time.sleep(10)
-        GPIO.add_event_detect(self.__gpiopin, GPIO.RISING, callback=self.testSendSignal)
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setwarnings(False)
+        #self.__gpiopin = self.getGPIOPin(ID)
+        self.setGPIOPin(ID)
+    
+        GPIO.setup(self.__gpiopin1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(self.__gpiopin2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(self.__gpiopin1, GPIO.RISING, callback=self.testSendSignal)
+        GPIO.add_event_detect(self.__gpiopin2, GPIO.RISING, callback=self.testSendSignal)
 
     def testSendSignal(self, pinNumber):
         print "signal callback from signal: " + str(pinNumber)
         self.sendSignal()
 
-    def getGPIOPin(self, ID):
+    def setGPIOPin(self, ID):
         if ID is "black":
-            return 16
+            self.__gpiopin1 = 16
+            self.__gpiopin2 = 18
+            return
         elif ID is "green":
-            return 11
+            self.__gpiopin1 = 11
+            self.__gpiopin2 = 13
+            return
         elif ID is "blue":
-            return 12
+            self.__gpiopin1 = 12
+            self.__gpiopin2 = 22
+            return
         elif ID is "grey":
-            return 7
+            self.__gpiopin1 = 7
+            self.__gpiopin2 = 15
+            return
         else:
-            return 0
+            return 
 
     #wait for sensor to turn on
     def listenSignal(self):

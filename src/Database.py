@@ -256,13 +256,11 @@ class Database:
         
     def pullAccuracy(self, date):
         query = "SELECT * " + "FROM " + "Accuracy " + "WHERE Date = '" + date + "';"
-        print("The query: " + query)
-        print("The query: " + query)
         try: self.cursor.execute(query)
         except MySQLdb.Error, e:
             print "MySQL Error: " + str(e)
         else:
-            print("Pull Success")
+            #print("Pull Success")
             rows = self.cursor.fetchall()
             if len(rows) > 0:
                 result = rows[0]
