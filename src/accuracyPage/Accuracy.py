@@ -1,14 +1,17 @@
 # Run Html.py and load "http://localhost:8080/" in a browser
 #!/usr/bin/env python
 
-import web
 import sys
-sys.path.insert(0,'/var/www/BinFunAccuracy/src')
+#sys.path.insert(0,'/home/chris/BinFunGame/src')
+sys.path.insert(0,'/var/www/BinFunGame/src')
 #sys.path.insert(0,'c:/users/steph/desktop/steph/ubc/y4/capstone/binfunAccuracy/src')
+import web
 from Database import Database
 
-
-#TODO: need to setup the Html.py stuff and change port to 8082
+########################################
+#use port 8082
+#python Accuracy.py 8082
+########################################
 
 
 class Accuracy:
@@ -21,24 +24,23 @@ class Accuracy:
         urls = ('/', 'Accuracy')
         self.render = web.template.render('Website/')
         self.app = web.application(urls, globals())
-        #create database for scores
-        self.accuracyDB = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
-        #self.scoredb.createScoreboardTable()
 
     @staticmethod
     def startAccuracy():
         BFGAccuracy = Accuracy()
         BFGAccuracy.app.run()
-		
+        
     def getAccuracy(self):
-		#get accuracy from database
+        print "getAccuracy"
+        #get accuracy from database
         #TODO: make get from database function
-		#self.scoredb.getTopScores(self.scoreboardList)
+        #self.scoredb.getTopScores(self.scoreboardList)
 
     def insertAccuracy(self,entry):
-        #add accuracy to database
-        #TODO: make function to add to database
-		#self.scoredb.insertScore(entry)
+        print "insertAccuracy"
+        accuracyDB = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+        accuracyDB.insertAccuracy(entry)
+        accuracyDB.turnOff()
 
 
     def GET(self):
@@ -48,10 +50,11 @@ class Accuracy:
         print "This is the web input"
         print web.input()
         if(web.input().submit == "False"):
-			#TODO: uncomment after implement that function
+            print "todo"
+            #TODO: uncomment after implement that function
             #return self.getAccuracy()
         if(web.input().submit == "True"):
-			#TODO: make the database table
+            #TODO: make the database table
             entry = {'food':web.input().food, 'recyclables':web.input().recyclables, 'paper':web.input().paper, 'garbage':web.input().garbage, 'date':web.input().date}
             self.insertAccuracy(entry)
         return

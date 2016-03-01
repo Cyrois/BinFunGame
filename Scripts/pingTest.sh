@@ -41,7 +41,7 @@ do
 					echo "ping fail";
 					count=$((count+1))
 					#restart wifi
-					if [ $count -eq 120 ];
+					if [ $count%40 -eq 39 ];
 					then
 						sudo ifdown wlan0
 						sleep 1;

@@ -5,6 +5,9 @@
 import web
 import globalVars
 import logging
+import datetime
+from datetime import datetime, timedelta
+from Database import Database
 # from time import strftime
 
 class Display:
@@ -47,6 +50,15 @@ class Display:
         colorCount = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
         return colorCount
 
+    def getAllAccuracy(self):
+        #colorAccuracy = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
+        yesterday = datetime.now() - timedelta(days=1)
+        displayDB = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+        colorAccuracy = displayDB.pullAccuracy(yesterday.strftime("%Y-%m-%d"))
+        displayDB.turnOff()
+        result=[int(colorAccuracy[0]),int(colorAccuracy[1]),int(colorAccuracy[2]),int(colorAccuracy[3])]
+        return result
+
 
     def GET(self):
         # give copy of the form instance
@@ -56,11 +68,13 @@ class Display:
         return self.render.Display(form, "0")
     
     def POST(self):
-        #print web.input()
+        if (web.input().type == "accuracy"):
+            return self.getAllAccuracy()
+        else:
         #logging.debug(web.input())
         #print color
         #logging.debug(self.getAllCount())
-        return self.getAllCount()
+            return self.getAllCount()
     
     """
     def POST(self):
