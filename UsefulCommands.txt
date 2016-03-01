@@ -1,0 +1,24 @@
+﻿sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+sudo ifup wlan0
+sudo ifdown wlan0
+
+
+
+
+
+WIFI SETTINGS:
+
+network={
+	ssid="ubcsecure"
+	scan_ssid=1
+	key_mgmt=WPA-EAP
+	proto=WPA2 WPA
+	group=CCMP TKIP
+	pairwise=CCMP TKIP
+	eap=PEAP
+	identity="junhoy"
+	password="South778@"
+	ca_cert="/etc/ssl/certs/Thawte_Premium_Server_CA.pem"
+	phase1="peaplabel=0"
+	phase2="auth=MSCHAPV2"
+}
