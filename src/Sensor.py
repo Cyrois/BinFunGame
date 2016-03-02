@@ -16,7 +16,6 @@ class Sensor:
 
     #set up GPIO
     def __init__(self, ID, Location):
-        GPIO.cleanup()
         self.__ID = ID
         self.__Location = Location
         GPIO.setmode(GPIO.BOARD)
