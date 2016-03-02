@@ -1,10 +1,9 @@
 
 import sys
-sys.path.insert(0,'c:/users/steph/desktop/steph/ubc/y4/t1/capstone/binfungame/src')
+sys.path.insert(0,'/var/www/BinFunGame/src')
 import web
-#sys.path.insert(0,'/home/chris/BinFunGame/src')
-#sys.path.insert(0,'/var/www/BinFunGame/src')
 from Database import Database
+from CSVfile import CSVfile
 
 ########################################
 #use port 8083
@@ -17,7 +16,10 @@ class cliUI:
     app = None
     render = None
     db = None
+    CSVfile = None
     bindata = []
+    #location to store files
+    relativePath = "/var/www/BinFunGame/src/UI/files"
 
     def __init__(self):
         urls = ('/', 'cliUI')
@@ -31,12 +33,14 @@ class cliUI:
         BFGclient = cliUI()
         BFGclient.app.run()
 
-    #retrieve data from database, and return to user
+    #retrieve data from database, and return csv file to user
     def getData(self, entry):
         print "get Data"
         #clear bindata list before getting new data
         del self.bindata[:]
         self.db.getBinData(self.bindata, entry)
+        #create new CSV file to put data in 
+        self.CSVfile = CSVfile(self.relativePath, entry['startdate'], entry['enddate'], entry['binlocation'], entry['color'])
         #print returned bin data
         length = len(self.bindata)
         for i in range(0, length):
@@ -44,9 +48,14 @@ class cliUI:
             Location = self.bindata[i]['Location']
             Date = self.bindata[i]['Date']
             Time = self.bindata[i]['Time']
+            #put data in CSV file
+            target = ID + "," + Location + "," + str(Date) + "," + str(Time)
+            self.CSVfile.quickAppend(target)
             print "Entry " + str(i) + ": " + str(ID) + ", " + str(Location) + ", " + str(Date) + ", " + str(Time)
         #print self.bindata[0:length]
-        #TODO: also add to file
+        #check if correctly written in CSV
+        result = self.CSVfile.quickRead()
+        print result
 
     def GET(self):
         return  self.render.cliUI()

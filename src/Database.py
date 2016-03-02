@@ -135,19 +135,28 @@ class Database:
             #print result
             #returning in ID, Location, Date, Time format
             query = "SELECT * FROM %s " % (getdate,) + "WHERE ID='%s' " % (color,) + "AND Location='%s' " % (binlocation,) + "ORDER BY Date ASC, Time ASC;"
-            self.cursor.execute(query)
-            result = self.cursor.fetchall()
-            #get # of entries in table
-            length = len(result)
-            print "length = " + str(length)
-            #return scores in bindata list
-            for i in range(0, length):
-                ID, Location, Date, Time = result[i]
-                print Time
-                en = {'ID':ID,'Location':Location,'Date':Date,'Time':Time}
-                bindata.insert(stlist+i, en)
-            #change start of bindata list
-            stlist = length
+            #self.cursor.execute(query)
+            #result = self.cursor.fetchall()
+            #add error catch
+            try: self.cursor.execute(query)
+            except MySQLdb.Error, e:
+                pass
+                print "MySQL Error: " + str(e)
+            else:
+                pass
+                print("Success")
+                #get # of entries in table
+                result = self.cursor.fetchall()
+                length = len(result)
+                print "length = " + str(length)
+                #return scores in bindata list
+                for i in range(0, length):
+                    ID, Location, Date, Time = result[i]
+                    print Time
+                    en = {'ID':ID,'Location':Location,'Date':Date,'Time':Time}
+                    bindata.insert(stlist+i, en)
+                #change start of bindata list
+                stlist = length
         #finished compiling all entries
         print "FINISHED GETTING BIN DATA"
             

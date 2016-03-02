@@ -43,7 +43,7 @@ class SDfile(file):
 	#opens the file, write the string to end of file, closes file
 	def quickAppend(self, target):
 		self.f = open(self.relfilePath + self.getCurrentDate + self.__fileExtension, 'a')
-		self.f.write(target)
+		self.f.write(target + '\n')
 		self.f.close()
 
 	#opens the file, writes each string in the buffer to the file, closes file
