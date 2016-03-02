@@ -35,20 +35,20 @@ class Sensor:
 
     def setGPIOPin(self, ID):
         if ID is "black":
-            self.__gpiopin1 = 16
+            self.__gpiopin1 = 16 
             self.__gpiopin2 = 18
             return
         elif ID is "green":
-            self.__gpiopin1 = 11
-            self.__gpiopin2 = 13
+            self.__gpiopin1 = 7
+            self.__gpiopin2 = 11
             return
         elif ID is "blue":
-            self.__gpiopin1 = 12
+            self.__gpiopin1 = 12 
             self.__gpiopin2 = 22
             return
         elif ID is "grey":
-            self.__gpiopin1 = 7
-            self.__gpiopin2 = 15
+            self.__gpiopin1 = 35
+            self.__gpiopin2 = 37
             return
         else:
             return 
