@@ -1,6 +1,7 @@
 
 import sys
 sys.path.insert(0,'/var/www/BinFunGame/src')
+#sys.path.insert(0,'C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src')
 import web
 from Database import Database
 from CSVfile import CSVfile
@@ -19,7 +20,8 @@ class cliUI:
     CSVfile = None
     bindata = []
     #location to store files
-    relativePath = "/var/www/BinFunGame/src/UI/files"
+    relativePath = "/var/www/BinFunGame/src/UI/files/"
+    #relativePath = "C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src/UI/files/"
 
     def __init__(self):
         urls = ('/', 'cliUI')
@@ -52,10 +54,6 @@ class cliUI:
             target = ID + "," + Location + "," + str(Date) + "," + str(Time)
             self.CSVfile.quickAppend(target)
             print "Entry " + str(i) + ": " + str(ID) + ", " + str(Location) + ", " + str(Date) + ", " + str(Time)
-        #print self.bindata[0:length]
-        #check if correctly written in CSV
-        result = self.CSVfile.quickRead()
-        print result
 
     def GET(self):
         return  self.render.cliUI()
@@ -64,8 +62,7 @@ class cliUI:
         print "This is the web input"
         print web.input()
         if(web.input().submit == "False"):
-            print "todo"
-			#TODO: uncomment after implement that function
+			#TODO
         if(web.input().submit == "True"):
             #user submits entry, return data
             #INPUT FORMAT: 

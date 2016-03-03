@@ -8,24 +8,11 @@
 
 .input-container {
 	display: block;
-	float: left;
-	width: 50%;
+	width: 100%;
 	height: 350px;
-}
-
-.date-container {
-	display: block;
-	float: right;
-	width: 50%;
-	height: 350px;
-	text-align: center;
-}
-
-.datepicker1 {
-	display: inline-block;
-	margin: 0 auto;
 }
 
 .submit-button {
+	vertical-align: middle;
 	text-align: center;
 }

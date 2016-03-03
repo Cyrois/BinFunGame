@@ -127,24 +127,15 @@ class Database:
         for single_date in self.daterange(start_date, end_date):
             print single_date
             getdate = single_date.strftime("%d_%m_%Y")
-            #getdate = single_date.strftime("%Y_%m_%d")
-            #check if a table exists for specific date
-            #query = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='%s'" % (getdate,)
-            #self.cursor.execute(query)
-            #result = self.cursor.fetchall()
-            #print result
             #returning in ID, Location, Date, Time format
             query = "SELECT * FROM %s " % (getdate,) + "WHERE ID='%s' " % (color,) + "AND Location='%s' " % (binlocation,) + "ORDER BY Date ASC, Time ASC;"
-            #self.cursor.execute(query)
-            #result = self.cursor.fetchall()
-            #add error catch
+            #add error catch, in case table for specific date doesn't exist
             try: self.cursor.execute(query)
             except MySQLdb.Error, e:
                 pass
-                print "MySQL Error: " + str(e)
+                #print "MySQL Error: " + str(e)
             else:
                 pass
-                print("Success")
                 #get # of entries in table
                 result = self.cursor.fetchall()
                 length = len(result)

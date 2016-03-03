@@ -37,7 +37,6 @@ class CSVfile(file):
 		self.f.close()
 
 	#open file, read everything, close file, return result
-    #TODO need to edit the filePath to include the bin color, not the signal
 	def quickRead(self):
 		result = []
 		self.f = open(self.__filePath, 'r')
