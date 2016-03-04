@@ -13,6 +13,7 @@ class Sensor:
     #GPIO Input Pin for the Sensor
     __gpiopin1 = 7
     __gpiopin2 = 7
+    __timestamp = ''
 
     #set up GPIO
     def __init__(self, ID, Location):
@@ -22,6 +23,7 @@ class Sensor:
         GPIO.setwarnings(False)
         #self.__gpiopin = self.getGPIOPin(ID)
         self.setGPIOPin(ID)
+	self.__timestamp = time.time()
     
         GPIO.setup(self.__gpiopin1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self.__gpiopin2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -29,8 +31,10 @@ class Sensor:
         GPIO.add_event_detect(self.__gpiopin2, GPIO.RISING, callback=self.testSendSignal)
 
     def testSendSignal(self, pinNumber):
-        print "signal callback from signal: " + str(pinNumber)
-        self.sendSignal()
+	a = self.__timestamp + datetime.timedelta(milliseconds=100)
+	if time.time() > a:
+	    print "signal callback from signal: " + str(pinNumber)
+	    self.sendSignal()
 
     def setGPIOPin(self, ID):
         if ID is "black":
@@ -66,6 +70,7 @@ class Sensor:
     def sendSignal(self):           
         #send date, time and id
         #need to send to queue instead 
+	self.__timestamp = time.time()
         dateTime = datetime.datetime.utcnow()
         print dateTime
         self.__signal = Signal.initializeSignal(self.__ID, self.__Location, dateTime)
