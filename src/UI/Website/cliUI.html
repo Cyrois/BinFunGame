@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Bin Fun Game</title>
+	
+	<!-- Bootstrap -->
+	<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+
+	<!-- The main css for code -->
+	<link rel="stylesheet" type="text/css" href="static/css/style.css" />
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="static/bootstrap/js/bootstrap.min.js"></script>
+	<!-- The main script code -->
+	<script src="static/js/script.js"></script>
+	<script src="static/js/cliUI.js"></script>
+</head>
+
+<body>
+	<div class="page-header">
+		<h1><center>Bin Fun Game Data</center></h1>
+	</div>
+	
+	<div id="mainContent">
+	
+		<nav class="navbar navbar-inverse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Get Bin Data<span class="sr-only">(current)</span></a></li>
+			</ul>
+		</nav>
+	
+		<div class="input-tab-container">
+			<div class="input-container">
+				<div class="form-group">
+					<label for="usr">Start Date:</label>
+					<input type="text" class="form-control" id="startdate">
+					<br>
+					<label for="usr">End Date:</label>
+					<input type="text" class="form-control" id="enddate">
+					<br>
+					<label for="usr">Bin Location:</label>
+					<input type="text" class="form-control" id="binlocation">
+					<br>
+					<label for="usr">Bin Color:</label>
+					<input type="text" class="form-control" id="color">
+				</div>
+			</div>
+		
+			<div class="submit-button">
+				<button type="button" class="btn btn-lg btn-primary" onclick=getData()>Submit</button>
+			</div>
+		</div>
+		
+	</div>
+</body>
+
+</html>

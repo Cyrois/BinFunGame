@@ -146,6 +146,9 @@ class Sensor:
         self.setEmptyFlag(True)
         return self.__signal
 
+    def listenSignal(self):
+	return
+
     def calibrateSensor(self):
         print "Calibrating Sensor ", self.__ID
         print "Warming up..."

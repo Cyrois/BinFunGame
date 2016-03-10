@@ -1,0 +1,21 @@
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+	ssid="ubcvisitor"
+	key_mgmt=NONE
+}
+
+network={
+	ssid="ubcsecure"
+	scan_ssid=1
+	key_mgmt=WPA-EAP
+	group=CCMP TKIP
+	eap=PEAP
+	identity="junhoy"
+	password="South778@"
+	ca_cert="/etc/ssl/certs/Thawte_Premium_Server_CA.pem"
+	phase1="peaplabel=0"
+	phase2="auth=MSCHAPV2"
+}
+

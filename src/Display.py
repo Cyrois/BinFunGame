@@ -5,6 +5,9 @@
 import web
 import globalVars
 import logging
+import datetime
+from datetime import datetime, timedelta
+from Database import Database
 # from time import strftime
 
 class Display:
@@ -48,8 +51,13 @@ class Display:
         return colorCount
 
     def getAllAccuracy(self):
-        colorAccuracy = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
-        return colorAccuracy
+        #colorAccuracy = [globalVars.greenCount,globalVars.greyCount,globalVars.blueCount,globalVars.blackCount]
+        yesterday = datetime.now() - timedelta(days=1)
+        displayDB = Database("54.218.32.132", "bfguser", "bfg123", "bfg")
+        colorAccuracy = displayDB.pullAccuracy(yesterday.strftime("%Y-%m-%d"))
+        displayDB.turnOff()
+        result=[int(colorAccuracy[0]),int(colorAccuracy[1]),int(colorAccuracy[2]),int(colorAccuracy[3])]
+        return result
 
 
     def GET(self):
