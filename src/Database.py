@@ -85,7 +85,7 @@ class Database:
     #Select: http://zetcode.com/db/mysqlpython/
     #there should be only one row in the table
     def pullCount(self):
-        print "pulling count from table: " + self.currentDate + "_Count"
+        #print "pulling count from table: " + self.currentDate + "_Count"
         self.setCurrentDate(time.strftime("%d_%m_%Y")) #might be inefficient
         query = "SELECT SQL_NO_CACHE *" + " FROM " + self.currentDate + "_Count;"
         try: self.cursor.execute(query)
