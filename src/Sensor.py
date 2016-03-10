@@ -31,7 +31,7 @@ class Sensor:
         GPIO.add_event_detect(self.__gpiopin2, GPIO.RISING, callback=self.testSendSignal)
 
     def testSendSignal(self, pinNumber):
-	a = self.__timestamp + datetime.timedelta(milliseconds=300)
+	a = self.__timestamp + datetime.timedelta(milliseconds=500)
 	if datetime.datetime.now() > a:
 	    print "signal callback from signal: " + str(pinNumber)
 	    self.sendSignal()
