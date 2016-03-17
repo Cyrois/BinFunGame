@@ -26,7 +26,7 @@ jQuery(document).ready(function() {
 	blue_msg.style.display = 'none';
 	black_msg.style.display = 'none';
 	var counter = setInterval(updateCount, 500);
-	var counterAccuracy = setInterval(updateAccuracy, 500);
+	var counterAccuracy = setInterval(updateAccuracy, 1800000);
 
 	//list of bin fun game tips
 	var green_list = new Array();

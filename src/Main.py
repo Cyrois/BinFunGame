@@ -59,8 +59,8 @@ if __name__ == '__main__':
     globalVars.init()
 
     #Start display thread
-    #displayThread = threading.Thread(target=Display.startDisplay)
-    #displayThread.start()
+    displayThread = threading.Thread(target=Display.startDisplay)
+    displayThread.start()
     
     while True:
         if binBuffer.getEmptyFlag() == False:
