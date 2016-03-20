@@ -1,0 +1,138 @@
+96.49.214.138:65496 - - [19/Mar/2016 18:57:25] "HTTP/1.1 GET /" - 200 OK
+96.49.214.138:65496 - - [19/Mar/2016 18:57:26] "HTTP/1.1 GET /static/js/script.js" - 304 Not Modified
+96.49.214.138:49160 - - [19/Mar/2016 18:58:22] "HTTP/1.1 GET /" - 200 OK
+173.252.90.238:18985 - - [19/Mar/2016 18:58:22] "HTTP/1.1 GET /" - 200 OK
+24.86.211.42:57723 - - [19/Mar/2016 18:58:31] "HTTP/1.1 GET /" - 200 OK
+24.86.211.42:57723 - - [19/Mar/2016 18:58:32] "HTTP/1.1 GET /static/bootstrap/css/bootstrap.min.css" - 200 
+24.86.211.42:57726 - - [19/Mar/2016 18:58:32] "HTTP/1.1 GET /static/bootstrap/css/bootstrap-theme.min.css" - 200 
+24.86.211.42:57730 - - [19/Mar/2016 18:58:32] "HTTP/1.1 GET /static/css/style.css" - 200 
+24.86.211.42:57733 - - [19/Mar/2016 18:58:32] "HTTP/1.1 GET /static/bootstrap/js/bootstrap.min.js" - 200 
+24.86.211.42:57736 - - [19/Mar/2016 18:58:32] "HTTP/1.1 GET /static/js/script.js" - 200 
+24.86.211.42:57739 - - [19/Mar/2016 18:58:33] "HTTP/1.1 GET /static/js/cliUI.js" - 200 
+24.86.211.42:57739 - - [19/Mar/2016 18:58:33] "HTTP/1.1 GET /favicon.ico" - 404 Not Found
+Traceback (most recent call last):
+  File "/var/www/BinFunGame/src/web/application.py", line 239, in process
+    return self.handle()
+  File "/var/www/BinFunGame/src/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/var/www/BinFunGame/src/web/application.py", line 420, in _delegate
+    return handle_class(cls)
+  File "/var/www/BinFunGame/src/web/application.py", line 396, in handle_class
+    return tocall(*args)
+  File "./cliUI.py", line 71, in POST
+    self.getData(entry)
+  File "./cliUI.py", line 43, in getData
+    self.db.getBinData(self.bindata, entry)
+  File "/var/www/BinFunGame/src/Database.py", line 121, in getBinData
+    start_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
+IndexError: list index out of range
+
+24.86.211.42:57751 - - [19/Mar/2016 18:59:24] "HTTP/1.1 POST /" - 500 Internal Server Error
+Traceback (most recent call last):
+  File "/var/www/BinFunGame/src/web/application.py", line 239, in process
+    return self.handle()
+  File "/var/www/BinFunGame/src/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/var/www/BinFunGame/src/web/application.py", line 420, in _delegate
+    return handle_class(cls)
+  File "/var/www/BinFunGame/src/web/application.py", line 396, in handle_class
+    return tocall(*args)
+  File "./cliUI.py", line 71, in POST
+    self.getData(entry)
+  File "./cliUI.py", line 43, in getData
+    self.db.getBinData(self.bindata, entry)
+  File "/var/www/BinFunGame/src/Database.py", line 121, in getBinData
+    start_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
+IndexError: list index out of range
+
+24.86.211.42:57751 - - [19/Mar/2016 18:59:28] "HTTP/1.1 POST /" - 500 Internal Server Error
+Traceback (most recent call last):
+  File "/var/www/BinFunGame/src/web/application.py", line 239, in process
+    return self.handle()
+  File "/var/www/BinFunGame/src/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/var/www/BinFunGame/src/web/application.py", line 420, in _delegate
+    return handle_class(cls)
+  File "/var/www/BinFunGame/src/web/application.py", line 396, in handle_class
+    return tocall(*args)
+  File "./cliUI.py", line 71, in POST
+    self.getData(entry)
+  File "./cliUI.py", line 43, in getData
+    self.db.getBinData(self.bindata, entry)
+  File "/var/www/BinFunGame/src/Database.py", line 121, in getBinData
+    start_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
+IndexError: list index out of range
+
+24.86.211.42:57751 - - [19/Mar/2016 18:59:29] "HTTP/1.1 POST /" - 500 Internal Server Error
+Traceback (most recent call last):
+  File "/var/www/BinFunGame/src/web/application.py", line 239, in process
+    return self.handle()
+  File "/var/www/BinFunGame/src/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/var/www/BinFunGame/src/web/application.py", line 420, in _delegate
+    return handle_class(cls)
+  File "/var/www/BinFunGame/src/web/application.py", line 396, in handle_class
+    return tocall(*args)
+  File "./cliUI.py", line 71, in POST
+    self.getData(entry)
+  File "./cliUI.py", line 43, in getData
+    self.db.getBinData(self.bindata, entry)
+  File "/var/www/BinFunGame/src/Database.py", line 121, in getBinData
+    start_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
+IndexError: list index out of range
+
+24.86.211.42:57751 - - [19/Mar/2016 18:59:29] "HTTP/1.1 POST /" - 500 Internal Server Error
+Traceback (most recent call last):
+  File "/var/www/BinFunGame/src/web/application.py", line 239, in process
+    return self.handle()
+  File "/var/www/BinFunGame/src/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/var/www/BinFunGame/src/web/application.py", line 420, in _delegate
+    return handle_class(cls)
+  File "/var/www/BinFunGame/src/web/application.py", line 396, in handle_class
+    return tocall(*args)
+  File "./cliUI.py", line 71, in POST
+    self.getData(entry)
+  File "./cliUI.py", line 43, in getData
+    self.db.getBinData(self.bindata, entry)
+  File "/var/www/BinFunGame/src/Database.py", line 121, in getBinData
+    start_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
+IndexError: list index out of range
+
+24.86.211.42:57754 - - [19/Mar/2016 18:59:29] "HTTP/1.1 POST /" - 500 Internal Server Error
+Traceback (most recent call last):
+  File "/var/www/BinFunGame/src/web/application.py", line 239, in process
+    return self.handle()
+  File "/var/www/BinFunGame/src/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/var/www/BinFunGame/src/web/application.py", line 420, in _delegate
+    return handle_class(cls)
+  File "/var/www/BinFunGame/src/web/application.py", line 396, in handle_class
+    return tocall(*args)
+  File "./cliUI.py", line 71, in POST
+    self.getData(entry)
+  File "./cliUI.py", line 43, in getData
+    self.db.getBinData(self.bindata, entry)
+  File "/var/www/BinFunGame/src/Database.py", line 121, in getBinData
+    start_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
+IndexError: list index out of range
+
+24.86.211.42:57757 - - [19/Mar/2016 18:59:29] "HTTP/1.1 POST /" - 500 Internal Server Error
+Traceback (most recent call last):
+  File "/var/www/BinFunGame/src/web/application.py", line 239, in process
+    return self.handle()
+  File "/var/www/BinFunGame/src/web/application.py", line 230, in handle
+    return self._delegate(fn, self.fvars, args)
+  File "/var/www/BinFunGame/src/web/application.py", line 420, in _delegate
+    return handle_class(cls)
+  File "/var/www/BinFunGame/src/web/application.py", line 396, in handle_class
+    return tocall(*args)
+  File "./cliUI.py", line 71, in POST
+    self.getData(entry)
+  File "./cliUI.py", line 43, in getData
+    self.db.getBinData(self.bindata, entry)
+  File "/var/www/BinFunGame/src/Database.py", line 121, in getBinData
+    start_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
+IndexError: list index out of range
+
+24.86.211.42:57757 - - [19/Mar/2016 18:59:30] "HTTP/1.1 POST /" - 500 Internal Server Error
