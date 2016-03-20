@@ -62,7 +62,7 @@ class cliUI:
         print "This is the web input"
         print web.input()
         if(web.input().submit == "False"):
-			#TODO
+            console.log("do nothing")	
         if(web.input().submit == "True"):
             #user submits entry, return data
             #INPUT FORMAT: 
