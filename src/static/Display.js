@@ -175,10 +175,6 @@ jQuery(document).ready(function() {
         green_img.src = "static/gifs/FoodScraps.gif";
         jQuery("#GreenTextBox").hide().fadeIn(500).delay(4000).fadeOut(500);
         jQuery("#GreenMessage").hide().fadeIn(500).delay(4000).fadeOut(500);
-        //jQuery("#GreenTextBox").hide().fadeIn(2000);
-        //jQuery("#GreenMessage").hide().fadeIn(2000);
-        //jQuery("#GreenMessage").fadeOut(4000);
-        //jQuery("#GreenTextBox").fadeOut(4000);
 		jQuery("#GreenMessage").html(green_list[num % green_list.length]);
     }
     function changeGreyPic() {  
