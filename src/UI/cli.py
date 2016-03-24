@@ -1,6 +1,6 @@
 import sys
-#sys.path.insert(0,'/var/www/BinFunGame/src')
-sys.path.insert(0,'C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src')
+sys.path.insert(0,'/var/www/BinFunGame/src')
+#sys.path.insert(0,'C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src')
 import web
 from Database import Database
 from CSVfile import CSVfile
@@ -15,8 +15,8 @@ from CSVfile import CSVfile
 bindata = []
 filePath = ""
 #location to store files
-#relativePath = "/var/www/BinFunGame/src/UI/files/"
-relativePath = "C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src/UI/files/"
+relativePath = "/var/www/BinFunGame/src/UI/files/"
+#relativePath = "C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src/UI/files/"
 urls = ('/', 'default',
         '/downloadfile', 'downloadfile')
 render = web.template.render('Website/')
