@@ -1,6 +1,6 @@
 import sys
-#sys.path.insert(0,'/var/www/BinFunGame/src')
-sys.path.insert(0,'C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src')
+sys.path.insert(0,'/var/www/BinFunGame/src')
+#sys.path.insert(0,'C:/Users/Steph/Desktop/Steph/UBC/Y4/Capstone/BinFunGame/src')
 import web
 from Database import Database
 from CSVfile import CSVfile
@@ -15,8 +15,8 @@ from CSVfile import CSVfile
 bindata = []
 filePath = ""
 #location to store files
-#relativePath = "/var/www/BinFunGame/src/UI/files/"
-relativePath = "C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src/UI/files/"
+relativePath = "/var/www/BinFunGame/src/UI/files/"
+#relativePath = "C:/Users/Steph/Desktop/Steph/UBC/Y4/Capstone/BinFunGame/src/UI/files/"
 urls = ('/', 'default',
         '/downloadfile', 'downloadfile')
 render = web.template.render('Website/')
@@ -33,11 +33,15 @@ def getData(entry):
     CSV = CSVfile(relativePath, entry['startdate'], entry['enddate'], entry['binlocation'], entry['color'])
     #get # of entries so they can be added to CSV
     length = len(bindata)
+    #open file to input data
+    CSV.openFile()
     for i in range(0, length):
         #put data in CSV file
         target = bindata[i]['ID'] + "," + bindata[i]['Location'] + "," + str(bindata[i]['Date']) + "," + str(bindata[i]['Time'])
         CSV.quickAppend(target)
+    CSV.closeFile()
     print "Done putting data into CSV"
+
 
 class default:
     def GET(self):
