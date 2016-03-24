@@ -33,11 +33,15 @@ def getData(entry):
     CSV = CSVfile(relativePath, entry['startdate'], entry['enddate'], entry['binlocation'], entry['color'])
     #get # of entries so they can be added to CSV
     length = len(bindata)
+    #open file to input data
+    CSV.openFile()
     for i in range(0, length):
         #put data in CSV file
         target = bindata[i]['ID'] + "," + bindata[i]['Location'] + "," + str(bindata[i]['Date']) + "," + str(bindata[i]['Time'])
         CSV.quickAppend(target)
+    CSV.closeFile()
     print "Done putting data into CSV"
+
 
 class default:
     def GET(self):

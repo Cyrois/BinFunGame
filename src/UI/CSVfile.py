@@ -29,10 +29,16 @@ class CSVfile(file):
 		file.write(headers + '\n')
 		file.close()
 
-	#opens the file, write the string to end of file, closes file
-	def quickAppend(self, target):
+	#open the file
+	def openFile(self):
 		self.f = open(self.__filePath, 'a')
+
+	#write the string to end of file
+	def quickAppend(self, target):
 		self.f.write(target + '\n')
+
+	#close file
+	def closeFile(self):
 		self.f.close()
 
 	#open file, read everything, close file, return result
