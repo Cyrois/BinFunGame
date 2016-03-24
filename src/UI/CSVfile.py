@@ -1,6 +1,5 @@
 import time
 import os.path
-from Signal import Signal
 
 #Class that represents a csv file
 #Each line represents a row in the table
@@ -45,4 +44,4 @@ class CSVfile(file):
 			result.append(editedLine[0])
 		self.f.close()
 		return result
-
+		

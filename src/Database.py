@@ -108,9 +108,10 @@ class Database:
     def daterange(self, start_date, end_date):
         for n in range(int ((end_date - start_date).days)):
             yield start_date + timedelta(n)
+        yield end_date
 
+    #get all entries in the database between start and end date for specified location and color
     def getBinData(self, bindata, entry):
-        print "GETTING BIN DATA"
         #separate entry into startdate, enddate, binlocation, color
         startdate = entry['startdate']
         enddate = entry['enddate']
@@ -121,12 +122,11 @@ class Database:
         start_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
         dsplit = enddate.split("-")
         end_date = date(int(dsplit[0]), int(dsplit[1]), int(dsplit[2]))
-        #start in bindata list
+        #pointer to the start of the next empty slot in bindata list
         stlist = 0
         #query for all entries between startdate and enddate
         #SQL Date format: YYYY-MM-DD
         for single_date in self.daterange(start_date, end_date):
-            print single_date
             getdate = single_date.strftime("%d_%m_%Y")
             #returning in ID, Location, Date, Time format
             query = "SELECT * FROM %s " % (getdate,) + "WHERE ID='%s' " % (color,) + "AND Location='%s' " % (binlocation,) + "ORDER BY Date ASC, Time ASC;"
@@ -134,23 +134,20 @@ class Database:
             try: self.cursor.execute(query)
             except MySQLdb.Error, e:
                 pass
-                #print "MySQL Error: " + str(e)
             else:
                 pass
                 #get # of entries in table
                 result = self.cursor.fetchall()
                 length = len(result)
-                print "length = " + str(length)
                 #return scores in bindata list
                 for i in range(0, length):
                     ID, Location, Date, Time = result[i]
-                    print Time
                     en = {'ID':ID,'Location':Location,'Date':Date,'Time':Time}
                     bindata.insert(stlist+i, en)
-                #change start of bindata list
-                stlist = length
-        #finished compiling all entries
-        print "FINISHED GETTING BIN DATA"
+                #change pointer to the next empty slot in bindata list
+                stlist = stlist + length
+        #finished compiling all entries into the list 
+        
             
     def updateDatabase(self, target, black, green, blue, grey):
         #print "INSERTING INTO DATABASE"

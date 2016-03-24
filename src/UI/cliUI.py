@@ -1,7 +1,6 @@
-
 import sys
-sys.path.insert(0,'/var/www/BinFunGame/src')
-#sys.path.insert(0,'C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src')
+#sys.path.insert(0,'/var/www/BinFunGame/src')
+sys.path.insert(0,'C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src')
 import web
 from Database import Database
 from CSVfile import CSVfile
@@ -19,9 +18,10 @@ class cliUI:
     db = None
     CSVfile = None
     bindata = []
+    filePath = ""
     #location to store files
-    relativePath = "/var/www/BinFunGame/src/UI/files/"
-    #relativePath = "C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src/UI/files/"
+    #relativePath = "/var/www/BinFunGame/src/UI/files/"
+    relativePath = "C:/Users/Steph/Desktop/Steph/UBC/Y4/T1/Capstone/BinFunGame/src/UI/files/"
 
     def __init__(self):
         urls = ('/', 'cliUI')
@@ -42,6 +42,7 @@ class cliUI:
         del self.bindata[:]
         self.db.getBinData(self.bindata, entry)
         #create new CSV file to put data in 
+        filePath = self.relativePath + entry['startdate'] + "_" + entry['enddate'] + "_" + entry['binlocation'] + "_" + entry['color'] + ".csv"
         self.CSVfile = CSVfile(self.relativePath, entry['startdate'], entry['enddate'], entry['binlocation'], entry['color'])
         #print returned bin data
         length = len(self.bindata)
@@ -56,7 +57,7 @@ class cliUI:
             print "Entry " + str(i) + ": " + str(ID) + ", " + str(Location) + ", " + str(Date) + ", " + str(Time)
 
     def GET(self):
-        return  self.render.cliUI()
+        return self.render.cliUI()
     
     def POST(self):
         print "This is the web input"
@@ -71,6 +72,8 @@ class cliUI:
             self.getData(entry)
         return
 
+
 if __name__ == '__main__':
 
     cliUI.startUI()
+
