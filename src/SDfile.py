@@ -10,93 +10,82 @@ class SDfile(file):
 	__fileExtension = ".csv"
 	__currentDate = ""
 	__locationID = ""
-	self.__filePathBlack = ''
-	self.__filePathGreen = ''
-	self.__filePathBlue = ''
-	self.__filePathGrey = ''
 
-	#constructor that will create a csv file for each of the bins for each new date
 	def __init__(self, relativePath, location):
 		self.relfilePath = relativePath
 		self.setCurrentDate(time.strftime("%d_%m_%Y"))
 		self.__locationID = location
-
-		#create file according to date, location and bin color
-		self.__filePathBlack = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "black" + self.__fileExtension
-		self.__filePathGreen = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "green" + self.__fileExtension
-		self.__filePathBlue = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "blue" + self.__fileExtension
-		self.__filePathGrey = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "grey" + self.__fileExtension
-		
-		#CREATE and initialize the file with headers
+		filePathBlack = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "black" + self.__fileExtension
+		filePathGreen = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "green" + self.__fileExtension
+		filePathBlue = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "blue" + self.__fileExtension
+		filePathGrey = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "grey" + self.__fileExtension
 		self.quickInit(filePathBlack)
 		self.quickInit(filePathGreen)
 		self.quickInit(filePathBlue)
 		self.quickInit(filePathGrey)
 		
-	#get the current date
 	def getCurrentDate(self):
 		return self.__currentDate
 
-	#return true if the current date is the same as the latest file being written to
-	#a false value would indicate that a new file should be created to write the data to
 	def isCurrentDate(self, date):
 		return self.__currentDate == date
 	
-	#set the current date
 	def setCurrentDate(self, date):
 		self.__currentDate = date
 		
-	#CREATE and initialize the file with headers
+	#CREATE and init the file with headers
 	def quickInit(self, filePath):
 		headers = "ID,Location,Date,Time"
 		file = open(filePath, 'w+')
 		file.write(headers + '\n')
 		file.close()
 
+	#opens the file, write the string to end of file, closes file
+	def quickAppend(self, target):
+		self.f = open(self.relfilePath + self.getCurrentDate + self.__fileExtension, 'a')
+		self.f.write(target + '\n')
+		self.f.close()
+
 	#opens the file, writes each string in the buffer to the file, closes file
     #TODO need to edit the filePath to include the bin color, not the signal
-	def quickAppendBuffer(self, data):
+	def quickAppendBuffer(self, target):
 		date = time.strftime("%d_%m_%Y") #get current date
 		if not self.isCurrentDate(date): #check if the date has changed
 			self.setCurrentDate(date);
-
-			#create file according to date, location and bin color
-			self.__filePathBlack = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "black" + self.__fileExtension;
-			self.__filePathGreen = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "green" + self.__fileExtension
-			self.__filePathBlue = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "blue" + self.__fileExtension
-			self.__filePathGrey = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "grey" + self.__fileExtension
-
-			#create a new file if new date
-			if not os.path.isfile(self.__filePathBlack): 
-				self.quickInit(self.__filePathBlack);
-			if not os.path.isfile(self.__filePathGreen):
-				self.quickInit(self.__filePathGreen);
-			if not os.path.isfile(self.__filePathBlue): 
-				self.quickInit(self.__filePathBlue);
-			if not os.path.isfile(self.__filePathGrey): 
-				self.quickInit(self.__filePathGrey);
-		
-		#open all of the current date's files
-		currentFileBlack = open(self.__filePathBlack, 'a');
-		currentFileGreen = open(self.__filePathGreen, 'a');
-		currentFileBlue = open(self.__filePathBlue, 'a');
-		currentFileGrey = open(self.__filePathGrey, 'a');
-
-		#write all the signal data to their respective files
-		for line in data:
+		#create file according to date, location and bin color
+		filePathBlack = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "black" + self.__fileExtension;
+		filePathGreen = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "green" + self.__fileExtension;
+		filePathBlue = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "blue" + self.__fileExtension;
+		filePathGrey = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "grey" + self.__fileExtension;
+		if not os.path.isfile(filePathBlack): #create a new file if new date
+			self.quickInit(filePathBlack);
+		if not os.path.isfile(filePathGreen): #create a new file if new date
+			self.quickInit(filePathGreen);
+		if not os.path.isfile(filePathBlue): #create a new file if new date
+			self.quickInit(filePathBlue);
+		if not os.path.isfile(filePathGrey): #create a new file if new date
+			self.quickInit(filePathGrey);
+		currentFileBlack = open(filePathBlack, 'a');
+		currentFileGreen = open(filePathGreen, 'a');
+		currentFileBlue = open(filePathBlue, 'a');
+		currentFileGrey = open(filePathGrey, 'a');
+		for line in target:
 			color = Signal.parseSignal(line)[0];
 			if not color:
 				return;
 			if color == "black":
+				print("TEST... Printing color: " + color + " to the filepath: " + filePathBlack);
 				currentFileBlack.write(line + '\n');
 			if color == "green":
+				print("TEST... Printing color: " + color + " to the filepath: " + filePathGreen);
 				currentFileGreen.write(line + '\n');
 			if color == "blue":
+				print("TEST... Printing color: " + color + " to the filepath: " + filePathBlue);
 				currentFileGreen.write(line + '\n');
 			if color == "grey":
+				print("TEST... Printing color: " + color + " to the filepath: " + filePathGrey);
 				currentFileGreen.write(line + '\n');
-		
-		#close all of the current date's files	
+				
 		currentFileBlack.close();
 		currentFileGreen.close();
 		currentFileBlue.close();
@@ -112,6 +101,7 @@ class SDfile(file):
 			result.append(editedLine[0])
 		self.f.close()
 		return result
+		
 
 	#Reads the specified line and returns an array of strings where each entry represents a column
 	def readLine(self,number):
@@ -126,4 +116,9 @@ class SDfile(file):
 				break
 		self.f.close()
 		return result
+	
+	#Probably don't need to implement this
+	#Takes as input which column to search under, and what you want to search for.
+	def getLinesByID(self, column, searchString):
+		print "not implemented yet"
 		

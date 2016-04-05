@@ -3,6 +3,7 @@ from collections import deque
 from BFG_Queue import BFG_Queue
 
 class Buffer:
+    'This our buffer'
     
     #Count Values for each bin
     __blackCount = 0
@@ -13,7 +14,7 @@ class Buffer:
     #Location of Bin
     __location = None
     
-    #Unique IDs for the 4 bins, the ID's correspond to the bin colour
+    #Unique IDs for the 4 bins
     __blackID = None
     __greenID = None
     __blueID = None
@@ -23,7 +24,7 @@ class Buffer:
     __isEmpty = True
     
     #Main deque
-    __bufferDeque = deque() #internal data structure used for the buffer
+    __bufferDeque = deque()
     
     #Queues
     __blackQueue = None
@@ -40,22 +41,18 @@ class Buffer:
         self.__greyID = greyID
         self.initQueue()
 
-    #create 4 queues for each of the bin colours
     def initQueue(self):
         self.__blackQueue = BFG_Queue(self.__location,self.__blackID)
         self.__greenQueue = BFG_Queue(self.__location,self.__greenID)
         self.__blueQueue = BFG_Queue(self.__location,self.__blueID)
         self.__greyQueue = BFG_Queue(self.__location,self.__greyID)
     
-    #return the value of the empty flag
     def getEmptyFlag(self):
         return self.__isEmpty
     
-    #set the empty flag to the given value
     def setEmptyFlag(self,empty):
         self.__isEmpty  = empty
     
-    #return the current number of items placed in the bin for the given colour
     def getCount(self,color):
         if color == "black":
             return self.__blackCount
@@ -68,7 +65,7 @@ class Buffer:
         else :
             print "Error: Not a color"
     
-    #check if each of the queues are empty, if the queue is not empty then append the queue into the buffer
+    #Sets flag if there is something in bufferDeque or not
     def listenQueues(self):
         if len(self.__bufferDeque) > 0:
             print "Error: Flush buffer queue first!"
@@ -92,7 +89,6 @@ class Buffer:
             self.setEmptyFlag(True)
 
     #updates mainDeque and bin count values
-    #used for testing
     def appendQueue(self,color,queueDeque):
         #Increment Count
         self.incrementCount(color,queueDeque)
@@ -117,10 +113,6 @@ class Buffer:
         for elem in range(0,len(queueDeque)):
             self.__bufferDeque.append(queueDeque.popleft())
 
-    #Make a deep copy of all the items in the buffer
-    #empty the buffer and return the copy
-    #set the empty flag to true
-    #this function is used by the Main class
     def flushBuffer(self):
         newDeque = deque(self.__bufferDeque)
         self.__bufferDeque.clear()
@@ -128,7 +120,7 @@ class Buffer:
         return newDeque
 
 
-    #used for testing purposes to fill the queues
+    #Testing Buffer
     def simulateQueue(self, simulateDeque,color):
         if color == "black":
             self.__blackQueue.push(simulateDeque)
@@ -145,7 +137,6 @@ class Buffer:
         else :
             print "Error: Not a color"
 
-    #empty the entire buffer
     def clear(self):
         self.__bufferDeque.clear()
         self.setEmptyFlag(True)
