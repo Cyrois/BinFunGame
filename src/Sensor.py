@@ -39,7 +39,7 @@ class Sensor:
     #note that a timedelta is needed due to the use of two sensors
 	a = self.__timestamp + datetime.timedelta(milliseconds=500)
 	if datetime.datetime.now() > a:
-	    #print "signal callback from signal: " + str(pinNumber)
+	    print "signal callback from signal: " + str(pinNumber)
 
         #record the current time and create the string that will be stored into the database
 	    self.__timestamp = datetime.datetime.now()
