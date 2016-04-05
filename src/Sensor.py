@@ -26,7 +26,7 @@ class Sensor:
         GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(False)
         
-	    self.__timestamp = datetime.datetime.now()
+	self.__timestamp = datetime.datetime.now()
     
         GPIO.setup(self.__gpiopin1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self.__gpiopin2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)

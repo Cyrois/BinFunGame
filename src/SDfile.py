@@ -10,10 +10,10 @@ class SDfile(file):
 	__fileExtension = ".csv"
 	__currentDate = ""
 	__locationID = ""
-	self.__filePathBlack = ''
-	self.__filePathGreen = ''
-	self.__filePathBlue = ''
-	self.__filePathGrey = ''
+	__filePathBlack = ''
+	__filePathGreen = ''
+	__filePathBlue = ''
+	__filePathGrey = ''
 
 	#constructor that will create a csv file for each of the bins for each new date
 	def __init__(self, relativePath, location):
@@ -28,10 +28,10 @@ class SDfile(file):
 		self.__filePathGrey = self.relfilePath + self.__currentDate + "_" + self.__locationID + "_" + "grey" + self.__fileExtension
 		
 		#CREATE and initialize the file with headers
-		self.quickInit(filePathBlack)
-		self.quickInit(filePathGreen)
-		self.quickInit(filePathBlue)
-		self.quickInit(filePathGrey)
+		self.quickInit(self.__filePathBlack)
+		self.quickInit(self.__filePathGreen)
+		self.quickInit(self.__filePathBlue)
+		self.quickInit(self.__filePathGrey)
 		
 	#get the current date
 	def getCurrentDate(self):
